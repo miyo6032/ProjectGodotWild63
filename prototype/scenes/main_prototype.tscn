@@ -5,3 +5,4 @@
 [node name="MainPrototype" type="Node"]
 
 [node name="PrototypePlayer" parent="." instance=ExtResource("1_g5se6")]
+position = Vector2(222, 330)

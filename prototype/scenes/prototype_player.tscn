@@ -35,7 +35,7 @@ animations = [{
 radius = 53.0
 height = 128.0
 
-[node name="PrototypePlayer" type="Area2D"]
+[node name="PrototypePlayer" type="CharacterBody2D"]
 script = ExtResource("1_d7peh")
 metadata/_edit_group_ = true
 
