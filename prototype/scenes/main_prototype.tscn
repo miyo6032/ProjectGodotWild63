@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bffxvdcjou815"]
+
+[ext_resource type="PackedScene" uid="uid://dnfdonmgt4v56" path="res://prototype/scenes/prototype_player.tscn" id="1_g5se6"]
+
+[node name="MainPrototype" type="Node"]
+
+[node name="PrototypePlayer" parent="." instance=ExtResource("1_g5se6")]
