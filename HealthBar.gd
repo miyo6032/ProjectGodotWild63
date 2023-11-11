@@ -1,38 +1,22 @@
 extends HBoxContainer
 
-enum MODES {simple, empty, partial}
-
 @export var heart_full: Texture2D
 @export var heart_half: Texture2D
 @export var heart_empty: Texture2D
 
-@export var mode = MODES.simple
+@export var hearts_to_show = 5
 
-func update_health(value):
-    match mode:
-        MODES.simple:
-            update_simple(value)
-        MODES.empty:
-            update_empty(value)
-        MODES.partial:
-            update_partial(value)
+func _ready():
+    for i in hearts_to_show:
+        add_child(TextureRect.new())
 
-func update_simple(value):
+func update_health(health, max_health):
     for i in get_child_count():
-        get_child(i).visible = value > i
-
-func update_empty(value):
-    for i in get_child_count():
-        if value > i:
+        if health > i * 2 + 1:
             get_child(i).texture = heart_full
-        else:
-            get_child(i).texture = heart_empty
-
-func update_partial(value):
-    for i in get_child_count():
-        if value > i * 2 + 1:
-            get_child(i).texture = heart_full
-        elif value > i * 2:
+        elif health > i * 2:
             get_child(i).texture = heart_half
-        else:
+        elif max_health > i * 2:
             get_child(i).texture = heart_empty
+        else:
+            get_child(i).texture = null

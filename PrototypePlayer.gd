@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 class_name PrototypePlayer
 
-# signal hit
 signal on_end_invulnerability
+signal update_health(health, max_health)
 
 const STOP_LAG = 8.0
 const MOVE_LAG = 16.0
@@ -23,7 +23,6 @@ func _process(_delta):
     if direction.x != 0:
         $AnimatedSprite2D.animation = "walk"
         $AnimatedSprite2D.flip_v = false
-        # See the note below about boolean assignment.
         $AnimatedSprite2D.flip_h = direction.x < 0
     elif direction.y != 0:
         $AnimatedSprite2D.animation = "up"
@@ -40,22 +39,21 @@ func _physics_process(delta):
 
     move_and_slide()
 
-# func _on_body_entered(body):
-    # hide() # Player disappears after being hit.
-    # hit.emit()
-    # Must be deferred as we can't change physics properties on a physics callback.
-    # $CollisionShape2D.set_deferred("disabled", true)
-    
-func start(pos):
-    position = pos
-    show()
-    $CollisionShape2D.disabled = false
+@export var max_health = 6
+@export var health = 6
+
+func _ready():
+    update_health.emit(health, max_health)
 
 func _on_enemy_collision_detection_on_damage(damage_info):
     print("player damaged" + str(damage_info))
     damageable.invulnerable = true
     animation_player.stop()
     animation_player.play("hit")
+    health -= damage_info.damage
+    update_health.emit(health, max_health)
+    if health <= 0:
+        print("u died!")
 
 func end_invulnerability():
     damageable.invulnerable = false

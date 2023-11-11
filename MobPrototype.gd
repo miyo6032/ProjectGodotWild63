@@ -21,7 +21,7 @@ func _physics_process(_delta):
 
 func damage():
     if overlap_area:
-        overlap_area.damage(1)
+        overlap_area.damage({damage = 1})
 
 func _on_damage_area_area_entered(area):
     overlap_area = area
