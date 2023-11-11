@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var target: PrototypePlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const SPEED = 100.0
 
@@ -30,3 +31,11 @@ func _on_damage_area_area_entered(area):
 func _on_damage_area_area_exited(area):
     if area == overlap_area:
         overlap_area = null
+
+var health = 2
+
+func _on_damageable_on_damage(damage_info):
+    animation_player.play("hit")
+    health -= damage_info.damage
+    if health <= 0:
+        queue_free()

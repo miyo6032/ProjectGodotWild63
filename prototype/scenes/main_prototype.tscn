@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bffxvdcjou815"]
 
 [ext_resource type="PackedScene" uid="uid://dnfdonmgt4v56" path="res://prototype/scenes/prototype_player.tscn" id="1_g5se6"]
-[ext_resource type="Script" path="res://scripts/GameConsole.gd" id="2_fcv8r"]
 [ext_resource type="PackedScene" uid="uid://8biqi748t7l3" path="res://prototype/scenes/mob_prototype.tscn" id="3_gek6n"]
+[ext_resource type="PackedScene" uid="uid://dp8uhrym263kj" path="res://prototype/scenes/fireball_test.tscn" id="4_my4o6"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="4_nueca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rnrv"]
@@ -12,9 +12,6 @@ size = Vector2(200, 200)
 
 [node name="PrototypePlayer" parent="." instance=ExtResource("1_g5se6")]
 position = Vector2(222, 330)
-
-[node name="Console" type="Node" parent="."]
-script = ExtResource("2_fcv8r")
 
 [node name="PrototypeMob" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_gek6n")]
 position = Vector2(797, 276)
@@ -29,5 +26,8 @@ shape = SubResource("RectangleShape2D_3rnrv")
 [node name="HealthBar" parent="." instance=ExtResource("4_nueca")]
 offset_right = 556.0
 offset_bottom = 135.0
+
+[node name="FireballTest" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_my4o6")]
+player = NodePath("../PrototypePlayer")
 
 [connection signal="update_health" from="PrototypePlayer" to="HealthBar" method="update_health"]

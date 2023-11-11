@@ -8,11 +8,10 @@ signal console_unknown_command
 
 class ConsoleCommand:
     var function : Callable
-    var param_count : int
-    func _init(in_function : Callable, in_param_count : int):
+    var should_close_console: bool
+    func _init(in_function : Callable, in_should_close_console):
         function = in_function
-        param_count = in_param_count
-
+        should_close_console = in_should_close_console
 
 @onready var control := Control.new()
 @onready var rich_label := RichTextLabel.new()
@@ -44,11 +43,10 @@ func _ready() -> void:
     line_edit.text_changed.connect(on_line_edit_text_changed)
     control.visible = false
     process_mode = PROCESS_MODE_ALWAYS
-    add_command("quit", quit, 0)
-    add_command("clear", clear, 0)
-    add_command("help", help, 0)
-    add_command("commands_list", commands_list, 0)
-
+    add_command("quit", quit, false)
+    add_command("clear", clear, false)
+    add_command("help", help, false)
+    add_command("commands_list", commands_list, false)
 
 func _input(event : InputEvent) -> void:
     if (event is InputEventKey):
@@ -137,14 +135,16 @@ func reset_autocomplete() -> void:
 func toggle_console() -> void:
     control.visible = !control.visible
     if (control.visible):
-        get_tree().paused = true
+        # get_tree().paused = true
+        Engine.time_scale = 0.25
         line_edit.grab_focus()
         emit_signal("console_opened")
     else:
         control.anchor_bottom = 1.0
         scroll_to_bottom()
         reset_autocomplete()
-        get_tree().paused = false
+        # get_tree().paused = false
+        Engine.time_scale = 1.0
         emit_signal("console_closed")
 
 
@@ -172,28 +172,20 @@ func on_text_entered(text : String) -> void:
         var command_string := split_text[0].to_lower()
         if (console_commands.has(command_string)):
             var command_entry : ConsoleCommand = console_commands[command_string]
-            match command_entry.param_count:
-                0:
-                    command_entry.function.call()
-                1:
-                    command_entry.function.call(split_text[1] if split_text.size() > 1 else "")
-                2:
-                    command_entry.function.call(split_text[1] if split_text.size() > 1 else "", split_text[2] if split_text.size() > 2 else "")
-                3:
-                    command_entry.function.call(split_text[1] if split_text.size() > 1 else "", split_text[2] if split_text.size() > 2 else "", split_text[3] if split_text.size() > 3 else "")
-                _:
-                    print_line("Commands with more than 3 parameters not supported.")
+            command_entry.function.call()
+            if command_entry.should_close_console:
+                toggle_console()
         else:
             emit_signal("console_unknown_command")
             print_line("Command not found.")
 
 
-func on_line_edit_text_changed(new_text : String) -> void:
+func on_line_edit_text_changed(_new_text : String) -> void:
     reset_autocomplete()
 
 
-func add_command(command_name : String, function : Callable, param_count : int = 0) -> void:
-    console_commands[command_name] = ConsoleCommand.new(function, param_count)
+func add_command(command_name : String, function : Callable, should_close_console: bool = true) -> void:
+    console_commands[command_name] = ConsoleCommand.new(function, should_close_console)
 
 
 func remove_command(command_name : String) -> void:
