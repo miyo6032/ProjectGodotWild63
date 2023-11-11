@@ -1,9 +1,5 @@
-extends Node2D
+extends RigidBody2D
 
-@onready var animation_player = $AnimationPlayer
-
-func _ready():
-    animation_player.play("fireball")
-
-func _on_area_2d_area_entered(area):
+func _on_area_2d_area_entered(area:Area2D):
     area.damage({damage = 1})
+    queue_free()

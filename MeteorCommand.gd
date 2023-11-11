@@ -4,7 +4,7 @@ extends Node
 @export var fireball_scene: PackedScene
 
 func _ready():
-    GameConsole.add_command("fireball", fireball)
+    GameConsole.add_command("meteor", fireball)
 
 func fireball():
     var fireball_instance = fireball_scene.instantiate()

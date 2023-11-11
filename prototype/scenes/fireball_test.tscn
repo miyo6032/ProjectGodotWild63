@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dp8uhrym263kj"]
-
-[ext_resource type="Script" path="res://FireballTest.gd" id="1_wtk5o"]
-[ext_resource type="PackedScene" uid="uid://d0d48p3fcjtik" path="res://prototype/scenes/fireball.tscn" id="2_h8u01"]
-
-[node name="FireballTest" type="Node2D"]
-script = ExtResource("1_wtk5o")
-fireball_scene = ExtResource("2_h8u01")
