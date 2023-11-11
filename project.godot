@@ -14,6 +14,14 @@ config/name="ProjectGodotWild63"
 run/main_scene="res://prototype/scenes/main_prototype.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 
+[autoload]
+
+Console="*res://addons/console/Console.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/console/plugin.cfg")
+
 [input]
 
 move_right={
