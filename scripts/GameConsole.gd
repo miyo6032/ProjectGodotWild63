@@ -33,7 +33,7 @@ func _ready() -> void:
     rich_label.scroll_following = true
     rich_label.anchor_right = 1.0
     rich_label.anchor_bottom = 0.5
-    rich_label.add_theme_stylebox_override("normal", load("res://addons/console/console_background.tres"))
+    rich_label.add_theme_stylebox_override("normal", load("res://data/game_console_background.tres"))
     control.add_child(rich_label)
     rich_label.text = "Termeownal.\n"
     line_edit.anchor_top = 0.5
