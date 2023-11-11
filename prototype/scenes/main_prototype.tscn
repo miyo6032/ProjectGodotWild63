@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dnfdonmgt4v56" path="res://prototype/scenes/prototype_player.tscn" id="1_g5se6"]
 [ext_resource type="PackedScene" uid="uid://8biqi748t7l3" path="res://prototype/scenes/mob_prototype.tscn" id="3_gek6n"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="4_nueca"]
-[ext_resource type="Script" path="res://MeteorCommand.gd" id="4_qftar"]
+[ext_resource type="Script" path="res://prototype/MeteorCommand.gd" id="4_qftar"]
 [ext_resource type="PackedScene" uid="uid://viowx1akgibc" path="res://prototype/scenes/meteor.tscn" id="5_bwdqm"]
 [ext_resource type="Script" path="res://prototype/scenes/FireballCommand.gd" id="6_uc1w0"]
 [ext_resource type="PackedScene" uid="uid://d0d48p3fcjtik" path="res://prototype/scenes/fireball.tscn" id="7_4pboc"]

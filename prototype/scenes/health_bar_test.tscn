@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0r1fh2mr8d0h"]
 
-[ext_resource type="Script" path="res://HealthBarTest.gd" id="1_tbpxt"]
+[ext_resource type="Script" path="res://prototype/HealthBarTest.gd" id="1_tbpxt"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="2_gc815"]
 
 [node name="HealthBarTest" type="Control"]

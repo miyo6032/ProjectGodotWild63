@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://8biqi748t7l3"]
 
-[ext_resource type="Script" path="res://MobPrototype.gd" id="1_l6laj"]
+[ext_resource type="Script" path="res://prototype/MobPrototype.gd" id="1_l6laj"]
 [ext_resource type="Texture2D" uid="uid://ccxfxgjrfijci" path="res://prototype/art/enemyWalking_1.png" id="2_j7aqc"]
 [ext_resource type="Texture2D" uid="uid://dc7tgc46lafu8" path="res://prototype/art/enemyWalking_2.png" id="3_5t723"]
 [ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="4_yfjhx"]
