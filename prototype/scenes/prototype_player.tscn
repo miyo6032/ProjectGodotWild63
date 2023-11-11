@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnfdonmgt4v56"]
+[gd_scene load_steps=9 format=3 uid="uid://dnfdonmgt4v56"]
 
 [ext_resource type="Script" path="res://PrototypePlayer.gd" id="1_d7peh"]
 [ext_resource type="Texture2D" uid="uid://dv7ojq8o1ino1" path="res://prototype/art/playerGrey_up1.png" id="2_ft3mr"]
@@ -35,7 +35,12 @@ animations = [{
 radius = 53.0
 height = 128.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1473"]
+radius = 49.0
+height = 126.0
+
 [node name="PrototypePlayer" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_d7peh")
 metadata/_edit_group_ = true
 
@@ -46,3 +51,11 @@ frame_progress = 0.585656
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4chyv")
+
+[node name="EnemyCollisionDetection" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCollisionDetection"]
+shape = SubResource("CapsuleShape2D_x1473")

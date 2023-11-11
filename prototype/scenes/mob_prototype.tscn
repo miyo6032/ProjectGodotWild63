@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://8biqi748t7l3"]
+[gd_scene load_steps=7 format=3 uid="uid://8biqi748t7l3"]
 
 [ext_resource type="Script" path="res://MobPrototype.gd" id="1_l6laj"]
 [ext_resource type="Texture2D" uid="uid://ccxfxgjrfijci" path="res://prototype/art/enemyWalking_1.png" id="2_j7aqc"]
@@ -22,7 +22,12 @@ animations = [{
 radius = 48.0
 height = 130.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rechp"]
+radius = 45.0
+height = 102.0
+
 [node name="PrototypeMob" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_l6laj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -33,3 +38,15 @@ frame_progress = 0.579603
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_p3s8m")
+
+[node name="DamageArea" type="Area2D" parent="."]
+position = Vector2(2, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(7, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rechp")
+
+[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]

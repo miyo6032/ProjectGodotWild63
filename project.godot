@@ -51,6 +51,11 @@ toggle_console={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="default"
+2d_physics/layer_2="player"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
