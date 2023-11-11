@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bffxvdcjou815"]
+[gd_scene load_steps=3 format=3 uid="uid://bffxvdcjou815"]
 
 [ext_resource type="PackedScene" uid="uid://dnfdonmgt4v56" path="res://prototype/scenes/prototype_player.tscn" id="1_g5se6"]
+[ext_resource type="Script" path="res://scripts/GameConsole.gd" id="2_fcv8r"]
 
 [node name="MainPrototype" type="Node"]
 
 [node name="PrototypePlayer" parent="." instance=ExtResource("1_g5se6")]
 position = Vector2(222, 330)
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("2_fcv8r")
