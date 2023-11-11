@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0r1fh2mr8d0h"]
+
+[ext_resource type="Script" path="res://HealthBarTest.gd" id="1_tbpxt"]
+[ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="2_gc815"]
+
+[node name="HealthBarTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tbpxt")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_gc815")]
+layout_mode = 0
+mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 659.0
+offset_top = 30.0
+offset_right = 686.0
+offset_bottom = 61.0
+text = "+1"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 659.0
+offset_top = 117.0
+offset_right = 682.0
+offset_bottom = 148.0
+text = "-1"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
