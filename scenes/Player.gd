@@ -107,4 +107,5 @@ func end_invulnerability():
     on_end_invulnerability.emit()
 
 func _on_attack_area_area_entered(area:Area2D):
+    velocity = velocity * -0.5
     area.damage({damage = 1, knockback = last_direction * 800.0})
