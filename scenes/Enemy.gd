@@ -3,16 +3,18 @@ extends CharacterBody2D
 signal transitioned(state_name)
 
 @export var initial_state := NodePath()
-@export var player: Player
 
 @onready var current_state: State = get_node(initial_state)
 @onready var states: Node = $States
 
 var state_data
+var player
+
+func init(in_player):
+    player = in_player
 
 func _ready() -> void:
     state_data = { player = player, enemy = self, can_move = true, stunned = false }
-    await owner.ready
     for child in states.get_children():
         child.set_state_machine(self)
         for transition in child.get_children():
