@@ -31,6 +31,7 @@ radius = 50.0
 
 [node name="Player" parent="." instance=ExtResource("1_808qs")]
 position = Vector2(314, 284)
+attack_velocity = 3500.0
 
 [node name="RangedEnemy" parent="." instance=ExtResource("2_mlf80")]
 process_mode = 4

@@ -105,12 +105,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p3s8m"]
-radius = 48.0
-height = 130.0
+radius = 16.0
+height = 98.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_blc4p"]
-radius = 49.0
-height = 126.0
+radius = 16.0
+height = 96.0
 
 [sub_resource type="Animation" id="Animation_nn7tu"]
 resource_name = "hit"
@@ -142,12 +142,11 @@ initial_state = NodePath("States/MoveAndAttackState")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(5, 5)
+scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_nleu6")
 animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
 shape = SubResource("CapsuleShape2D_p3s8m")
 
 [node name="Damageable" type="Area2D" parent="."]
@@ -157,7 +156,6 @@ monitoring = false
 script = ExtResource("4_iafrh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damageable"]
-rotation = 1.5708
 shape = SubResource("CapsuleShape2D_blc4p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -166,7 +164,7 @@ libraries = {
 }
 
 [node name="BaseObjectDetector" type="Area2D" parent="."]
-position = Vector2(95, 0)
+position = Vector2(80, 0)
 script = ExtResource("5_jgagf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaseObjectDetector"]
@@ -185,7 +183,7 @@ fireball_scene = ExtResource("6_2mhdd")
 [node name="MoveRandomlyState" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("object_detector")]
 script = ExtResource("8_bfeme")
 object_detector = NodePath("../../../BaseObjectDetector")
-object_detection_distance = 100.0
+object_detection_distance = 80.0
 
 [node name="StunnedTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("true_state")]
 script = ExtResource("9_comn4")

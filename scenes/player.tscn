@@ -98,12 +98,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4chyv"]
-radius = 53.0
-height = 128.0
+radius = 14.0
+height = 70.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1473"]
-radius = 49.0
-height = 126.0
+radius = 14.0
+height = 70.0
 
 [sub_resource type="Animation" id="Animation_g2sql"]
 resource_name = "attack"
@@ -137,7 +137,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "method"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -154,7 +154,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "method"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -220,8 +220,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ygxr"]
-radius = 42.0
-height = 104.0
+radius = 37.0
+height = 86.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
@@ -255,13 +255,14 @@ libraries = {
 
 [node name="AttackArea" type="Area2D" parent="FacingDirection"]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(120, 0)
+position = Vector2(49, 0)
 collision_layer = 0
 collision_mask = 4
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FacingDirection/AttackArea"]
+position = Vector2(-24, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7ygxr")
 

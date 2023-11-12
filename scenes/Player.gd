@@ -8,7 +8,7 @@ signal update_health(health, max_health)
 const STOP_LAG = 16.0
 const MOVE_LAG = 16.0
 const WALK_SPEED = 300.0
-const ATTACK_VELOCITY = 1000.0
+@export var attack_velocity = 1000.0
 
 @onready var damageable: Damageable = $Damageable
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -18,25 +18,28 @@ const ATTACK_VELOCITY = 1000.0
 var movement_enabled = true
 var attack_enabled = true
 var last_direction = Vector2.RIGHT
+var time_since_last_dash = 0
 
-func _process(_delta):
+func _process(delta):
     if movement_enabled:
         handle_sprite_movement()
     if attack_enabled:
         handle_attack_input()
+    time_since_last_dash += delta
 
 func handle_attack_input():
     var attack_direction = Input.get_vector("attack_left", "attack_right", "attack_up", "attack_down")
     if attack_direction.length() > 0:
         facing_direction.look_at(facing_direction.global_position + attack_direction)
         animation_player.play("attack")
-        velocity += attack_direction * ATTACK_VELOCITY
-
-func disable_attack():
-    attack_enabled = false
-
-func enable_attack():
-    attack_enabled = true
+        velocity += attack_direction * attack_velocity
+        movement_enabled = false
+        attack_enabled = false
+        await get_tree().create_timer(0.15).timeout
+        movement_enabled = true
+        await get_tree().create_timer(0.05 if time_since_last_dash > 0.25 else 0.25).timeout
+        time_since_last_dash = 0
+        attack_enabled = true
 
 func handle_sprite_movement():
     var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
