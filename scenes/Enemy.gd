@@ -8,7 +8,7 @@ signal transitioned(state_name)
 @onready var states: Node = $States
 
 var state_data
-var player
+@export var player: Player
 
 func init(in_player):
     player = in_player

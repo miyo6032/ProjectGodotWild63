@@ -33,9 +33,9 @@ radius = 50.0
 position = Vector2(314, 284)
 attack_velocity = 3500.0
 
-[node name="RangedEnemy" parent="." instance=ExtResource("2_mlf80")]
-process_mode = 4
+[node name="RangedEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_mlf80")]
 position = Vector2(884, 293)
+player = NodePath("../Player")
 
 [node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_positions", "player")]
 script = ExtResource("3_433c3")

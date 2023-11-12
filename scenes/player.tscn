@@ -221,7 +221,7 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ygxr"]
 radius = 37.0
-height = 86.0
+height = 94.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
@@ -254,15 +254,13 @@ libraries = {
 [node name="FacingDirection" type="Node2D" parent="."]
 
 [node name="AttackArea" type="Area2D" parent="FacingDirection"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(49, 0)
+position = Vector2(36, 0)
 collision_layer = 0
 collision_mask = 4
-monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FacingDirection/AttackArea"]
-position = Vector2(-24, 0)
+position = Vector2(-31, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7ygxr")
 

@@ -33,6 +33,9 @@ func handle_attack_input():
         facing_direction.look_at(facing_direction.global_position + attack_direction)
         animation_player.play("attack")
         velocity += attack_direction * attack_velocity
+        if attack_direction.x != 0:
+            animated_sprite.flip_v = false
+            animated_sprite.flip_h = attack_direction.x < 0
         movement_enabled = false
         attack_enabled = false
         await get_tree().create_timer(0.15).timeout
@@ -96,7 +99,6 @@ func _on_enemy_collision_detection_on_damage(damage_info):
 func end_invulnerability():
     damageable.invulnerable = false
     on_end_invulnerability.emit()
-
 
 func _on_attack_area_area_entered(area:Area2D):
     area.damage({damage = 1, knockback = last_direction * 800.0})
