@@ -5,6 +5,7 @@ class_name EnemyRangedAttackState
 @export var fireball_scene: PackedScene
 @export var shoot_time: float = 2
 @export var telegraph_time: float = 1.0
+@export var projectile_speed: float = 25
 
 var current_time = 0
 var fireball_tween: Tween
@@ -22,7 +23,7 @@ func fireball():
     state_data.can_move = true
     var fireball_instance = fireball_scene.instantiate()
     var fireball_position = enemy.global_position
-    fireball_instance.linear_velocity = (player.global_position - fireball_position).normalized() * 250
+    fireball_instance.linear_velocity = (player.global_position - fireball_position).normalized() * projectile_speed
     fireball_instance.global_position = fireball_position
     fireball_instance.look_at(player.global_position)
     get_tree().current_scene.add_child(fireball_instance)

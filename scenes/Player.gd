@@ -5,10 +5,11 @@ class_name Player
 signal on_end_invulnerability
 signal update_health(health, max_health)
 
-const STOP_LAG = 16.0
-const MOVE_LAG = 16.0
-const WALK_SPEED = 300.0
-@export var attack_velocity = 1000.0
+@export var stop_lag = 16.0
+@export var move_lag = 16.0
+@export var walk_speed = 30.0
+@export var attack_velocity = 100.0
+@export var knockback = 80.0
 
 @onready var damageable: Damageable = $Damageable
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -65,16 +66,16 @@ func handle_sprite_movement():
         animated_sprite.flip_h = direction.x < 0
 
 func _physics_process(delta):
-    var speed = WALK_SPEED
+    var speed = walk_speed
 
     var direction = Vector2.ZERO
     if movement_enabled:
         direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
     if direction != Vector2.ZERO:
-        velocity = lerp(velocity, direction * speed, delta * MOVE_LAG)
+        velocity = lerp(velocity, direction * speed, delta * move_lag)
     else:   
-        velocity = lerp(velocity, Vector2.ZERO, delta * STOP_LAG)
+        velocity = lerp(velocity, Vector2.ZERO, delta * stop_lag)
 
     move_and_slide()
 
@@ -108,4 +109,4 @@ func end_invulnerability():
 
 func _on_attack_area_area_entered(area:Area2D):
     velocity = velocity * -0.5
-    area.damage({damage = 1, knockback = last_direction * 800.0})
+    area.damage({damage = 1, knockback = last_direction * knockback})

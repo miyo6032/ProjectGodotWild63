@@ -98,12 +98,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4chyv"]
-radius = 14.0
-height = 70.0
+radius = 2.0
+height = 8.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1473"]
-radius = 14.0
-height = 70.0
+radius = 2.0
+height = 8.0
 
 [sub_resource type="Animation" id="Animation_g2sql"]
 resource_name = "attack"
@@ -278,8 +278,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ygxr"]
-radius = 37.0
-height = 94.0
+radius = 4.0
+height = 10.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
@@ -288,7 +288,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_uo3ea")
 animation = &"walk"
 
@@ -319,7 +318,7 @@ collision_mask = 4
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FacingDirection/AttackArea"]
-position = Vector2(-31, 0)
+position = Vector2(-34, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7ygxr")
 

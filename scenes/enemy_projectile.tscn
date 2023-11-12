@@ -19,8 +19,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4oemq"]
-radius = 15.0
-height = 50.0
+radius = 1.0
+height = 4.0
 
 [node name="EnemyProjectile" type="RigidBody2D"]
 collision_layer = 0
@@ -29,7 +29,6 @@ script = ExtResource("1_vvg55")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_skctp")
 animation = &"fireball"
 
