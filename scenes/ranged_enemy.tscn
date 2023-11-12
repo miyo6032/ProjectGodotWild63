@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://cs1t3p46kqe1l"]
+
+[ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
+[ext_resource type="Texture2D" uid="uid://ccxfxgjrfijci" path="res://prototype/art/enemyWalking_1.png" id="2_t5hqr"]
+[ext_resource type="Texture2D" uid="uid://dc7tgc46lafu8" path="res://prototype/art/enemyWalking_2.png" id="3_rokt2"]
+[ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="4_iafrh"]
+[ext_resource type="Script" path="res://scenes/BaseObjectDetector.gd" id="5_jgagf"]
+[ext_resource type="Script" path="res://scenes/EnemyRangedAttackState.gd" id="5_m8asx"]
+[ext_resource type="PackedScene" uid="uid://crxworclxlacs" path="res://scenes/enemy_projectile.tscn" id="6_2mhdd"]
+[ext_resource type="Script" path="res://scenes/MoveRandomlyState.gd" id="8_bfeme"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w8ta0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t5hqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rokt2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p3s8m"]
+radius = 48.0
+height = 130.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_blc4p"]
+radius = 49.0
+height = 126.0
+
+[sub_resource type="Animation" id="Animation_nn7tu"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmrua"]
+_data = {
+"hit": SubResource("Animation_nn7tu")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_soeh7"]
+
+[node name="RangedEnemy" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_tl3v6")
+initial_state = NodePath("States/MoveRandomlyState")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w8ta0")
+animation = &"walk"
+frame_progress = 0.579603
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_p3s8m")
+
+[node name="Damageable" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("4_iafrh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damageable"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_blc4p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fmrua")
+}
+
+[node name="BaseObjectDetector" type="Area2D" parent="."]
+position = Vector2(95, 0)
+script = ExtResource("5_jgagf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseObjectDetector"]
+shape = SubResource("CircleShape2D_soeh7")
+
+[node name="States" type="Node" parent="."]
+
+[node name="EnemyRangedAttackState" type="Node" parent="States"]
+script = ExtResource("5_m8asx")
+fireball_scene = ExtResource("6_2mhdd")
+
+[node name="MoveRandomlyState" type="Node" parent="States" node_paths=PackedStringArray("object_detector")]
+script = ExtResource("8_bfeme")
+object_detector = NodePath("../../BaseObjectDetector")
+object_detection_distance = 100.0
+
+[connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]
