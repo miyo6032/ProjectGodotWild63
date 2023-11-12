@@ -1,27 +1,107 @@
-[gd_scene load_steps=16 format=3 uid="uid://cs1t3p46kqe1l"]
+[gd_scene load_steps=27 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
-[ext_resource type="Texture2D" uid="uid://ccxfxgjrfijci" path="res://prototype/art/enemyWalking_1.png" id="2_t5hqr"]
-[ext_resource type="Texture2D" uid="uid://dc7tgc46lafu8" path="res://prototype/art/enemyWalking_2.png" id="3_rokt2"]
+[ext_resource type="Texture2D" uid="uid://lo0ibcg8l6hc" path="res://prototype2/art/mage.png" id="2_ds85t"]
 [ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="4_iafrh"]
 [ext_resource type="Script" path="res://scenes/BaseObjectDetector.gd" id="5_jgagf"]
 [ext_resource type="Script" path="res://scenes/EnemyRangedAttackState.gd" id="5_m8asx"]
 [ext_resource type="PackedScene" uid="uid://crxworclxlacs" path="res://scenes/enemy_projectile.tscn" id="6_2mhdd"]
 [ext_resource type="Script" path="res://scenes/CompositeState.gd" id="6_5cvel"]
 [ext_resource type="Script" path="res://scenes/MoveRandomlyState.gd" id="8_bfeme"]
+[ext_resource type="Script" path="res://scenes/StunnedTransition.gd" id="9_comn4"]
+[ext_resource type="Script" path="res://scenes/StunnedState.gd" id="9_gexjc"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_w8ta0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_va1t7"]
+atlas = ExtResource("2_ds85t")
+region = Rect2(9, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roh2j"]
+atlas = ExtResource("2_ds85t")
+region = Rect2(18, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deco4"]
+atlas = ExtResource("2_ds85t")
+region = Rect2(72, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rkmr"]
+atlas = ExtResource("2_ds85t")
+region = Rect2(81, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foixl"]
+atlas = ExtResource("2_ds85t")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdmkr"]
+atlas = ExtResource("2_ds85t")
+region = Rect2(27, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgmhl"]
+atlas = ExtResource("2_ds85t")
+region = Rect2(36, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sstm"]
+atlas = ExtResource("2_ds85t")
+region = Rect2(45, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xluny"]
+atlas = ExtResource("2_ds85t")
+region = Rect2(54, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4c1s"]
+atlas = ExtResource("2_ds85t")
+region = Rect2(63, 0, 9, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nleu6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_t5hqr")
+"texture": SubResource("AtlasTexture_va1t7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_rokt2")
+"texture": SubResource("AtlasTexture_roh2j")
 }],
 "loop": true,
-"name": &"walk",
-"speed": 5.0
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deco4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rkmr")
+}],
+"loop": true,
+"name": &"die",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foixl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdmkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgmhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sstm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xluny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4c1s")
+}],
+"loop": true,
+"name": &"move",
+"speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p3s8m"]
@@ -61,9 +141,10 @@ script = ExtResource("1_tl3v6")
 initial_state = NodePath("States/MoveAndAttackState")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_w8ta0")
-animation = &"walk"
-frame_progress = 0.579603
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_nleu6")
+animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -105,5 +186,13 @@ fireball_scene = ExtResource("6_2mhdd")
 script = ExtResource("8_bfeme")
 object_detector = NodePath("../../../BaseObjectDetector")
 object_detection_distance = 100.0
+
+[node name="StunnedTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("true_state")]
+script = ExtResource("9_comn4")
+true_state = NodePath("../../StunnedState")
+
+[node name="StunnedState" type="Node" parent="States" node_paths=PackedStringArray("recover_state")]
+script = ExtResource("9_gexjc")
+recover_state = NodePath("../MoveAndAttackState")
 
 [connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]

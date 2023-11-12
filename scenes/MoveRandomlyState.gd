@@ -21,11 +21,17 @@ func update(delta: float) -> void:
     last_direction_change_time -= delta
 
 func physics_update(delta: float) -> void:
+    if not state_data.can_move:
+        enemy.velocity = lerp(enemy.velocity, Vector2.ZERO, delta * move_lag)
+        return
+
     if not valid_spot() or last_direction_change_time <= 0:
         pick_random_direction()
         enemy.velocity = lerp(enemy.velocity, Vector2.ZERO, delta * move_lag)
+        enemy.animated_sprite.play("idle")
     else:
         enemy.velocity = lerp(enemy.velocity, direction * speed, delta * move_lag)
+        enemy.animated_sprite.play("move")
 
 func valid_spot() -> bool:
     position_detector(object_detector, object_detection_distance)

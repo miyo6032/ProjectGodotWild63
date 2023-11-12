@@ -11,7 +11,7 @@ signal transitioned(state_name)
 var state_data
 
 func _ready() -> void:
-    state_data = { player = player, enemy = self }
+    state_data = { player = player, enemy = self, can_move = true, stunned = false }
     await owner.ready
     for child in states.get_children():
         child.set_state_machine(self)
@@ -31,13 +31,14 @@ func _physics_process(delta: float) -> void:
     current_state.physics_update(delta)
     move_and_slide()
 
-func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
-    if not has_node(target_state_name):
-        push_warning("unknown state %s" % target_state_name)
+func transition_to(target_state: State, msg: Dictionary = {}) -> void:
+    if not is_ancestor_of(target_state):
+        push_warning("unknown state %s" % target_state.name)
         return
 
+    print("transitioning to %s" % target_state.name)
     current_state.exit()
-    current_state = get_node(target_state_name)
+    current_state = target_state
     current_state.enter(msg)
     emit_signal("transitioned", current_state.name)
 
@@ -46,23 +47,25 @@ func maybe_transition_state():
         if transition is StateTransition:
             var decision = transition.get_decision()
             if decision:
-                var has_true_state = has_node(transition.true_state)
-                if has_true_state and transition.true_state != current_state.state_name:
-                    var ai_state = get_node(transition.true_state)
-                    transition_to(ai_state.state_name)
-                    break
+                if transition.true_state:
+                    var has_true_state = is_ancestor_of(transition.true_state)
+                    if has_true_state and transition.true_state != current_state:
+                        transition_to(transition.true_state)
+                        break
             else:
-                var has_false_state = has_node(transition.false_state)
-                if has_false_state and transition.false_state != current_state.state_name:
-                    var ai_state = get_node(transition.false_state)
-                    transition_to(ai_state.state_name)
-                    break
+                if transition.false_state:
+                    var has_false_state = is_ancestor_of(transition.false_state)
+                    if has_false_state and transition.false_state != current_state:
+                        transition_to(transition.false_state)
+                        break
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var health = 2
 
 func _on_damageable_on_damage(damage_info):
     animation_player.play("hit")
     health -= damage_info.damage
+    state_data.stunned = true
     if health <= 0:
         queue_free()

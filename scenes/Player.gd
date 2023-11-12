@@ -42,8 +42,7 @@ func handle_sprite_movement():
     var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
     if direction.length() > 0:
-        animated_sprite.animation = "walk"
-        animated_sprite.play()
+        animated_sprite.play("walk")
         last_direction = direction
     else:
         animated_sprite.stop()
