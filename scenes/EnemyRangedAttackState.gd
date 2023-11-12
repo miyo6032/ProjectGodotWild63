@@ -3,9 +3,15 @@ extends State
 class_name EnemyRangedAttackState
 
 @export var fireball_scene: PackedScene
+@export var shoot_time: float = 2
 
-func enter(_msg := {}) -> void:
-    fireball()
+var current_time = 0
+
+func update(delta: float) -> void:
+    current_time += delta
+    if current_time >= shoot_time:
+        fireball()
+        current_time = 0
 
 func fireball():
     var fireball_instance = fireball_scene.instantiate()

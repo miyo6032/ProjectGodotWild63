@@ -8,12 +8,12 @@ var player : get = get_player
 
 func get_player():
     return state_machine.state_data.player
-
 func get_enemy():
     return state_machine.state_data.enemy
-
 func get_state_data():
     return state_machine.state_data
+func set_state_machine(new_state_machine):
+    state_machine = new_state_machine
 
 func handle_input(_event: InputEvent) -> void:
     pass

@@ -14,7 +14,7 @@ func _ready() -> void:
     state_data = { player = player, enemy = self }
     await owner.ready
     for child in states.get_children():
-        child.state_machine = self
+        child.set_state_machine(self)
         for transition in child.get_children():
             transition.state_data = state_data
     current_state.enter()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cs1t3p46kqe1l"]
+[gd_scene load_steps=16 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
 [ext_resource type="Texture2D" uid="uid://ccxfxgjrfijci" path="res://prototype/art/enemyWalking_1.png" id="2_t5hqr"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scenes/BaseObjectDetector.gd" id="5_jgagf"]
 [ext_resource type="Script" path="res://scenes/EnemyRangedAttackState.gd" id="5_m8asx"]
 [ext_resource type="PackedScene" uid="uid://crxworclxlacs" path="res://scenes/enemy_projectile.tscn" id="6_2mhdd"]
+[ext_resource type="Script" path="res://scenes/CompositeState.gd" id="6_5cvel"]
 [ext_resource type="Script" path="res://scenes/MoveRandomlyState.gd" id="8_bfeme"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w8ta0"]
@@ -57,7 +58,7 @@ _data = {
 [node name="RangedEnemy" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_tl3v6")
-initial_state = NodePath("States/MoveRandomlyState")
+initial_state = NodePath("States/MoveAndAttackState")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w8ta0")
@@ -92,13 +93,17 @@ shape = SubResource("CircleShape2D_soeh7")
 
 [node name="States" type="Node" parent="."]
 
-[node name="EnemyRangedAttackState" type="Node" parent="States"]
+[node name="MoveAndAttackState" type="Node" parent="States" node_paths=PackedStringArray("states")]
+script = ExtResource("6_5cvel")
+states = [NodePath("EnemyRangedAttackState"), NodePath("MoveRandomlyState")]
+
+[node name="EnemyRangedAttackState" type="Node" parent="States/MoveAndAttackState"]
 script = ExtResource("5_m8asx")
 fireball_scene = ExtResource("6_2mhdd")
 
-[node name="MoveRandomlyState" type="Node" parent="States" node_paths=PackedStringArray("object_detector")]
+[node name="MoveRandomlyState" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("object_detector")]
 script = ExtResource("8_bfeme")
-object_detector = NodePath("../../BaseObjectDetector")
+object_detector = NodePath("../../../BaseObjectDetector")
 object_detection_distance = 100.0
 
 [connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]
