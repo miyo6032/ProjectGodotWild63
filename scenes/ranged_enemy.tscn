@@ -194,5 +194,6 @@ true_state = NodePath("../../StunnedState")
 [node name="StunnedState" type="Node" parent="States" node_paths=PackedStringArray("recover_state")]
 script = ExtResource("9_gexjc")
 recover_state = NodePath("../MoveAndAttackState")
+transition_speed = 8.0
 
 [connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]

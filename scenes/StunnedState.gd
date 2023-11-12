@@ -4,6 +4,7 @@ class_name StunnedState
 
 @export var stun_time : float = 1.0
 @export var recover_state : State
+@export var transition_speed : float = 4.0
 
 var stunned_tween
 
@@ -21,3 +22,6 @@ func remove_stun():
 func exit() -> void:
     if stunned_tween:
         stunned_tween.kill()
+
+func physics_update(delta: float) -> void:
+    enemy.velocity = lerp(enemy.velocity, Vector2.ZERO, delta * transition_speed)

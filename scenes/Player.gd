@@ -96,4 +96,4 @@ func end_invulnerability():
 
 
 func _on_attack_area_area_entered(area:Area2D):
-    area.damage({damage = 1})
+    area.damage({damage = 1, knockback = last_direction * 800.0})

@@ -67,5 +67,9 @@ func _on_damageable_on_damage(damage_info):
     animation_player.play("hit")
     health -= damage_info.damage
     state_data.stunned = true
+
+    if damage_info.has("knockback"):
+        velocity += damage_info.knockback
+
     if health <= 0:
         queue_free()
