@@ -14,6 +14,7 @@ const WALK_SPEED = 300.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var facing_direction: Node2D = $FacingDirection
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var attack_area: Area2D = $FacingDirection/AttackArea
 
 var movement_enabled = true
 var attack_enabled = true
@@ -32,14 +33,19 @@ func handle_attack_input():
     if attack_direction.length() > 0:
         facing_direction.look_at(facing_direction.global_position + attack_direction)
         animation_player.play("attack")
+        attack_area.monitoring = true
         velocity += attack_direction * attack_velocity
         if attack_direction.x != 0:
             animated_sprite.flip_v = false
             animated_sprite.flip_h = attack_direction.x < 0
         movement_enabled = false
         attack_enabled = false
-        await get_tree().create_timer(0.15).timeout
+        damageable.monitorable = false
+        await get_tree().create_timer(0.1).timeout
+        attack_area.monitoring = false
+        await get_tree().create_timer(0.05).timeout
         movement_enabled = true
+        damageable.monitorable = true
         await get_tree().create_timer(0.05 if time_since_last_dash > 0.25 else 0.25).timeout
         time_since_last_dash = 0
         attack_enabled = true

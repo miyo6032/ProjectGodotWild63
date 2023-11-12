@@ -24,7 +24,7 @@ func fireball():
     var fireball_position = enemy.global_position
     fireball_instance.linear_velocity = (player.global_position - fireball_position).normalized() * 250
     fireball_instance.global_position = fireball_position
-    fireball_instance.look_at(fireball_position)
+    fireball_instance.look_at(player.global_position)
     get_tree().current_scene.add_child(fireball_instance)
 
 func exit() -> void:

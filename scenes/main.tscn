@@ -44,6 +44,7 @@ spawn_positions = [NodePath("../SpawnPositions/Area2D"), NodePath("../SpawnPosit
 player = NodePath("../Player")
 
 [node name="SpawnPositions" type="Node2D" parent="."]
+visible = false
 
 [node name="Area2D" type="Area2D" parent="SpawnPositions"]
 position = Vector2(865, 362)

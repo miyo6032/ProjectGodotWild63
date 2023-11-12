@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bfellyq050wl2"]
+[gd_scene load_steps=22 format=3 uid="uid://bfellyq050wl2"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_ymphj"]
 [ext_resource type="Texture2D" uid="uid://cbxbj80ex1jk2" path="res://prototype2/art/ascetic.png" id="2_m4ij7"]
@@ -169,17 +169,31 @@ tracks/3/keys = {
 "method": &"enable_attack"
 }]
 }
-tracks/4/type = "value"
+tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("FacingDirection/AttackArea:monitoring")
+tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_invulnerability"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_sl1sc"]
@@ -213,8 +227,52 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_ucjxo"]
+resource_name = "attack"
+length = 0.001
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FacingDirection/AttackArea:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_invulnerability"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u2vl3"]
 _data = {
+"RESET": SubResource("Animation_ucjxo"),
 "attack": SubResource("Animation_g2sql"),
 "hit": SubResource("Animation_sl1sc")
 }
@@ -254,6 +312,7 @@ libraries = {
 [node name="FacingDirection" type="Node2D" parent="."]
 
 [node name="AttackArea" type="Area2D" parent="FacingDirection"]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(36, 0)
 collision_layer = 0
 collision_mask = 4

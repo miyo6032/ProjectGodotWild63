@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://crxworclxlacs"]
 
 [ext_resource type="Script" path="res://prototype/scenes/Fireball.gd" id="1_vvg55"]
-[ext_resource type="Texture2D" uid="uid://cecc4wb7lovoh" path="res://prototype/art/enemyFlyingAlt_1.png" id="2_ewvjx"]
-[ext_resource type="Texture2D" uid="uid://bdp15gw8dirgr" path="res://prototype/art/enemyFlyingAlt_2.png" id="3_fjajf"]
+[ext_resource type="Texture2D" uid="uid://cm27c2rpo6a3c" path="res://prototype2/art/fireball.png" id="2_f14oi"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_c131r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_17cv8"]
+atlas = ExtResource("2_f14oi")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_skctp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ewvjx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_fjajf")
+"texture": SubResource("AtlasTexture_17cv8")
 }],
 "loop": true,
 "name": &"fireball",
@@ -19,8 +19,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4oemq"]
-radius = 42.0
-height = 104.0
+radius = 15.0
+height = 50.0
 
 [node name="EnemyProjectile" type="RigidBody2D"]
 collision_layer = 0
@@ -28,7 +28,9 @@ gravity_scale = 0.0
 script = ExtResource("1_vvg55")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_c131r")
+texture_filter = 1
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_skctp")
 animation = &"fireball"
 
 [node name="Area2D" type="Area2D" parent="."]
