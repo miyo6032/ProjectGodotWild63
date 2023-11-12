@@ -57,3 +57,12 @@ func maybe_transition_state():
                     var ai_state = get_node(transition.false_state)
                     transition_to(ai_state.state_name)
                     break
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+var health = 2
+
+func _on_damageable_on_damage(damage_info):
+    animation_player.play("hit")
+    health -= damage_info.damage
+    if health <= 0:
+        queue_free()

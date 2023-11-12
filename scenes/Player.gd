@@ -94,3 +94,7 @@ func _on_enemy_collision_detection_on_damage(damage_info):
 func end_invulnerability():
     damageable.invulnerable = false
     on_end_invulnerability.emit()
+
+
+func _on_attack_area_area_entered(area:Area2D):
+    area.damage({damage = 1})
