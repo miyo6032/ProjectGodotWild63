@@ -1,5 +1,7 @@
 extends StateTransition
 
+class_name DetectTargetTransition
+
 @export var distance : float
 
 func get_decision() -> bool:

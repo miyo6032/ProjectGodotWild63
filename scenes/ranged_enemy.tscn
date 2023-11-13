@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cs1t3p46kqe1l"]
+[gd_scene load_steps=30 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
 [ext_resource type="Texture2D" uid="uid://lo0ibcg8l6hc" path="res://prototype2/art/mage.png" id="2_ds85t"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://scenes/MoveRandomlyState.gd" id="8_bfeme"]
 [ext_resource type="Script" path="res://scenes/StunnedTransition.gd" id="9_comn4"]
 [ext_resource type="Script" path="res://scenes/StunnedState.gd" id="9_gexjc"]
+[ext_resource type="Script" path="res://scenes/DetectTargetTransition.gd" id="10_15kaj"]
+[ext_resource type="Script" path="res://scenes/MoveToTargetState.gd" id="12_4ssjg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_va1t7"]
 atlas = ExtResource("2_ds85t")
@@ -222,10 +224,26 @@ speed = 10.0
 script = ExtResource("9_comn4")
 true_state = NodePath("../../StunnedState")
 
+[node name="DetectTargetTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("false_state")]
+script = ExtResource("10_15kaj")
+distance = 45.0
+false_state = NodePath("../../MoveToTargetState")
+
 [node name="StunnedState" type="Node" parent="States" node_paths=PackedStringArray("recover_state")]
 script = ExtResource("9_gexjc")
 recover_state = NodePath("../MoveAndAttackState")
 transition_speed = 8.0
+
+[node name="MoveToTargetState" type="Node" parent="States" node_paths=PackedStringArray("object_detector")]
+script = ExtResource("12_4ssjg")
+object_detector = NodePath("../../BaseObjectDetector")
+object_detection_distance = 9.0
+speed = 10.0
+
+[node name="DetectTargetTransition" type="Node" parent="States/MoveToTargetState" node_paths=PackedStringArray("true_state")]
+script = ExtResource("10_15kaj")
+distance = 30.0
+true_state = NodePath("../../MoveAndAttackState")
 
 [node name="DamageParticles" type="GPUParticles2D" parent="."]
 emitting = false

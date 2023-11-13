@@ -7,7 +7,7 @@ class_name EnemyRangedAttackState
 @export var telegraph_time: float = 1.0
 @export var projectile_speed: float = 25
 
-var current_time = 0
+var current_time = shoot_time
 var fireball_tween: Tween
 
 func update(delta: float) -> void:
@@ -29,5 +29,5 @@ func fireball():
     get_tree().current_scene.add_child(fireball_instance)
 
 func exit() -> void:
-    if fireball_tween:
+    if fireball_tween and state_data.stunned:
         fireball_tween.kill()
