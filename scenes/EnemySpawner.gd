@@ -2,7 +2,7 @@ extends Node2D
 
 @export var waves: EnemyWaves
 @export var telegraph_spawn_delay: float
-@export var spawn_positions: Array[Area2D]
+@export var spawn_positions: Node2D
 @export var player: Player
 
 var current_wave_index
@@ -26,7 +26,7 @@ func start_spawning():
     tween.tween_callback(start_spawning)
 
 func spawn_enemy():
-    var available_positions = [] + spawn_positions
+    var available_positions = [] + spawn_positions.get_children()
 
     while available_positions.size() > 0:
         var random_position = available_positions[randi() % available_positions.size()]

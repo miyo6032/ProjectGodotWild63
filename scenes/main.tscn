@@ -44,12 +44,13 @@ attack_velocity = 350.0
 [node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_positions", "player")]
 script = ExtResource("3_433c3")
 waves = SubResource("Resource_a0cer")
-spawn_positions = [NodePath("../SpawnPositions/Area2D"), NodePath("../SpawnPositions/Area2D3"), NodePath("../SpawnPositions/Area2D2")]
+spawn_positions = NodePath("../SpawnPositions")
 player = NodePath("../Player")
 
 [node name="SpawnPositions" type="Node2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="SpawnPositions"]
+position = Vector2(75, -45)
 collision_layer = 0
 collision_mask = 6
 
@@ -57,6 +58,7 @@ collision_mask = 6
 shape = SubResource("CircleShape2D_2hd0y")
 
 [node name="Area2D3" type="Area2D" parent="SpawnPositions"]
+position = Vector2(75, 0)
 collision_layer = 0
 collision_mask = 6
 
@@ -64,16 +66,90 @@ collision_mask = 6
 shape = SubResource("CircleShape2D_2hd0y")
 
 [node name="Area2D2" type="Area2D" parent="SpawnPositions"]
+position = Vector2(75, 42)
 collision_layer = 0
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D2"]
 shape = SubResource("CircleShape2D_2hd0y")
 
+[node name="Area2D4" type="Area2D" parent="SpawnPositions"]
+position = Vector2(0, 44)
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D4"]
+shape = SubResource("CircleShape2D_2hd0y")
+
+[node name="Area2D5" type="Area2D" parent="SpawnPositions"]
+position = Vector2(0, -48)
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D5"]
+shape = SubResource("CircleShape2D_2hd0y")
+
+[node name="Area2D6" type="Area2D" parent="SpawnPositions"]
+position = Vector2(-80, -47)
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D6"]
+shape = SubResource("CircleShape2D_2hd0y")
+
+[node name="Area2D7" type="Area2D" parent="SpawnPositions"]
+position = Vector2(-81, 42)
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D7"]
+shape = SubResource("CircleShape2D_2hd0y")
+
+[node name="Area2D8" type="Area2D" parent="SpawnPositions"]
+position = Vector2(-81, -2)
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D8"]
+shape = SubResource("CircleShape2D_2hd0y")
+
+[node name="Area2D9" type="Area2D" parent="SpawnPositions"]
+position = Vector2(-40, -46)
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D9"]
+shape = SubResource("CircleShape2D_2hd0y")
+
+[node name="Area2D10" type="Area2D" parent="SpawnPositions"]
+position = Vector2(38, -48)
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D10"]
+shape = SubResource("CircleShape2D_2hd0y")
+
+[node name="Area2D11" type="Area2D" parent="SpawnPositions"]
+position = Vector2(41, 44)
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D11"]
+shape = SubResource("CircleShape2D_2hd0y")
+
+[node name="Area2D12" type="Area2D" parent="SpawnPositions"]
+position = Vector2(-40, 45)
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D12"]
+shape = SubResource("CircleShape2D_2hd0y")
+
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment"]
 position = Vector2(101, -1)
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D"]
 position = Vector2(0, 1)
@@ -81,6 +157,7 @@ shape = SubResource("RectangleShape2D_5aj10")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Environment"]
 position = Vector2(-104, -1)
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D2"]
 position = Vector2(0, 1)
@@ -88,6 +165,7 @@ shape = SubResource("RectangleShape2D_5aj10")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Environment"]
 position = Vector2(0, -69)
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D4"]
 position = Vector2(0, 1)
@@ -95,6 +173,7 @@ shape = SubResource("RectangleShape2D_ysrwd")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="Environment"]
 position = Vector2(0, 66)
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D5"]
 position = Vector2(0, 1)
@@ -104,7 +183,7 @@ shape = SubResource("RectangleShape2D_ysrwd")
 script = ExtResource("6_yhio2")
 target = NodePath("../Player")
 min_offset = Vector2(-50, -40)
-max_offset = Vector2(50, 40)
+max_offset = Vector2(50, 50)
 
 [node name="CameraShake" type="Node2D" parent="CameraFollow"]
 script = ExtResource("6_edsxo")
@@ -112,4 +191,4 @@ script = ExtResource("6_edsxo")
 [node name="Camera2D" type="Camera2D" parent="CameraFollow/CameraShake"]
 zoom = Vector2(10, 10)
 
-[connection signal="attack_hit" from="Player" to="CameraFollow/CameraShake/Camera2D" method="_on_player_attack_hit"]
+[connection signal="attack_hit" from="Player" to="CameraFollow/CameraShake" method="_on_player_attack_hit"]
