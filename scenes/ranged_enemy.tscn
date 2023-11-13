@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cs1t3p46kqe1l"]
+[gd_scene load_steps=32 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
 [ext_resource type="Texture2D" uid="uid://lo0ibcg8l6hc" path="res://prototype2/art/mage.png" id="2_ds85t"]
@@ -11,7 +11,9 @@
 [ext_resource type="Script" path="res://scenes/StunnedTransition.gd" id="9_comn4"]
 [ext_resource type="Script" path="res://scenes/StunnedState.gd" id="9_gexjc"]
 [ext_resource type="Script" path="res://scenes/DetectTargetTransition.gd" id="10_15kaj"]
+[ext_resource type="Script" path="res://scenes/EnemyDiedTransition.gd" id="11_yeuw4"]
 [ext_resource type="Script" path="res://scenes/MoveToTargetState.gd" id="12_4ssjg"]
+[ext_resource type="Script" path="res://scenes/EnemyDeathState.gd" id="14_6hdwq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_va1t7"]
 atlas = ExtResource("2_ds85t")
@@ -73,7 +75,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5rkmr")
 }],
-"loop": true,
+"loop": false,
 "name": &"die",
 "speed": 12.0
 }, {
@@ -177,7 +179,7 @@ initial_state = NodePath("States/MoveAndAttackState")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_nleu6")
-animation = &"move"
+animation = &"die"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_p3s8m")
@@ -229,10 +231,18 @@ script = ExtResource("10_15kaj")
 distance = 45.0
 false_state = NodePath("../../MoveToTargetState")
 
+[node name="EnemyDiedTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("true_state")]
+script = ExtResource("11_yeuw4")
+true_state = NodePath("../../EnemyDeathState")
+
 [node name="StunnedState" type="Node" parent="States" node_paths=PackedStringArray("recover_state")]
 script = ExtResource("9_gexjc")
 recover_state = NodePath("../MoveAndAttackState")
 transition_speed = 8.0
+
+[node name="EnemyDiedTransition" type="Node" parent="States/StunnedState" node_paths=PackedStringArray("true_state")]
+script = ExtResource("11_yeuw4")
+true_state = NodePath("../../EnemyDeathState")
 
 [node name="MoveToTargetState" type="Node" parent="States" node_paths=PackedStringArray("object_detector")]
 script = ExtResource("12_4ssjg")
@@ -244,6 +254,13 @@ speed = 10.0
 script = ExtResource("10_15kaj")
 distance = 30.0
 true_state = NodePath("../../MoveAndAttackState")
+
+[node name="EnemyDiedTransition" type="Node" parent="States/MoveToTargetState" node_paths=PackedStringArray("true_state")]
+script = ExtResource("11_yeuw4")
+true_state = NodePath("../../EnemyDeathState")
+
+[node name="EnemyDeathState" type="Node" parent="States"]
+script = ExtResource("14_6hdwq")
 
 [node name="DamageParticles" type="GPUParticles2D" parent="."]
 emitting = false

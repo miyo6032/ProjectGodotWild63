@@ -219,5 +219,8 @@ zoom = Vector2(10, 10)
 offset_right = 556.0
 offset_bottom = 135.0
 
+[node name="RangedEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_mlf80")]
+player = NodePath("../Player")
+
 [connection signal="attack_hit" from="Player" to="CameraFollow/CameraShake" method="_on_player_attack_hit"]
 [connection signal="update_health" from="Player" to="CameraFollow/CameraShake/Camera2D/HUD/HealthBar" method="update_health"]

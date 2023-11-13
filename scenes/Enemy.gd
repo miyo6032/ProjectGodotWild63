@@ -14,7 +14,7 @@ func init(in_player):
     player = in_player
 
 func _ready() -> void:
-    state_data = { player = player, enemy = self, can_move = true, stunned = false }
+    state_data = { player = player, enemy = self, can_move = true, stunned = false, is_dead = false }
     for child in states.get_children():
         child.set_state_machine(self)
         for transition in child.get_children():
@@ -74,4 +74,4 @@ func _on_damageable_on_damage(damage_info):
         velocity += damage_info.knockback
 
     if health <= 0:
-        queue_free()
+        state_data.is_dead = true
