@@ -1,4 +1,4 @@
-extends Camera2D
+extends Node2D
 
 @export var decay = 0.8  # How quickly the shaking stops [0, 1].
 @export var max_offset = Vector2(100, 75)  # Maximum hor/ver shake in pixels.
@@ -31,8 +31,8 @@ func _process(delta):
 func shake():
     var amount = pow(trauma, trauma_power)
     rotation = max_roll * amount * randf_range(-1, 1)
-    offset.x = max_offset.x * amount * randf_range(-1, 1)
-    offset.y = max_offset.y * amount * randf_range(-1, 1)
+    position.x = max_offset.x * amount * randf_range(-1, 1)
+    position.y = max_offset.y * amount * randf_range(-1, 1)
 
 func _on_player_attack_hit():
     add_trauma(0.1)

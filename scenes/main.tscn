@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bc5a1ffpsdvdk"]
+[gd_scene load_steps=14 format=3 uid="uid://bc5a1ffpsdvdk"]
 
 [ext_resource type="PackedScene" uid="uid://bfellyq050wl2" path="res://scenes/player.tscn" id="1_808qs"]
 [ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="2_mlf80"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/EnemyWaves.gd" id="4_a5rfr"]
 [ext_resource type="Script" path="res://scenes/EnemySpawn.gd" id="5_gyi6k"]
 [ext_resource type="Script" path="res://scenes/ShakeCamera2D.gd" id="6_edsxo"]
+[ext_resource type="Script" path="res://scenes/CameraFollow.gd" id="6_yhio2"]
 
 [sub_resource type="Resource" id="Resource_8m0rl"]
 script = ExtResource("5_gyi6k")
@@ -26,17 +27,19 @@ script = ExtResource("4_a5rfr")
 waves = Array[ExtResource("5_gyi6k")]([SubResource("Resource_8m0rl"), SubResource("Resource_n4ymf")])
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2hd0y"]
-radius = 50.0
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aj10"]
+size = Vector2(20, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysrwd"]
+size = Vector2(220, 20)
 
 [node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_808qs")]
-position = Vector2(-35, -5)
+position = Vector2(-45, -5)
 attack_velocity = 350.0
-
-[node name="RangedEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_mlf80")]
-position = Vector2(17, -5)
-player = NodePath("../Player")
 
 [node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_positions", "player")]
 script = ExtResource("3_433c3")
@@ -45,10 +48,8 @@ spawn_positions = [NodePath("../SpawnPositions/Area2D"), NodePath("../SpawnPosit
 player = NodePath("../Player")
 
 [node name="SpawnPositions" type="Node2D" parent="."]
-visible = false
 
 [node name="Area2D" type="Area2D" parent="SpawnPositions"]
-position = Vector2(865, 362)
 collision_layer = 0
 collision_mask = 6
 
@@ -56,7 +57,6 @@ collision_mask = 6
 shape = SubResource("CircleShape2D_2hd0y")
 
 [node name="Area2D3" type="Area2D" parent="SpawnPositions"]
-position = Vector2(667, 547)
 collision_layer = 0
 collision_mask = 6
 
@@ -64,16 +64,52 @@ collision_mask = 6
 shape = SubResource("CircleShape2D_2hd0y")
 
 [node name="Area2D2" type="Area2D" parent="SpawnPositions"]
-position = Vector2(791, 100)
 collision_layer = 0
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D2"]
 shape = SubResource("CircleShape2D_2hd0y")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(10, 10)
-script = ExtResource("6_edsxo")
-max_roll = 0.0
+[node name="Environment" type="Node2D" parent="."]
 
-[connection signal="attack_hit" from="Player" to="Camera2D" method="_on_player_attack_hit"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment"]
+position = Vector2(101, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_5aj10")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Environment"]
+position = Vector2(-104, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D2"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_5aj10")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Environment"]
+position = Vector2(0, -69)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D4"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ysrwd")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Environment"]
+position = Vector2(0, 66)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D5"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ysrwd")
+
+[node name="CameraFollow" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("6_yhio2")
+target = NodePath("../Player")
+min_offset = Vector2(-50, -40)
+max_offset = Vector2(50, 40)
+
+[node name="CameraShake" type="Node2D" parent="CameraFollow"]
+script = ExtResource("6_edsxo")
+
+[node name="Camera2D" type="Camera2D" parent="CameraFollow/CameraShake"]
+zoom = Vector2(10, 10)
+
+[connection signal="attack_hit" from="Player" to="CameraFollow/CameraShake/Camera2D" method="_on_player_attack_hit"]
