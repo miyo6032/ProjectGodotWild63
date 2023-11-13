@@ -26,6 +26,7 @@ height = 4.0
 collision_layer = 0
 gravity_scale = 0.0
 script = ExtResource("1_vvg55")
+knockback = 30.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

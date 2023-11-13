@@ -13,6 +13,7 @@ signal update_health(health, max_health)
 
 @onready var damageable: Damageable = $Damageable
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var particle_animation_player: AnimationPlayer = $ParticleAnimationPlayer
 @onready var facing_direction: Node2D = $FacingDirection
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $FacingDirection/AttackArea
@@ -57,9 +58,11 @@ func handle_sprite_movement():
     if direction.length() > 0:
         animated_sprite.play("walk")
         last_direction = direction
+        particle_animation_player.play("move")
     else:
         animated_sprite.stop()
         animated_sprite.animation = "idle"
+        particle_animation_player.play("idle")
 
     if direction.x != 0:
         animated_sprite.flip_v = false
@@ -83,6 +86,7 @@ func _physics_process(delta):
 @export var health = 6
 
 func _ready():
+    attack_area.monitoring = false
     update_health.emit(health, max_health)
     GameConsole.console_opened.connect(disable_movement)
     GameConsole.console_closed.connect(enable_movement)
@@ -100,6 +104,9 @@ func _on_enemy_collision_detection_on_damage(damage_info):
     animation_player.play("hit")
     health -= damage_info.damage
     update_health.emit(health, max_health)
+    if damage_info.has("knockback"):
+        velocity += damage_info.knockback
+
     if health <= 0:
         print("u died!")
 

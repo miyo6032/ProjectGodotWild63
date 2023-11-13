@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cs1t3p46kqe1l"]
+[gd_scene load_steps=28 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
 [ext_resource type="Texture2D" uid="uid://lo0ibcg8l6hc" path="res://prototype2/art/mage.png" id="2_ds85t"]
@@ -127,6 +127,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fmrua"]
 _data = {
@@ -135,6 +147,25 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_soeh7"]
 radius = 4.12311
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pwq3t"]
+emission_shape = 1
+emission_sphere_radius = 3.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+angular_velocity_min = -10.0
+angular_velocity_max = 720.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 1.0
+angle_max = 360.0
+scale_max = 1.5
+color = Color(0.396078, 0, 0, 1)
+hue_variation_min = -0.04
+hue_variation_max = 0.12
 
 [node name="RangedEnemy" type="CharacterBody2D"]
 collision_layer = 0
@@ -194,5 +225,12 @@ true_state = NodePath("../../StunnedState")
 script = ExtResource("9_gexjc")
 recover_state = NodePath("../MoveAndAttackState")
 transition_speed = 8.0
+
+[node name="DamageParticles" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_pwq3t")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
 
 [connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]
