@@ -4,6 +4,7 @@ class_name Player
 
 signal on_end_invulnerability
 signal update_health(health, max_health)
+signal attack_hit
 
 @export var stop_lag = 16.0
 @export var move_lag = 16.0
@@ -116,4 +117,6 @@ func end_invulnerability():
 
 func _on_attack_area_area_entered(area:Area2D):
     velocity = velocity * -0.5
-    area.damage({damage = 1, knockback = last_direction * knockback})
+    if not area.invulnerable:
+        area.damage({damage = 1, knockback = last_direction * knockback})
+        attack_hit.emit()
