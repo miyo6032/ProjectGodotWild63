@@ -61,7 +61,7 @@ size = Vector2(220, 20)
 
 [node name="Player" parent="." instance=ExtResource("1_808qs")]
 position = Vector2(-28, -6)
-attack_velocity = 350.0
+attack_velocity = 120.0
 
 [node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_positions", "player")]
 script = ExtResource("3_433c3")

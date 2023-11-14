@@ -1,8 +1,15 @@
 [gd_scene load_steps=30 format=3 uid="uid://bfellyq050wl2"]
 
+[ext_resource type="Shader" path="res://scenes/dash_ghost.gdshader" id="1_t2haf"]
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_ymphj"]
+[ext_resource type="PackedScene" uid="uid://bx6d4ld436h0x" path="res://scenes/dash_ghost.tscn" id="2_1njyu"]
 [ext_resource type="Texture2D" uid="uid://cbxbj80ex1jk2" path="res://prototype2/art/ascetic.png" id="2_m4ij7"]
 [ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="6_443uu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ogsj"]
+shader = ExtResource("1_t2haf")
+shader_parameter/whiten = false
+shader_parameter/mix_weight = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dhsq8"]
 atlas = ExtResource("2_m4ij7")
@@ -108,7 +115,7 @@ height = 8.0
 [sub_resource type="Animation" id="Animation_g2sql"]
 resource_name = "attack"
 length = 0.2
-step = 0.05
+step = 0.04
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -161,6 +168,47 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"spawn_dash_ghost"
+}, {
+"args": [],
+"method": &"spawn_dash_ghost"
+}, {
+"args": [],
+"method": &"spawn_dash_ghost"
+}, {
+"args": [],
+"method": &"spawn_dash_ghost"
+}, {
+"args": [],
+"method": &"spawn_dash_ghost"
+}, {
+"args": [],
+"method": &"spawn_dash_ghost"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimatedSprite2D:material:shader_parameter/whiten")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_sl1sc"]
 resource_name = "hurt"
@@ -203,6 +251,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:material:shader_parameter/whiten")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_ucjxo"]
@@ -247,6 +307,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:material:shader_parameter/whiten")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u2vl3"]
 _data = {
@@ -262,21 +334,6 @@ height = 10.0
 [sub_resource type="Gradient" id="Gradient_ra51a"]
 offsets = PackedFloat32Array(0, 0.954023, 1)
 colors = PackedColorArray(0.446777, 0.446777, 0.446777, 1, 0.446777, 0.446777, 0.446777, 1, 0.494118, 0.494118, 0.494118, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_67hng"]
-gradient = SubResource("Gradient_ra51a")
-width = 16
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ya5dd"]
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-spread = 20.0
-gravity = Vector3(0, 98, 0)
-initial_velocity_min = 20.0
-initial_velocity_max = 20.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-color_ramp = SubResource("GradientTexture1D_67hng")
 
 [sub_resource type="Animation" id="Animation_7omqd"]
 resource_name = "move"
@@ -331,34 +388,19 @@ _data = {
 "move": SubResource("Animation_7omqd")
 }
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i3l05"]
-emission_shape = 1
-emission_sphere_radius = 3.0
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-gravity = Vector3(0, 98, 0)
-initial_velocity_min = 20.0
-initial_velocity_max = 30.0
-angular_velocity_min = -10.0
-angular_velocity_max = 720.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-angle_min = 1.0
-angle_max = 360.0
-scale_max = 1.5
-color = Color(0.396078, 0, 0, 1)
-hue_variation_min = -0.04
-hue_variation_max = 0.12
-
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_ymphj")
+dash_ghost_scene = ExtResource("2_1njyu")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_5ogsj")
 sprite_frames = SubResource("SpriteFrames_uo3ea")
 animation = &"walk"
+frame = 2
+frame_progress = 0.773385
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4chyv")
@@ -391,26 +433,48 @@ position = Vector2(-34, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7ygxr")
 
-[node name="WalkParticles" type="GPUParticles2D" parent="."]
+[node name="WalkParticles" type="CPUParticles2D" parent="."]
 z_index = -1
 position = Vector2(0, 3)
 emitting = false
 amount = 4
-process_material = SubResource("ParticleProcessMaterial_ya5dd")
 lifetime = 0.5
 explosiveness = 0.3
+fixed_fps = 30
+draw_order = 1
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 98)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+color_ramp = SubResource("Gradient_ra51a")
 
 [node name="ParticleAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_7f5lk")
 }
 
-[node name="DamageParticles" type="GPUParticles2D" parent="."]
+[node name="DamageParticles" type="CPUParticles2D" parent="."]
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_i3l05")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+fixed_fps = 30
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 98)
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+angular_velocity_min = -10.0
+angular_velocity_max = 720.0
+angle_min = 1.0
+angle_max = 360.0
+scale_amount_max = 1.5
+color = Color(0.396078, 0, 0, 1)
+hue_variation_min = -0.04
+hue_variation_max = 0.12
 
 [connection signal="on_damage" from="Damageable" to="." method="_on_enemy_collision_detection_on_damage"]
 [connection signal="area_entered" from="FacingDirection/AttackArea" to="." method="_on_attack_area_area_entered"]

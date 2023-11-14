@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://bx6d4ld436h0x"]
+
+[ext_resource type="Texture2D" uid="uid://cm27c2rpo6a3c" path="res://prototype2/art/fireball.png" id="1_5deou"]
+[ext_resource type="Script" path="res://DashGhost.gd" id="1_cv7d1"]
+[ext_resource type="Shader" path="res://scenes/dash_ghost.gdshader" id="1_po4t2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eunnl"]
+shader = ExtResource("1_po4t2")
+shader_parameter/whiten = true
+shader_parameter/mix_weight = 1.0
+
+[sub_resource type="Animation" id="Animation_illgp"]
+resource_name = "fade_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tri3w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6xxrv"]
+_data = {
+"RESET": SubResource("Animation_tri3w"),
+"fade_out": SubResource("Animation_illgp")
+}
+
+[node name="Sprite2D" type="Sprite2D"]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_eunnl")
+texture = ExtResource("1_5deou")
+script = ExtResource("1_cv7d1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6xxrv")
+}

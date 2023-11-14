@@ -144,32 +144,17 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_02yk4"]
+resource_name = "RESET"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fmrua"]
 _data = {
+"RESET": SubResource("Animation_02yk4"),
 "hit": SubResource("Animation_nn7tu")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_soeh7"]
 radius = 4.12311
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pwq3t"]
-emission_shape = 1
-emission_sphere_radius = 3.0
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-gravity = Vector3(0, 98, 0)
-initial_velocity_min = 20.0
-initial_velocity_max = 30.0
-angular_velocity_min = -10.0
-angular_velocity_max = 720.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-angle_min = 1.0
-angle_max = 360.0
-scale_max = 1.5
-color = Color(0.396078, 0, 0, 1)
-hue_variation_min = -0.04
-hue_variation_max = 0.12
 
 [node name="RangedEnemy" type="CharacterBody2D"]
 collision_layer = 0
@@ -262,11 +247,26 @@ true_state = NodePath("../../EnemyDeathState")
 [node name="EnemyDeathState" type="Node" parent="States"]
 script = ExtResource("14_6hdwq")
 
-[node name="DamageParticles" type="GPUParticles2D" parent="."]
+[node name="DamageParticles" type="CPUParticles2D" parent="."]
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_pwq3t")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+fixed_fps = 30
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 98)
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+angular_velocity_min = -10.0
+angular_velocity_max = 720.0
+angle_min = 1.0
+angle_max = 360.0
+scale_amount_max = 1.5
+color = Color(0.396078, 0, 0, 1)
+hue_variation_min = -0.04
+hue_variation_max = 0.12
 
 [connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]
