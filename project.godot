@@ -17,7 +17,8 @@ config/features=PackedStringArray("4.1", "GL Compatibility")
 [autoload]
 
 Console="*res://addons/console/Console.gd"
-GameConsole="*res://scripts/GameConsole.gd"
+GameConsole="res://scripts/GameConsole.gd"
+EventBus="*res://scenes/EventBus.gd"
 
 [input]
 
