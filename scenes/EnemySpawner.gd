@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name EnemySpawner
+
 @export var waves: EnemyWaves
 @export var telegraph_spawn_delay: float
 @export var spawn_positions: Node2D
@@ -12,9 +14,9 @@ func _ready():
 
 func start_waves():
     current_wave_index = -1
-    start_spawning()
+    _start_spawning()
 
-func start_spawning():
+func _start_spawning():
     current_wave_index += 1
     if current_wave_index >= waves.waves.size():
         print("All waves spawned")
@@ -22,10 +24,10 @@ func start_spawning():
     var enemy_spawn = waves.waves[current_wave_index]
     var tween = create_tween()
     for i in enemy_spawn.spawn_amount:
-        tween.tween_callback(spawn_enemy).set_delay(enemy_spawn.initial_delay if i == 0 else enemy_spawn.in_between_delay)
-    tween.tween_callback(start_spawning)
+        tween.tween_callback(_spawn_enemy).set_delay(enemy_spawn.initial_delay if i == 0 else enemy_spawn.in_between_delay)
+    tween.tween_callback(_start_spawning)
 
-func spawn_enemy():
+func _spawn_enemy():
     var available_positions = [] + spawn_positions.get_children()
 
     while available_positions.size() > 0:
