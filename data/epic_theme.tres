@@ -1,3 +1,44 @@
-[gd_resource type="Theme" format=3 uid="uid://c1xf2fj7vroku"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://c1xf2fj7vroku"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbdnm"]
+bg_color = Color(0, 0.243137, 0.439216, 0.65098)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4yy5"]
+bg_color = Color(0, 0.243137, 0.439216, 0.65098)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0hht"]
+bg_color = Color(0, 0.243137, 0.439216, 0.65098)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qk6jk"]
+bg_color = Color(0, 0.243137, 0.439216, 0.65098)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhxyt"]
+bg_color = Color(0, 0.243137, 0.439216, 0.65098)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [resource]
+RemapButton/base_type = &"Button"
+RemapButton/styles/disabled = SubResource("StyleBoxFlat_bbdnm")
+RemapButton/styles/focus = SubResource("StyleBoxFlat_d4yy5")
+RemapButton/styles/hover = SubResource("StyleBoxFlat_y0hht")
+RemapButton/styles/normal = SubResource("StyleBoxFlat_qk6jk")
+RemapButton/styles/pressed = SubResource("StyleBoxFlat_vhxyt")

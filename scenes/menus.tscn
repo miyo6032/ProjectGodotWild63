@@ -171,6 +171,7 @@ _data = {
 }
 
 [node name="Menus" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -179,6 +180,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8m6kn")
 script = ExtResource("2_ltdt6")
+action_items = Array[String](["move_right", "move_up", "move_down", "move_left", "attack_right", "attack_up", "attack_down", "attack_left"])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -378,9 +380,108 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
+[node name="PauseMenu" type="Control" parent="."]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0.396078, 0.827451)
+
+[node name="Label" type="Label" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -346.5
+offset_right = 346.5
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 100
+text = "Pause
+"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_right = 256
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SettingsGridContainer" type="GridContainer" parent="PauseMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/h_separation = 60
+columns = 2
+
+[node name="MusicLabel" type="Label" parent="PauseMenu/MarginContainer/VBoxContainer/SettingsGridContainer"]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="PauseMenu/MarginContainer/VBoxContainer/SettingsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../MainMenuButton")
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="SFXLabel" type="Label" parent="PauseMenu/MarginContainer/VBoxContainer/SettingsGridContainer"]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="PauseMenu/MarginContainer/VBoxContainer/SettingsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="ContinueButton" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../MainMenuButton")
+text = "Continue"
+
+[node name="MainMenuButton" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../ContinueButton")
+focus_neighbor_bottom = NodePath("../SettingsGridContainer/MusicSlider")
+text = "Quit
+"
+
 [connection signal="pressed" from="MainMenu/Play Button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainMenu/Quit Button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="DeathMenu/Try Again Button" to="." method="_on_try_again_button_pressed"]
 [connection signal="pressed" from="DeathMenu/Quit Button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="WinMenu/Play Again Button" to="." method="_on_try_again_button_pressed"]
 [connection signal="pressed" from="WinMenu/Quit Button" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="PauseMenu/MarginContainer/VBoxContainer/SettingsGridContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="PauseMenu/MarginContainer/VBoxContainer/SettingsGridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

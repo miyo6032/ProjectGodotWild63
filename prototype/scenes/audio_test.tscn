@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://eli723ad0v76"]
+
+[ext_resource type="Script" path="res://AudioTest.gd" id="1_bxit4"]
+[ext_resource type="PackedScene" uid="uid://bvf55uwknvl1" path="res://scenes/menus.tscn" id="2_xorus"]
+[ext_resource type="AudioStream" uid="uid://jcj8i7fovll8" path="res://prototype2/sounds/WildJam_Cat_TRACK_1_1.mp3" id="3_6scrc"]
+[ext_resource type="AudioStream" uid="uid://bttvuy4axvlon" path="res://prototype2/sounds/impact 1.wav" id="4_umhfh"]
+
+[node name="AudioTest" type="Node2D"]
+script = ExtResource("1_bxit4")
+
+[node name="SFXAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_umhfh")
+bus = &"SFX"
+
+[node name="MusicAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6scrc")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menus" parent="CanvasLayer" instance=ExtResource("2_xorus")]

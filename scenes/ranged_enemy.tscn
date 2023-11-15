@@ -116,6 +116,9 @@ height = 12.0
 radius = 2.0
 height = 12.0
 
+[sub_resource type="Animation" id="Animation_02yk4"]
+resource_name = "RESET"
+
 [sub_resource type="Animation" id="Animation_nn7tu"]
 resource_name = "hit"
 length = 0.2
@@ -143,9 +146,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
-
-[sub_resource type="Animation" id="Animation_02yk4"]
-resource_name = "RESET"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fmrua"]
 _data = {
