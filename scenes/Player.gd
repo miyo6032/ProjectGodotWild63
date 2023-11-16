@@ -91,6 +91,8 @@ func _physics_process(delta):
 
 @export var max_health = 6
 @export var health = 6
+@export var hit_freeze_slow := 0.07
+@export var hit_freeze_time := 0.3
 
 func _ready():
     attack_area.monitoring = false
@@ -117,8 +119,14 @@ func _on_attack_area_area_entered(area:Area2D):
     velocity = velocity * -0.7
     is_dashing = false
     if not area.invulnerable:
+        freeze_frame()
         area.damage({damage = 1, knockback = last_direction * knockback})
         attack_hit.emit()
+
+func freeze_frame():
+    Engine.time_scale = hit_freeze_slow
+    await get_tree().create_timer(hit_freeze_time * hit_freeze_slow).timeout
+    Engine.time_scale = 1
 
 func spawn_dash_ghost():
     var dash_ghost: Sprite2D = dash_ghost_scene.instantiate()

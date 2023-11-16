@@ -62,7 +62,7 @@ func maybe_transition_state():
                         break
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite2D
 var health = 2
 
 func _on_damageable_on_damage(damage_info):
