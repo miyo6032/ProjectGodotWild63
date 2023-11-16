@@ -19,8 +19,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4oemq"]
-radius = 0.0
-height = 0.0
+radius = 26.0
+height = 86.0
 
 [node name="EnemyProjectile" type="RigidBody2D"]
 collision_layer = 0
@@ -30,6 +30,7 @@ knockback = 30.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(18, 18)
 sprite_frames = SubResource("SpriteFrames_skctp")
 animation = &"fireball"
 

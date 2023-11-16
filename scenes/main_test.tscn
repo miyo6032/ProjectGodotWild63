@@ -60,8 +60,7 @@ size = Vector2(220, 20)
 [node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("2_02ah7")]
-position = Vector2(-28, -6)
-attack_velocity = 120.0
+position = Vector2(-509, -6)
 
 [node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_positions", "player")]
 script = ExtResource("3_nlog1")
@@ -70,6 +69,7 @@ spawn_positions = NodePath("../SpawnPositions")
 player = NodePath("../Player")
 
 [node name="SpawnPositions" type="Node2D" parent="."]
+scale = Vector2(18, 18)
 
 [node name="Area2D" type="Area2D" parent="SpawnPositions"]
 position = Vector2(75, -45)
@@ -168,6 +168,7 @@ collision_mask = 6
 shape = SubResource("CircleShape2D_2hd0y")
 
 [node name="Environment" type="Node2D" parent="."]
+scale = Vector2(18, 18)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment"]
 position = Vector2(101, -1)
@@ -204,14 +205,16 @@ shape = SubResource("RectangleShape2D_ysrwd")
 [node name="CameraFollow" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("7_e2jwb")
 target = NodePath("../Player")
-min_offset = Vector2(-50, -40)
-max_offset = Vector2(50, 50)
+min_offset = Vector2(-750, -680)
+max_offset = Vector2(750, 680)
 
 [node name="CameraShake" type="Node2D" parent="CameraFollow"]
 script = ExtResource("8_q1sy8")
+max_offset = Vector2(1000, 750)
+max_roll = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="CameraFollow/CameraShake"]
-zoom = Vector2(10, 10)
+zoom = Vector2(0.5, 0.5)
 
 [node name="HUD" type="CanvasLayer" parent="CameraFollow/CameraShake/Camera2D"]
 
@@ -220,6 +223,7 @@ offset_right = 556.0
 offset_bottom = 135.0
 
 [node name="RangedEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_gdx7e")]
+position = Vector2(389, 0)
 player = NodePath("../Player")
 
 [connection signal="attack_hit" from="Player" to="CameraFollow/CameraShake" method="_on_player_attack_hit"]

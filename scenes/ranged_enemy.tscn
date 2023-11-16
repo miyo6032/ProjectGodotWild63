@@ -16,91 +16,6 @@
 [ext_resource type="Script" path="res://scenes/EnemyDeathState.gd" id="14_6hdwq"]
 [ext_resource type="Shader" path="res://scenes/colorize.gdshader" id="14_d17md"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p3s8m"]
-radius = 2.0
-height = 12.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_blc4p"]
-radius = 2.0
-height = 12.0
-
-[sub_resource type="Animation" id="Animation_02yk4"]
-resource_name = "RESET"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteBase:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpriteBase/AnimatedSprite2D:material:shader_parameter/do_mix")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_nn7tu"]
-resource_name = "hit"
-length = 0.2
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DamageParticles:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpriteBase:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(0.5, 2, 1),
-"update": 0,
-"values": [-0.174533, 0.0872665, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpriteBase/AnimatedSprite2D:material:shader_parameter/do_mix")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmrua"]
-_data = {
-"RESET": SubResource("Animation_02yk4"),
-"hit": SubResource("Animation_nn7tu")
-}
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_soeh7"]
-radius = 4.12311
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5x272"]
 shader = ExtResource("14_d17md")
 shader_parameter/color = Vector3(1, 0.5, 0.5)
@@ -200,10 +115,107 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p3s8m"]
+radius = 30.0
+height = 156.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_blc4p"]
+radius = 29.0
+height = 154.0
+
+[sub_resource type="Animation" id="Animation_02yk4"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteBase:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteBase/AnimatedSprite2D:material:shader_parameter/do_mix")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nn7tu"]
+resource_name = "hit"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteBase:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [-0.174533, 0.0872665, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteBase/AnimatedSprite2D:material:shader_parameter/do_mix")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmrua"]
+_data = {
+"RESET": SubResource("Animation_02yk4"),
+"hit": SubResource("Animation_nn7tu")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_soeh7"]
+radius = 22.0
+
 [node name="RangedEnemy" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_tl3v6")
 initial_state = NodePath("States/MoveAndAttackState")
+
+[node name="SpriteBase" type="Node2D" parent="."]
+position = Vector2(0, 80)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteBase"]
+unique_name_in_owner = true
+texture_filter = 1
+material = SubResource("ShaderMaterial_5x272")
+position = Vector2(0, -80)
+scale = Vector2(18, 18)
+sprite_frames = SubResource("SpriteFrames_nleu6")
+animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_p3s8m")
@@ -223,11 +235,12 @@ libraries = {
 }
 
 [node name="BaseObjectDetector" type="Area2D" parent="."]
-position = Vector2(9, 0)
+position = Vector2(71, 0)
 collision_layer = 0
 script = ExtResource("5_jgagf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaseObjectDetector"]
+position = Vector2(42, 0)
 shape = SubResource("CircleShape2D_soeh7")
 
 [node name="States" type="Node" parent="."]
@@ -239,12 +252,13 @@ states = [NodePath("EnemyRangedAttackState"), NodePath("MoveRandomlyState")]
 [node name="EnemyRangedAttackState" type="Node" parent="States/MoveAndAttackState"]
 script = ExtResource("5_m8asx")
 fireball_scene = ExtResource("6_2mhdd")
+projectile_speed = 500.0
 
 [node name="MoveRandomlyState" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("object_detector")]
 script = ExtResource("8_bfeme")
 object_detector = NodePath("../../../BaseObjectDetector")
-object_detection_distance = 9.0
-speed = 10.0
+object_detection_distance = 70.0
+speed = 200.0
 
 [node name="StunnedTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("true_state")]
 script = ExtResource("9_comn4")
@@ -252,7 +266,7 @@ true_state = NodePath("../../StunnedState")
 
 [node name="DetectTargetTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("false_state")]
 script = ExtResource("10_15kaj")
-distance = 45.0
+distance = 900.0
 false_state = NodePath("../../MoveToTargetState")
 
 [node name="EnemyDiedTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("true_state")]
@@ -271,12 +285,12 @@ true_state = NodePath("../../EnemyDeathState")
 [node name="MoveToTargetState" type="Node" parent="States" node_paths=PackedStringArray("object_detector")]
 script = ExtResource("12_4ssjg")
 object_detector = NodePath("../../BaseObjectDetector")
-object_detection_distance = 9.0
-speed = 10.0
+object_detection_distance = 70.0
+speed = 200.0
 
 [node name="DetectTargetTransition" type="Node" parent="States/MoveToTargetState" node_paths=PackedStringArray("true_state")]
 script = ExtResource("10_15kaj")
-distance = 30.0
+distance = 600.0
 true_state = NodePath("../../MoveAndAttackState")
 
 [node name="EnemyDiedTransition" type="Node" parent="States/MoveToTargetState" node_paths=PackedStringArray("true_state")]
@@ -307,17 +321,5 @@ scale_amount_max = 1.5
 color = Color(0.396078, 0, 0, 1)
 hue_variation_min = -0.04
 hue_variation_max = 0.12
-
-[node name="SpriteBase" type="Node2D" parent="."]
-position = Vector2(0, 5)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteBase"]
-unique_name_in_owner = true
-texture_filter = 1
-material = SubResource("ShaderMaterial_5x272")
-position = Vector2(0, -5)
-scale = Vector2(1, 1)
-sprite_frames = SubResource("SpriteFrames_nleu6")
-animation = &"die"
 
 [connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]

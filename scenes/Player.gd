@@ -38,12 +38,9 @@ func handle_attack_input():
     attack_direction = Input.get_vector("attack_left", "attack_right", "attack_up", "attack_down")
     if attack_direction.length() > 0:
         facing_direction.look_at(facing_direction.global_position + attack_direction)
-        animation_player.play("attack")
         attack_area.monitoring = true
+        play_attack_animation(attack_direction)
         is_dashing = true
-        if attack_direction.x != 0:
-            animated_sprite.flip_v = false
-            animated_sprite.flip_h = attack_direction.x < 0
         movement_enabled = false
         attack_enabled = false
         damageable.monitorable = false
@@ -57,21 +54,34 @@ func handle_attack_input():
         time_since_last_dash = 0
         attack_enabled = true
 
+func play_attack_animation(direction):
+    if direction.x > 0:
+        animated_sprite.play("attack_right")
+    elif direction.x < 0:
+        animated_sprite.play("attack_left")
+    elif direction.y > 0:
+        animated_sprite.play("attack_down")
+    elif direction.y < 0:
+        animated_sprite.play("attack_up")
+
 func handle_sprite_movement():
     var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
-    if direction.length() > 0:
-        animated_sprite.play("walk")
+    if direction != Vector2.ZERO:
+        if direction.x > 0:
+            animated_sprite.play("run_right")
+        elif direction.x < 0:
+            animated_sprite.play("run_left")
+        elif direction.y > 0:
+            animated_sprite.play("run_down")
+        elif direction.y < 0:
+            animated_sprite.play("run_up")
         last_direction = direction
         particle_animation_player.play("move")
     else:
         animated_sprite.stop()
-        animated_sprite.animation = "idle"
-        particle_animation_player.play("idle")
-
-    if direction.x != 0:
-        animated_sprite.flip_v = false
-        animated_sprite.flip_h = direction.x < 0
+        # animated_sprite.animation = "idle"
+        # particle_animation_player.play("idle")
 
 func _physics_process(delta):
     var speed = walk_speed
