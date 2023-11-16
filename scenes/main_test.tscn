@@ -9,6 +9,15 @@
 [ext_resource type="Script" path="res://scenes/ShakeCamera2D.gd" id="8_q1sy8"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="9_dicyg"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2hd0y"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aj10"]
+size = Vector2(20, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysrwd"]
+size = Vector2(220, 20)
+
 [sub_resource type="Resource" id="Resource_8m0rl"]
 script = ExtResource("6_5r7cr")
 enemy = ExtResource("5_gdx7e")
@@ -48,25 +57,7 @@ in_between_delay = 0.2
 script = ExtResource("4_rud0j")
 waves = Array[ExtResource("6_5r7cr")]([SubResource("Resource_8m0rl"), SubResource("Resource_n4ymf"), SubResource("Resource_24tve"), SubResource("Resource_fwrc2"), SubResource("Resource_8pgiy")])
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2hd0y"]
-radius = 5.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aj10"]
-size = Vector2(20, 114)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysrwd"]
-size = Vector2(220, 20)
-
 [node name="Main" type="Node"]
-
-[node name="Player" parent="." instance=ExtResource("2_02ah7")]
-position = Vector2(-509, -6)
-
-[node name="EnemySpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawn_positions", "player")]
-script = ExtResource("3_nlog1")
-waves = SubResource("Resource_a0cer")
-spawn_positions = NodePath("../SpawnPositions")
-player = NodePath("../Player")
 
 [node name="SpawnPositions" type="Node2D" parent="."]
 scale = Vector2(18, 18)
@@ -204,7 +195,7 @@ shape = SubResource("RectangleShape2D_ysrwd")
 
 [node name="CameraFollow" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("7_e2jwb")
-target = NodePath("../Player")
+target = NodePath("../Entities/Player")
 min_offset = Vector2(-750, -680)
 max_offset = Vector2(750, 680)
 
@@ -222,9 +213,21 @@ zoom = Vector2(0.5, 0.5)
 offset_right = 556.0
 offset_bottom = 135.0
 
-[node name="RangedEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_gdx7e")]
+[node name="Entities" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="RangedEnemy" parent="Entities" node_paths=PackedStringArray("player") instance=ExtResource("5_gdx7e")]
 position = Vector2(389, 0)
 player = NodePath("../Player")
 
-[connection signal="attack_hit" from="Player" to="CameraFollow/CameraShake" method="_on_player_attack_hit"]
-[connection signal="update_health" from="Player" to="CameraFollow/CameraShake/Camera2D/HUD/HealthBar" method="update_health"]
+[node name="Player" parent="Entities" instance=ExtResource("2_02ah7")]
+position = Vector2(-509, -6)
+
+[node name="EnemySpawner" type="Node2D" parent="Entities" node_paths=PackedStringArray("spawn_positions", "player")]
+script = ExtResource("3_nlog1")
+waves = SubResource("Resource_a0cer")
+spawn_positions = NodePath("../../SpawnPositions")
+player = NodePath("../Player")
+
+[connection signal="attack_hit" from="Entities/Player" to="CameraFollow/CameraShake" method="_on_player_attack_hit"]
+[connection signal="update_health" from="Entities/Player" to="CameraFollow/CameraShake/Camera2D/HUD/HealthBar" method="update_health"]

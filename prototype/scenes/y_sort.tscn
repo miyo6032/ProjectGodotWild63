@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6720axryxg76"]
+
+[ext_resource type="Texture2D" uid="uid://dto4g3cf3io2u" path="res://builds/web/debug/index.apple-touch-icon.png" id="1_bv7yy"]
+
+[node name="YSort" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(44, 65)
+texture = ExtResource("1_bv7yy")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("1_bv7yy")

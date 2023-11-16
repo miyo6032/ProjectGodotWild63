@@ -98,6 +98,11 @@ func _physics_process(delta):
     else:   
         velocity = lerp(velocity, Vector2.ZERO, delta * stop_lag)
 
+    var collision = move_and_collide(velocity * delta, true) 
+    if collision != null:
+        velocity = velocity.bounce(collision.get_normal())
+        is_dashing = false
+
     move_and_slide()
 
 @export var max_health = 6
