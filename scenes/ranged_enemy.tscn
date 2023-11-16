@@ -1,16 +1,20 @@
-[gd_scene load_steps=34 format=3 uid="uid://cs1t3p46kqe1l"]
+[gd_scene load_steps=38 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
 [ext_resource type="Texture2D" uid="uid://lo0ibcg8l6hc" path="res://prototype2/art/mage.png" id="2_ds85t"]
 [ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="4_iafrh"]
 [ext_resource type="Script" path="res://scenes/BaseObjectDetector.gd" id="5_jgagf"]
 [ext_resource type="Script" path="res://scenes/EnemyRangedAttackState.gd" id="5_m8asx"]
-[ext_resource type="PackedScene" uid="uid://crxworclxlacs" path="res://scenes/enemy_projectile.tscn" id="6_2mhdd"]
 [ext_resource type="Script" path="res://scenes/CompositeState.gd" id="6_5cvel"]
+[ext_resource type="Script" path="res://scenes/ShootLogic.gd" id="8_b4ex6"]
 [ext_resource type="Script" path="res://scenes/MoveRandomlyState.gd" id="8_bfeme"]
 [ext_resource type="Script" path="res://scenes/StunnedTransition.gd" id="9_comn4"]
 [ext_resource type="Script" path="res://scenes/StunnedState.gd" id="9_gexjc"]
+[ext_resource type="PackedScene" uid="uid://crxworclxlacs" path="res://scenes/enemy_projectile.tscn" id="9_iihh4"]
 [ext_resource type="Script" path="res://scenes/DetectTargetTransition.gd" id="10_15kaj"]
+[ext_resource type="PackedScene" uid="uid://drykm5o7gewep" path="res://scenes/bouncy_enemy_projectile.tscn" id="10_17uy4"]
+[ext_resource type="Script" path="res://scenes/TripleShootLogic.gd" id="10_cwknk"]
+[ext_resource type="Script" path="res://scenes/EightShootLogic.gd" id="11_tdo7l"]
 [ext_resource type="Script" path="res://scenes/EnemyDiedTransition.gd" id="11_yeuw4"]
 [ext_resource type="Script" path="res://scenes/MoveToTargetState.gd" id="12_4ssjg"]
 [ext_resource type="Script" path="res://scenes/EnemyDeathState.gd" id="14_6hdwq"]
@@ -249,10 +253,26 @@ shape = SubResource("CircleShape2D_soeh7")
 script = ExtResource("6_5cvel")
 states = [NodePath("EnemyRangedAttackState"), NodePath("MoveRandomlyState")]
 
-[node name="EnemyRangedAttackState" type="Node" parent="States/MoveAndAttackState"]
+[node name="EnemyRangedAttackState" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("shoot_logic")]
 script = ExtResource("5_m8asx")
-fireball_scene = ExtResource("6_2mhdd")
-projectile_speed = 500.0
+shoot_logic = NodePath("BouncyShootLogic")
+
+[node name="ShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState"]
+script = ExtResource("8_b4ex6")
+projectile_scene = ExtResource("9_iihh4")
+
+[node name="BouncyShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState"]
+script = ExtResource("8_b4ex6")
+projectile_scene = ExtResource("10_17uy4")
+projectile_speed = 750.0
+
+[node name="TripleShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState"]
+script = ExtResource("10_cwknk")
+projectile_scene = ExtResource("9_iihh4")
+
+[node name="EightShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState"]
+script = ExtResource("11_tdo7l")
+projectile_scene = ExtResource("9_iihh4")
 
 [node name="MoveRandomlyState" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("object_detector")]
 script = ExtResource("8_bfeme")
