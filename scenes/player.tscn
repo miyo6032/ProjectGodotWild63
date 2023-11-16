@@ -822,20 +822,14 @@ tracks/2/keys = {
 }
 tracks/3/type = "method"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.08, 0.12, 0.16, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
-"args": [],
-"method": &"spawn_dash_ghost"
-}, {
-"args": [],
-"method": &"spawn_dash_ghost"
-}, {
 "args": [],
 "method": &"spawn_dash_ghost"
 }, {
@@ -1018,9 +1012,12 @@ fixed_fps = 30
 draw_order = 1
 direction = Vector2(0, -1)
 spread = 20.0
-gravity = Vector2(0, 98)
-initial_velocity_min = 20.0
-initial_velocity_max = 20.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+scale_amount_min = 10.0
+scale_amount_max = 15.0
 color_ramp = SubResource("Gradient_ra51a")
 
 [node name="ParticleAnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1038,14 +1035,15 @@ draw_order = 1
 emission_shape = 1
 emission_sphere_radius = 3.0
 direction = Vector2(0, -1)
-gravity = Vector2(0, 98)
-initial_velocity_min = 20.0
-initial_velocity_max = 30.0
+gravity = Vector2(0, 1960)
+initial_velocity_min = 300.0
+initial_velocity_max = 450.0
 angular_velocity_min = -10.0
 angular_velocity_max = 720.0
 angle_min = 1.0
 angle_max = 360.0
-scale_amount_max = 1.5
+scale_amount_min = 20.0
+scale_amount_max = 30.0
 color = Color(0.396078, 0, 0, 1)
 hue_variation_min = -0.04
 hue_variation_max = 0.12

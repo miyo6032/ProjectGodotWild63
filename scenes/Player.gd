@@ -40,6 +40,7 @@ func handle_attack_input():
         facing_direction.look_at(facing_direction.global_position + attack_direction)
         attack_area.monitoring = true
         play_attack_animation(attack_direction)
+        animation_player.play("attack")
         is_dashing = true
         movement_enabled = false
         attack_enabled = false
@@ -81,7 +82,7 @@ func handle_sprite_movement():
     else:
         animated_sprite.stop()
         # animated_sprite.animation = "idle"
-        # particle_animation_player.play("idle")
+        particle_animation_player.play("idle")
 
 func _physics_process(delta):
     var speed = walk_speed
