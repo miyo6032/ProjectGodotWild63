@@ -20,6 +20,13 @@ Console="*res://addons/console/Console.gd"
 GameConsole="res://scripts/GameConsole.gd"
 EventBus="*res://scenes/EventBus.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [input]
 
 move_right={
