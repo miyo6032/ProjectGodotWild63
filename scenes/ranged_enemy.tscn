@@ -353,7 +353,8 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_5x272")
 position = Vector2(0, -80)
 sprite_frames = SubResource("SpriteFrames_nleu6")
-animation = &"hit"
+animation = &"move"
+frame_progress = 0.863316
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bftngtqkxd0ma"]
+
+[ext_resource type="Script" path="res://scenes/Level.gd" id="1_2i52a"]
+[ext_resource type="PackedScene" uid="uid://bfellyq050wl2" path="res://scenes/player.tscn" id="1_mterr"]
+[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="2_nmvcr"]
+[ext_resource type="PackedScene" uid="uid://chyes1ma1h7uf" path="res://scenes/level_0_tiles.tscn" id="3_km2sh"]
+
+[node name="Level" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_2i52a")
+
+[node name="Player" parent="." instance=ExtResource("1_mterr")]
+unique_name_in_owner = true
+position = Vector2(-28, -6)
+
+[node name="Enemies" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="RangedEnemy" parent="Enemies" instance=ExtResource("2_nmvcr")]
+position = Vector2(747, 0)
+
+[node name="TileMap" parent="." instance=ExtResource("3_km2sh")]
