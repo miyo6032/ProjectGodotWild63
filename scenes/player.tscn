@@ -835,14 +835,20 @@ tracks/2/keys = {
 }
 tracks/3/type = "method"
 tracks/3/imported = false
-tracks/3/enabled = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.08, 0.12, 0.16, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"spawn_dash_ghost"
+}, {
+"args": [],
+"method": &"spawn_dash_ghost"
+}, {
 "args": [],
 "method": &"spawn_dash_ghost"
 }, {
@@ -980,7 +986,7 @@ dash_ghost_scene = ExtResource("2_1njyu")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_wdxrx")
 animation = &"attack_up"
-frame_progress = 0.726638
+frame_progress = 0.175734
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4chyv")
