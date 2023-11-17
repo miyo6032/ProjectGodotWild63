@@ -12,6 +12,7 @@ signal attack_hit
 @export var attack_velocity = 100.0
 @export var knockback = 80.0
 @export var dash_ghost_scene: PackedScene
+@export var allow_animation_cancelling = false
 
 @onready var damageable: Damageable = $Damageable
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -20,18 +21,26 @@ signal attack_hit
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $FacingDirection/AttackArea
 
-var movement_enabled = true
-var attack_enabled = true
+var dash_animation_finished = true
 var last_direction = Vector2.RIGHT
 var time_since_last_dash = 0
 var is_dashing = false
 var attack_direction = Vector2.ZERO
+var dash_attack_enabled = true
+const dash_time = 0.2
+const additional_dash_animation_time = 0.2
 
 func _process(delta):
-    if movement_enabled:
-        handle_sprite_movement()
-    if attack_enabled:
-        handle_attack_input()
+    if allow_animation_cancelling:
+        if not is_dashing:
+            handle_sprite_movement()
+        if dash_attack_enabled:
+            handle_attack_input()
+    else:
+        if dash_animation_finished:
+            handle_sprite_movement()
+        if dash_animation_finished:
+            handle_attack_input()
     time_since_last_dash += delta
 
 func handle_attack_input():
@@ -42,18 +51,20 @@ func handle_attack_input():
         play_attack_animation(attack_direction)
         animation_player.play("attack")
         is_dashing = true
-        movement_enabled = false
-        attack_enabled = false
+        dash_attack_enabled = false
+        dash_animation_finished = false
         damageable.monitorable = false
-        await get_tree().create_timer(0.1).timeout
+        await get_tree().create_timer(dash_time).timeout
         is_dashing = false
-        await get_tree().create_timer(0.05).timeout
         attack_area.monitoring = false
-        movement_enabled = true
         damageable.monitorable = true
-        await get_tree().create_timer(0.05 if time_since_last_dash > 0.25 else 0.25).timeout
+        if time_since_last_dash > 0.25:
+            dash_attack_enabled = true
+        else:
+            create_tween().tween_callback(func(): dash_attack_enabled = true).set_delay(additional_dash_animation_time)
+        await get_tree().create_timer(additional_dash_animation_time).timeout
+        dash_animation_finished = true
         time_since_last_dash = 0
-        attack_enabled = true
 
 func play_attack_animation(direction):
     if direction.x > 0:
@@ -79,7 +90,7 @@ func handle_sprite_movement():
             animated_sprite.play("run_up")
         last_direction = direction
         particle_animation_player.play("move")
-    else:
+    elif dash_animation_finished:
         animated_sprite.stop()
         animated_sprite.animation = "idle"
         particle_animation_player.play("idle")
@@ -88,7 +99,7 @@ func _physics_process(delta):
     var speed = walk_speed
 
     var direction = Vector2.ZERO
-    if movement_enabled:
+    if not is_dashing:
         direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
     if is_dashing:

@@ -975,12 +975,12 @@ walk_speed = 600.0
 attack_velocity = 2000.0
 knockback = 800.0
 dash_ghost_scene = ExtResource("2_1njyu")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_wdxrx")
-animation = &"run_down"
+animation = &"attack_up"
+frame_progress = 0.726638
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4chyv")
