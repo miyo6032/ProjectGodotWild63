@@ -12,6 +12,10 @@ signal died
 var state_data
 @export var player: Player
 
+func _ready():
+    if player:
+        init(player)
+
 func init(in_player):
     player = in_player
     state_data = { player = player, enemy = self, can_move = true, stunned = false, is_dead = false }

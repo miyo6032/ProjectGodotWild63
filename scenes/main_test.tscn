@@ -220,6 +220,9 @@ waves = SubResource("Resource_a0cer")
 spawn_positions = NodePath("../../../SpawnPositions")
 player = NodePath("../Player")
 
+[node name="RangedEnemy" parent="Environment/Entities" node_paths=PackedStringArray("player") instance=ExtResource("5_gdx7e")]
+player = NodePath("../Player")
+
 [node name="CameraFollow" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("7_e2jwb")
 target = NodePath("../Environment/Entities/Player")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=3 uid="uid://bfellyq050wl2"]
+[gd_scene load_steps=132 format=3 uid="uid://bfellyq050wl2"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_ymphj"]
 [ext_resource type="PackedScene" uid="uid://bx6d4ld436h0x" path="res://scenes/dash_ghost.tscn" id="2_1njyu"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://0wq7ksmvocuk" path="res://graphics/player/run_left.png" id="8_gi2md"]
 [ext_resource type="Texture2D" uid="uid://dln0s4c1q8p2i" path="res://graphics/player/run_right.png" id="9_xnpdb"]
 [ext_resource type="Texture2D" uid="uid://vaybf1b7rhhb" path="res://graphics/player/run_up.png" id="10_moxaj"]
+[ext_resource type="Script" path="res://scenes/AttackImpactParticles.gd" id="19_mgbbp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibo8u"]
 shader = ExtResource("3_qenv7")
@@ -928,6 +929,9 @@ _data = {
 radius = 52.0
 height = 124.0
 
+[sub_resource type="Gradient" id="Gradient_7hst6"]
+colors = PackedColorArray(1, 1, 1, 1, 0.355314, 0.355314, 0.355314, 1)
+
 [sub_resource type="Gradient" id="Gradient_ra51a"]
 offsets = PackedFloat32Array(0, 0.954023, 1)
 colors = PackedColorArray(0.446777, 0.446777, 0.446777, 1, 0.446777, 0.446777, 0.446777, 1, 0.494118, 0.494118, 0.494118, 0)
@@ -1037,6 +1041,34 @@ position = Vector2(-16, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7ygxr")
 
+[node name="AttackImpactParticles" type="CPUParticles2D" parent="FacingDirection"]
+z_index = 1
+position = Vector2(53, 0)
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 30
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 50.0
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 600.0
+initial_velocity_max = 900.0
+angular_velocity_min = -10.0
+angular_velocity_max = 720.0
+damping_min = 800.0
+damping_max = 800.0
+angle_min = 1.0
+angle_max = 360.0
+scale_amount_min = 5.0
+scale_amount_max = 7.0
+color_ramp = SubResource("Gradient_7hst6")
+hue_variation_min = -0.04
+hue_variation_max = 0.12
+script = ExtResource("19_mgbbp")
+
 [node name="WalkParticles" type="CPUParticles2D" parent="."]
 z_index = -1
 position = Vector2(0, 73)
@@ -1087,5 +1119,6 @@ hue_variation_max = 0.12
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
 
+[connection signal="attack_hit" from="." to="FacingDirection/AttackImpactParticles" method="_on_player_attack_hit"]
 [connection signal="on_damage" from="Damageable" to="." method="_on_enemy_collision_detection_on_damage"]
 [connection signal="area_entered" from="FacingDirection/AttackArea" to="." method="_on_attack_area_area_entered"]
