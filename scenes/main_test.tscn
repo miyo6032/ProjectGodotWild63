@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dm2y3aggdmxjt"]
+[gd_scene load_steps=20 format=3 uid="uid://dm2y3aggdmxjt"]
 
 [ext_resource type="PackedScene" uid="uid://bfellyq050wl2" path="res://scenes/player.tscn" id="2_02ah7"]
 [ext_resource type="Script" path="res://scenes/EnemySpawner.gd" id="3_nlog1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/CameraFollow.gd" id="7_e2jwb"]
 [ext_resource type="Script" path="res://scenes/ShakeCamera2D.gd" id="8_q1sy8"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="9_dicyg"]
+[ext_resource type="PackedScene" uid="uid://dn74avx2w44xj" path="res://scenes/tile_map.tscn" id="9_urhus"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2hd0y"]
 radius = 5.0
@@ -196,7 +197,7 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ysrwd")
 
 [node name="Block" type="StaticBody2D" parent="Environment"]
-position = Vector2(0, 22.0556)
+position = Vector2(0, 100.611)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Block"]
@@ -225,10 +226,6 @@ offset_bottom = 135.0
 [node name="Entities" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="RangedEnemy" parent="Entities" node_paths=PackedStringArray("player") instance=ExtResource("5_gdx7e")]
-position = Vector2(389, 0)
-player = NodePath("../Player")
-
 [node name="Player" parent="Entities" instance=ExtResource("2_02ah7")]
 position = Vector2(-509, -6)
 
@@ -237,6 +234,8 @@ script = ExtResource("3_nlog1")
 waves = SubResource("Resource_a0cer")
 spawn_positions = NodePath("../../SpawnPositions")
 player = NodePath("../Player")
+
+[node name="TileMap" parent="." instance=ExtResource("9_urhus")]
 
 [connection signal="attack_hit" from="Entities/Player" to="CameraFollow/CameraShake" method="_on_player_attack_hit"]
 [connection signal="update_health" from="Entities/Player" to="CameraFollow/CameraShake/Camera2D/HUD/HealthBar" method="update_health"]
