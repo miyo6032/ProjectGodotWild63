@@ -2,7 +2,6 @@ extends State
 
 class_name StunnedState
 
-@export var stun_time : float = 1.0
 @export var recover_state : State
 @export var transition_speed : float = 4.0
 
@@ -10,11 +9,14 @@ var stunned_tween
 
 func enter(_msg := {}) -> void:
     state_data.can_move = false
-    enemy.animated_sprite.play("idle")
-    stunned_tween = create_tween()
-    stunned_tween.tween_callback(remove_stun).set_delay(stun_time)
 
-func remove_stun():
+    var direction = player.global_position - enemy.global_position
+    if direction.x != 0:
+        enemy.animated_sprite.flip_v = false
+        enemy.animated_sprite.flip_h = direction.x < 0
+
+    enemy.animated_sprite.play("hit")
+    await enemy.animated_sprite.animation_finished
     state_data.can_move = true
     state_data.stunned = false
     state_machine.transition_to(recover_state)

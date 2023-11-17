@@ -18,6 +18,11 @@ func update(delta: float) -> void:
         fireball_tween.tween_callback(fireball).set_delay(telegraph_time)
         current_time = 0
 
+        var direction = player.global_position - enemy.global_position
+        if direction.x != 0:
+            enemy.animated_sprite.flip_v = false
+            enemy.animated_sprite.flip_h = direction.x < 0
+
 func fireball():
     state_data.can_move = true
     shoot_logic.shoot(enemy, player)
