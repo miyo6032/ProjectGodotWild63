@@ -1,14 +1,11 @@
 extends Node
 
-@onready var enemies: Node2D = %Enemies
-@onready var player: Node2D = %Player
+@export var levels: Array[PackedScene]
 
 func _ready() -> void:
-    for enemy in enemies.get_children():
-        enemy.died.connect(_on_enemy_died)
-        enemy.player = player
+    Console.add_command("level", start_level, 1)
 
-func _on_enemy_died() -> void:
-    await get_tree().create_timer(1.0).timeout
-    if enemies.get_child_count() == 0:
-        print("YOU WIN")
+func start_level(level_index) -> void:
+    var level_scene = levels[int(level_index)]
+    var level = level_scene.instantiate()
+    add_child(level)

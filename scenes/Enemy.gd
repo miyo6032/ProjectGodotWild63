@@ -14,8 +14,6 @@ var state_data
 
 func init(in_player):
     player = in_player
-
-func _ready() -> void:
     state_data = { player = player, enemy = self, can_move = true, stunned = false, is_dead = false }
     for child in states.get_children():
         if child is State:

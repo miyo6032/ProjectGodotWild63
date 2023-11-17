@@ -1,75 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://bc5a1ffpsdvdk"]
+[gd_scene load_steps=6 format=3 uid="uid://bc5a1ffpsdvdk"]
 
-[ext_resource type="PackedScene" uid="uid://bfellyq050wl2" path="res://scenes/player.tscn" id="1_808qs"]
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_tm45u"]
-[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="2_mlf80"]
+[ext_resource type="PackedScene" uid="uid://bftngtqkxd0ma" path="res://scenes/level.tscn" id="2_7m05v"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="3_k1l3p"]
 [ext_resource type="Script" path="res://scenes/ShakeCamera2D.gd" id="6_edsxo"]
 [ext_resource type="Script" path="res://scenes/CameraFollow.gd" id="6_yhio2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bcchy"]
-size = Vector2(20, 114)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddvmr"]
-size = Vector2(220, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ypei"]
-
 [node name="Main" type="Node"]
 script = ExtResource("1_tm45u")
+levels = Array[PackedScene]([ExtResource("2_7m05v")])
 
-[node name="World" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Player" parent="World" instance=ExtResource("1_808qs")]
-unique_name_in_owner = true
-position = Vector2(-28, -6)
-
-[node name="Environment" type="Node2D" parent="."]
-scale = Vector2(18, 18)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Environment"]
-position = Vector2(101, -1)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_bcchy")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="Environment"]
-position = Vector2(-104, -1)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D2"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_bcchy")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="Environment"]
-position = Vector2(0, -69)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D4"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_ddvmr")
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="Environment"]
-position = Vector2(0, 66)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D5"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_ddvmr")
-
-[node name="Block" type="StaticBody2D" parent="Environment"]
-position = Vector2(0, 22.0556)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Block"]
-shape = SubResource("RectangleShape2D_0ypei")
-
-[node name="CameraFollow" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+[node name="CameraFollow" type="Node2D" parent="."]
 script = ExtResource("6_yhio2")
-target = NodePath("../World/Player")
 min_offset = Vector2(-750, -680)
 max_offset = Vector2(750, 680)
 
@@ -86,12 +28,3 @@ zoom = Vector2(0.5, 0.5)
 [node name="HealthBar" parent="CameraFollow/CameraShake/Camera2D/HUD" instance=ExtResource("3_k1l3p")]
 offset_right = 556.0
 offset_bottom = 135.0
-
-[node name="Enemies" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="RangedEnemy" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("2_mlf80")]
-position = Vector2(747, 0)
-player = NodePath("../../World/Player")
-
-[connection signal="update_health" from="World/Player" to="CameraFollow/CameraShake/Camera2D/HUD/HealthBar" method="update_health"]
