@@ -1,7 +1,8 @@
-[gd_scene load_steps=123 format=3 uid="uid://bfellyq050wl2"]
+[gd_scene load_steps=125 format=3 uid="uid://bfellyq050wl2"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_ymphj"]
 [ext_resource type="PackedScene" uid="uid://bx6d4ld436h0x" path="res://scenes/dash_ghost.tscn" id="2_1njyu"]
+[ext_resource type="Shader" path="res://scenes/dash_ghost.gdshader" id="3_qenv7"]
 [ext_resource type="Texture2D" uid="uid://dbgbrqf7s7115" path="res://graphics/player/attack_down.png" id="3_veoca"]
 [ext_resource type="Texture2D" uid="uid://cynp1p28btu11" path="res://graphics/player/attack_left.png" id="4_5sfjn"]
 [ext_resource type="Texture2D" uid="uid://cm8epl6lytwgf" path="res://graphics/player/attack_right.png" id="5_sbf8i"]
@@ -12,6 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://0wq7ksmvocuk" path="res://graphics/player/run_left.png" id="8_gi2md"]
 [ext_resource type="Texture2D" uid="uid://dln0s4c1q8p2i" path="res://graphics/player/run_right.png" id="9_xnpdb"]
 [ext_resource type="Texture2D" uid="uid://vaybf1b7rhhb" path="res://graphics/player/run_up.png" id="10_moxaj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibo8u"]
+shader = ExtResource("3_qenv7")
+shader_parameter/whiten = false
+shader_parameter/mix_weight = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vs30k"]
 atlas = ExtResource("3_veoca")
@@ -984,6 +990,7 @@ dash_ghost_scene = ExtResource("2_1njyu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_ibo8u")
 sprite_frames = SubResource("SpriteFrames_wdxrx")
 animation = &"attack_up"
 frame_progress = 0.175734
