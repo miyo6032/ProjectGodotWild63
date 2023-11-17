@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cs1t3p46kqe1l"]
+[gd_scene load_steps=39 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
 [ext_resource type="Texture2D" uid="uid://lo0ibcg8l6hc" path="res://prototype2/art/mage.png" id="2_ds85t"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://scenes/MoveToTargetState.gd" id="12_4ssjg"]
 [ext_resource type="Script" path="res://scenes/EnemyDeathState.gd" id="14_6hdwq"]
 [ext_resource type="Shader" path="res://scenes/colorize.gdshader" id="14_d17md"]
+[ext_resource type="Script" path="res://scenes/TargetRaycastTransition.gd" id="20_1gmvs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5x272"]
 shader = ExtResource("14_d17md")
@@ -202,7 +203,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_soeh7"]
-radius = 22.0
+radius = 38.0
 
 [node name="RangedEnemy" type="CharacterBody2D"]
 collision_layer = 0
@@ -239,15 +240,15 @@ libraries = {
 }
 
 [node name="BaseObjectDetector" type="Area2D" parent="."]
-position = Vector2(71, 0)
+position = Vector2(109, 1)
 collision_layer = 0
 script = ExtResource("5_jgagf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaseObjectDetector"]
-position = Vector2(42, 0)
 shape = SubResource("CircleShape2D_soeh7")
 
 [node name="States" type="Node" parent="."]
+unique_name_in_owner = true
 
 [node name="MoveAndAttackState" type="Node" parent="States" node_paths=PackedStringArray("states")]
 script = ExtResource("6_5cvel")
@@ -277,48 +278,62 @@ projectile_scene = ExtResource("9_iihh4")
 [node name="MoveRandomlyState" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("object_detector")]
 script = ExtResource("8_bfeme")
 object_detector = NodePath("../../../BaseObjectDetector")
-object_detection_distance = 70.0
+object_detection_distance = 100.0
 speed = 200.0
 
-[node name="StunnedTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("true_state")]
-script = ExtResource("9_comn4")
-true_state = NodePath("../../StunnedState")
+[node name="SightBlockedTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("raycast2d", "true_state")]
+script = ExtResource("20_1gmvs")
+raycast2d = NodePath("../../../RayCast2D")
+true_state = NodePath("../../MoveRandomlyState")
 
-[node name="DetectTargetTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("false_state")]
+[node name="ChaseTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("raycast2d", "true_state")]
 script = ExtResource("10_15kaj")
-distance = 900.0
-false_state = NodePath("../../MoveToTargetState")
-
-[node name="EnemyDiedTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("true_state")]
-script = ExtResource("11_yeuw4")
-true_state = NodePath("../../EnemyDeathState")
+distance_range = Vector2(900, 10000)
+raycast2d = NodePath("../../../RayCast2D")
+true_state = NodePath("../../MoveToTargetState")
 
 [node name="StunnedState" type="Node" parent="States" node_paths=PackedStringArray("recover_state")]
 script = ExtResource("9_gexjc")
 recover_state = NodePath("../MoveAndAttackState")
 transition_speed = 8.0
 
-[node name="EnemyDiedTransition" type="Node" parent="States/StunnedState" node_paths=PackedStringArray("true_state")]
-script = ExtResource("11_yeuw4")
-true_state = NodePath("../../EnemyDeathState")
-
 [node name="MoveToTargetState" type="Node" parent="States" node_paths=PackedStringArray("object_detector")]
 script = ExtResource("12_4ssjg")
 object_detector = NodePath("../../BaseObjectDetector")
-object_detection_distance = 70.0
+object_detection_distance = 100.0
 speed = 200.0
 
-[node name="DetectTargetTransition" type="Node" parent="States/MoveToTargetState" node_paths=PackedStringArray("true_state")]
+[node name="AttackTransition" type="Node" parent="States/MoveToTargetState" node_paths=PackedStringArray("raycast2d", "true_state")]
 script = ExtResource("10_15kaj")
-distance = 600.0
+distance_range = Vector2(0, 600)
+raycast2d = NodePath("../../../RayCast2D")
 true_state = NodePath("../../MoveAndAttackState")
 
-[node name="EnemyDiedTransition" type="Node" parent="States/MoveToTargetState" node_paths=PackedStringArray("true_state")]
-script = ExtResource("11_yeuw4")
-true_state = NodePath("../../EnemyDeathState")
+[node name="SightBlockedTransition" type="Node" parent="States/MoveToTargetState" node_paths=PackedStringArray("raycast2d", "true_state")]
+script = ExtResource("20_1gmvs")
+raycast2d = NodePath("../../../RayCast2D")
+true_state = NodePath("../../MoveRandomlyState")
 
 [node name="EnemyDeathState" type="Node" parent="States"]
 script = ExtResource("14_6hdwq")
+
+[node name="MoveRandomlyState" type="Node" parent="States" node_paths=PackedStringArray("object_detector")]
+script = ExtResource("8_bfeme")
+object_detector = NodePath("../../BaseObjectDetector")
+object_detection_distance = 100.0
+speed = 200.0
+
+[node name="AttackTransition" type="Node" parent="States/MoveRandomlyState" node_paths=PackedStringArray("raycast2d", "true_state")]
+script = ExtResource("10_15kaj")
+distance_range = Vector2(0, 600)
+raycast2d = NodePath("../../../RayCast2D")
+true_state = NodePath("../../MoveAndAttackState")
+
+[node name="ChaseTransition" type="Node" parent="States/MoveRandomlyState" node_paths=PackedStringArray("raycast2d", "true_state")]
+script = ExtResource("10_15kaj")
+distance_range = Vector2(600, 10000)
+raycast2d = NodePath("../../../RayCast2D")
+true_state = NodePath("../../MoveToTargetState")
 
 [node name="DamageParticles" type="CPUParticles2D" parent="."]
 emitting = false
@@ -342,5 +357,18 @@ scale_amount_max = 30.0
 color = Color(0.396078, 0, 0, 1)
 hue_variation_min = -0.04
 hue_variation_max = 0.12
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="GlobalTransitions" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="StunnedTransition" type="Node" parent="GlobalTransitions" node_paths=PackedStringArray("true_state")]
+script = ExtResource("9_comn4")
+true_state = NodePath("../../States/StunnedState")
+
+[node name="EnemyDiedTransition" type="Node" parent="GlobalTransitions" node_paths=PackedStringArray("true_state")]
+script = ExtResource("11_yeuw4")
+true_state = NodePath("../../States/EnemyDeathState")
 
 [connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]

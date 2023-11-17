@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dm2y3aggdmxjt"]
+[gd_scene load_steps=19 format=3 uid="uid://dm2y3aggdmxjt"]
 
 [ext_resource type="PackedScene" uid="uid://bfellyq050wl2" path="res://scenes/player.tscn" id="2_02ah7"]
 [ext_resource type="Script" path="res://scenes/EnemySpawner.gd" id="3_nlog1"]
@@ -17,6 +17,8 @@ size = Vector2(20, 114)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysrwd"]
 size = Vector2(220, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1k5h"]
 
 [sub_resource type="Resource" id="Resource_8m0rl"]
 script = ExtResource("6_5r7cr")
@@ -192,6 +194,14 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D5"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ysrwd")
+
+[node name="Block" type="StaticBody2D" parent="Environment"]
+position = Vector2(0, 66)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Block"]
+position = Vector2(0, -65.7222)
+shape = SubResource("RectangleShape2D_f1k5h")
 
 [node name="CameraFollow" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("7_e2jwb")
