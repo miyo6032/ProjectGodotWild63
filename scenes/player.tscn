@@ -1,15 +1,20 @@
-[gd_scene load_steps=125 format=3 uid="uid://bfellyq050wl2"]
+[gd_scene load_steps=130 format=3 uid="uid://bfellyq050wl2"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_ymphj"]
 [ext_resource type="PackedScene" uid="uid://bx6d4ld436h0x" path="res://scenes/dash_ghost.tscn" id="2_1njyu"]
+[ext_resource type="AudioStream" uid="uid://xefqdt1omw1n" path="res://sounds/SFX_ATTACK_INITIATED.wav" id="3_58yie"]
 [ext_resource type="Shader" path="res://scenes/dash_ghost.gdshader" id="3_qenv7"]
 [ext_resource type="Texture2D" uid="uid://dbgbrqf7s7115" path="res://graphics/player/attack_down.png" id="3_veoca"]
 [ext_resource type="Texture2D" uid="uid://cynp1p28btu11" path="res://graphics/player/attack_left.png" id="4_5sfjn"]
+[ext_resource type="AudioStream" uid="uid://dnweqsbxpyrjt" path="res://sounds/SFX_ATTACK_IMPACT_01.wav" id="4_8xuod"]
+[ext_resource type="AudioStream" uid="uid://cg23yxvmojaci" path="res://sounds/SFX_ATTACK_IMPACT_02.wav" id="5_b17pq"]
 [ext_resource type="Texture2D" uid="uid://cm8epl6lytwgf" path="res://graphics/player/attack_right.png" id="5_sbf8i"]
+[ext_resource type="AudioStream" uid="uid://dvwe5c4ov51ps" path="res://sounds/SFX_PLAYER_HURT.wav" id="6_0l7aw"]
 [ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="6_443uu"]
 [ext_resource type="Texture2D" uid="uid://brqhpq8l8egvl" path="res://graphics/player/attack_up.png" id="6_qstii"]
 [ext_resource type="Texture2D" uid="uid://dl7n8ckq83a3f" path="res://graphics/player/run_down.png" id="7_djs83"]
 [ext_resource type="Texture2D" uid="uid://bovx7kqlrruyc" path="res://graphics/player/idle.png" id="7_fy051"]
+[ext_resource type="AudioStream" uid="uid://b0j3xsumtcnm2" path="res://sounds/SFX_PLAYER_DEATH.wav" id="7_lh8q5"]
 [ext_resource type="Texture2D" uid="uid://0wq7ksmvocuk" path="res://graphics/player/run_left.png" id="8_gi2md"]
 [ext_resource type="Texture2D" uid="uid://dln0s4c1q8p2i" path="res://graphics/player/run_right.png" id="9_xnpdb"]
 [ext_resource type="Texture2D" uid="uid://vaybf1b7rhhb" path="res://graphics/player/run_up.png" id="10_moxaj"]
@@ -987,6 +992,12 @@ walk_speed = 600.0
 attack_velocity = 2000.0
 knockback = 800.0
 dash_ghost_scene = ExtResource("2_1njyu")
+dash_sound = ExtResource("3_58yie")
+hit_sound = Array[AudioStream]([ExtResource("4_8xuod"), ExtResource("5_b17pq")])
+hurt_sound = ExtResource("6_0l7aw")
+death_sound = ExtResource("7_lh8q5")
+max_health = 4
+health = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -1072,6 +1083,9 @@ scale_amount_max = 15.0
 color = Color(0.396078, 0, 0, 1)
 hue_variation_min = -0.04
 hue_variation_max = 0.12
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [connection signal="on_damage" from="Damageable" to="." method="_on_enemy_collision_detection_on_damage"]
 [connection signal="area_entered" from="FacingDirection/AttackArea" to="." method="_on_attack_area_area_entered"]

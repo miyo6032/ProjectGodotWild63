@@ -13,6 +13,11 @@ signal attack_hit
 @export var knockback = 80.0
 @export var dash_ghost_scene: PackedScene
 @export var allow_animation_cancelling = false
+@export_category("Sounds")
+@export var dash_sound: AudioStream
+@export var hit_sound: Array[AudioStream]
+@export var hurt_sound: AudioStream
+@export var death_sound: AudioStream
 
 @onready var damageable: Damageable = $Damageable
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -20,6 +25,7 @@ signal attack_hit
 @onready var facing_direction: Node2D = $FacingDirection
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $FacingDirection/AttackArea
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var dash_animation_finished = true
 var last_direction = Vector2.RIGHT
@@ -50,6 +56,8 @@ func handle_attack_input():
         attack_area.monitoring = true
         play_attack_animation(attack_direction)
         animation_player.play("attack")
+        audio_stream_player.stream = dash_sound
+        audio_stream_player.play()
         is_dashing = true
         dash_attack_enabled = false
         dash_animation_finished = false
@@ -116,6 +124,7 @@ func _physics_process(delta):
 
     move_and_slide()
 
+@export_category("Health")
 @export var max_health = 6
 @export var health = 6
 @export var hit_freeze_slow := 0.07
@@ -139,6 +148,11 @@ func _on_enemy_collision_detection_on_damage(damage_info):
 
     if health <= 0:
         EventBus.on_game_over.emit()
+        audio_stream_player.stream = death_sound
+        audio_stream_player.play()
+    else:
+        audio_stream_player.stream = hurt_sound
+        audio_stream_player.play()
 
 func end_invulnerability():
     damageable.invulnerable = false
@@ -147,6 +161,8 @@ func end_invulnerability():
 func _on_attack_area_area_entered(area:Area2D):
     velocity = velocity * -0.7
     is_dashing = false
+    audio_stream_player.stream = hit_sound[randi() % hit_sound.size()]
+    audio_stream_player.play()      
     if not area.invulnerable:
         freeze_frame()
         area.damage({damage = 1, knockback = last_direction * knockback})
