@@ -162,6 +162,7 @@ collision_mask = 6
 shape = SubResource("CircleShape2D_2hd0y")
 
 [node name="Environment" type="Node2D" parent="."]
+y_sort_enabled = true
 scale = Vector2(18, 18)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment"]
@@ -203,9 +204,25 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Block"]
 shape = SubResource("RectangleShape2D_f1k5h")
 
+[node name="TileMap" parent="Environment" instance=ExtResource("9_urhus")]
+scale = Vector2(0.0555556, 0.0555556)
+
+[node name="Entities" type="Node2D" parent="Environment"]
+y_sort_enabled = true
+scale = Vector2(0.0555556, 0.0555556)
+
+[node name="Player" parent="Environment/Entities" instance=ExtResource("2_02ah7")]
+position = Vector2(-509, -6)
+
+[node name="EnemySpawner" type="Node2D" parent="Environment/Entities" node_paths=PackedStringArray("spawn_positions", "player")]
+script = ExtResource("3_nlog1")
+waves = SubResource("Resource_a0cer")
+spawn_positions = NodePath("../../../SpawnPositions")
+player = NodePath("../Player")
+
 [node name="CameraFollow" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("7_e2jwb")
-target = NodePath("../Entities/Player")
+target = NodePath("../Environment/Entities/Player")
 min_offset = Vector2(-750, -680)
 max_offset = Vector2(750, 680)
 
@@ -223,19 +240,5 @@ zoom = Vector2(0.5, 0.5)
 offset_right = 556.0
 offset_bottom = 135.0
 
-[node name="Entities" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="Player" parent="Entities" instance=ExtResource("2_02ah7")]
-position = Vector2(-509, -6)
-
-[node name="EnemySpawner" type="Node2D" parent="Entities" node_paths=PackedStringArray("spawn_positions", "player")]
-script = ExtResource("3_nlog1")
-waves = SubResource("Resource_a0cer")
-spawn_positions = NodePath("../../SpawnPositions")
-player = NodePath("../Player")
-
-[node name="TileMap" parent="." instance=ExtResource("9_urhus")]
-
-[connection signal="attack_hit" from="Entities/Player" to="CameraFollow/CameraShake" method="_on_player_attack_hit"]
-[connection signal="update_health" from="Entities/Player" to="CameraFollow/CameraShake/Camera2D/HUD/HealthBar" method="update_health"]
+[connection signal="attack_hit" from="Environment/Entities/Player" to="CameraFollow/CameraShake" method="_on_player_attack_hit"]
+[connection signal="update_health" from="Environment/Entities/Player" to="CameraFollow/CameraShake/Camera2D/HUD/HealthBar" method="update_health"]
