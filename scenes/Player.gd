@@ -81,7 +81,7 @@ func handle_sprite_movement():
         particle_animation_player.play("move")
     else:
         animated_sprite.stop()
-        # animated_sprite.animation = "idle"
+        animated_sprite.animation = "idle"
         particle_animation_player.play("idle")
 
 func _physics_process(delta):

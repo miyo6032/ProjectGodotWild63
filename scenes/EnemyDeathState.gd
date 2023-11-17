@@ -6,9 +6,14 @@ class_name EnemyDeathState
 
 func enter(_msg := {}) -> void:
     state_data.can_move = false
+
+    var direction = player.global_position - enemy.global_position
+    if direction.x != 0:
+        enemy.animated_sprite.flip_v = false
+        enemy.animated_sprite.flip_h = direction.x < 0
+
     enemy.animated_sprite.play("die")
     await enemy.animated_sprite.animation_finished
-    await get_tree().create_timer(0.1).timeout
     enemy.queue_free()
 
 func physics_update(delta: float) -> void:
