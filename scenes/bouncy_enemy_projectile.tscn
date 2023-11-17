@@ -1,17 +1,17 @@
 [gd_scene load_steps=7 format=3 uid="uid://drykm5o7gewep"]
 
 [ext_resource type="Script" path="res://prototype/scenes/BouncyProjectile.gd" id="1_1s63j"]
-[ext_resource type="Texture2D" uid="uid://cm27c2rpo6a3c" path="res://prototype2/art/fireball.png" id="2_wrelq"]
+[ext_resource type="Texture2D" uid="uid://bxkepcqoq27jk" path="res://graphics/enemy/sawblade.png" id="2_d2c20"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_17cv8"]
-atlas = ExtResource("2_wrelq")
-region = Rect2(0, 0, 5, 5)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqt8f"]
+atlas = ExtResource("2_d2c20")
+region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_skctp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_17cv8")
+"texture": SubResource("AtlasTexture_gqt8f")
 }],
 "loop": true,
 "name": &"fireball",
@@ -19,22 +19,21 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4oemq"]
-radius = 26.0
-height = 86.0
+radius = 51.0
+height = 102.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6vddh"]
-radius = 26.0
-height = 86.0
+radius = 50.0
+height = 100.0
 
 [node name="EnemyProjectile" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_1s63j")
 knockback = 30.0
+initial_angular_velocity = 3.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0, 1, 1, 1)
 texture_filter = 1
-scale = Vector2(18, 18)
 sprite_frames = SubResource("SpriteFrames_skctp")
 animation = &"fireball"
 

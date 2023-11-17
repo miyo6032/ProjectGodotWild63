@@ -7,6 +7,7 @@ extends HBoxContainer
 @export var hearts_to_show = 5
 
 func _ready():
+    EventBus.player_health_changed.connect(update_health)
     for i in hearts_to_show:
         add_child(TextureRect.new())
 

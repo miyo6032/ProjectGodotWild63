@@ -124,6 +124,7 @@ func _physics_process(delta):
 func _ready():
     attack_area.monitoring = false
     update_health.emit(health, max_health)
+    EventBus.player_health_changed.emit(health, max_health)
 
 func _on_enemy_collision_detection_on_damage(damage_info):
     print("player damaged" + str(damage_info))
@@ -132,6 +133,7 @@ func _on_enemy_collision_detection_on_damage(damage_info):
     animation_player.play("hit")
     health -= damage_info.damage
     update_health.emit(health, max_health)
+    EventBus.player_health_changed.emit(health, max_health)
     if damage_info.has("knockback"):
         velocity += damage_info.knockback
 

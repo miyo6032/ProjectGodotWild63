@@ -1,34 +1,29 @@
 [gd_scene load_steps=5 format=3 uid="uid://cv4jphlnle64m"]
 
 [ext_resource type="Script" path="res://HealthBar.gd" id="1_ptmf1"]
-[ext_resource type="Texture2D" uid="uid://dv7ojq8o1ino1" path="res://prototype/art/playerGrey_up1.png" id="2_uvuw3"]
-[ext_resource type="Texture2D" uid="uid://0mfqqt1cmi52" path="res://prototype/art/Half.png" id="3_w8x5f"]
-[ext_resource type="Texture2D" uid="uid://0cbecxp0q5r3" path="res://prototype/art/Empty.png" id="4_a4yl8"]
+[ext_resource type="Texture2D" uid="uid://ynhmyl02cd5q" path="res://graphics/ui/heart1.png" id="2_8ja8g"]
+[ext_resource type="Texture2D" uid="uid://j2dopji1bcki" path="res://graphics/ui/heart2.png" id="3_5u74g"]
+[ext_resource type="Texture2D" uid="uid://ded2l72rtwcva" path="res://graphics/ui/heart3.png" id="4_nfshh"]
 
 [node name="HealthBar" type="HBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_ptmf1")
-heart_full = ExtResource("2_uvuw3")
-heart_half = ExtResource("3_w8x5f")
-heart_empty = ExtResource("4_a4yl8")
+heart_full = ExtResource("2_8ja8g")
+heart_half = ExtResource("3_5u74g")
+heart_empty = ExtResource("4_nfshh")
 
 [node name="1" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_uvuw3")
 
 [node name="2" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_uvuw3")
 
 [node name="3" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_uvuw3")
 
 [node name="4" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_uvuw3")
 
 [node name="5" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_uvuw3")

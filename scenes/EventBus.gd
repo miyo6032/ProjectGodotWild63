@@ -5,6 +5,7 @@ signal EventBus
 signal on_game_win
 signal on_game_over
 signal on_game_pause
+signal player_health_changed(health, max_health)
 
 func _ready():
     Console.add_command("win", _on_game_win_test)
