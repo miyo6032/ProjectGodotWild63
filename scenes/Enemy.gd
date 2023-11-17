@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal transitioned(state_name)
+signal died
 
 @export var initial_state := NodePath()
 
@@ -80,3 +81,4 @@ func _on_damageable_on_damage(damage_info):
 
     if health <= 0:
         state_data.is_dead = true
+        died.emit()
