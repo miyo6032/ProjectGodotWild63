@@ -29,6 +29,9 @@ func physics_update(delta: float) -> void:
         pick_random_direction()
         enemy.velocity = lerp(enemy.velocity, Vector2.ZERO, delta * move_lag)
         enemy.animated_sprite.play("idle")
+    elif direction == Vector2.ZERO:
+        enemy.velocity = lerp(enemy.velocity, Vector2.ZERO, delta * move_lag)
+        enemy.animated_sprite.play("idle")
     else:
         enemy.velocity = lerp(enemy.velocity, direction * speed, delta * move_lag)
         enemy.animated_sprite.play("move")
@@ -46,11 +49,15 @@ func position_detector(detector: BaseObjectDetector, distance: float) -> void:
     detector.global_position = object_detection_pos
 
 func pick_random_direction() -> void:
+    if randi_range(0, 1) == 0:
         direction.x = randf_range(-1.0, 1.0)
         direction.y = randf_range(-1.0, 1.0)
         direction = direction.normalized()
-        object_detector.position = direction * object_detection_distance
-        last_direction_change_time = maximum_time_in_a_direction
+    else:
+        direction = Vector2.ZERO
+
+    object_detector.position = direction * object_detection_distance
+    last_direction_change_time = maximum_time_in_a_direction
 
 func stop_moving() -> void:
     direction = Vector2.ZERO

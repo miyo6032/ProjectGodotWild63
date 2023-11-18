@@ -162,7 +162,7 @@ func _on_attack_area_area_entered(area:Area2D):
     velocity = velocity * -0.7
     is_dashing = false
     audio_stream_player.stream = hit_sound[randi() % hit_sound.size()]
-    audio_stream_player.play()      
+    audio_stream_player.play()
     if not area.invulnerable:
         freeze_frame()
         area.damage({damage = 1, knockback = last_direction * knockback})
