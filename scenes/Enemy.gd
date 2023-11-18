@@ -74,6 +74,9 @@ func maybe_transition_state():
 var health = 2
 
 func _on_damageable_on_damage(damage_info):
+    if health <= 0:
+        return
+
     animation_player.play("hit")
     health -= damage_info.damage
     state_data.stunned = true

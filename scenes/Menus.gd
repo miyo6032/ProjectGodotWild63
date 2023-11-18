@@ -14,10 +14,13 @@ signal play_pressed
 @onready var options_menu: = %OptionsMenu
 @onready var options_settings_grid_container = %OptionsSettingsGridContainer
 @onready var main_menu = %MainMenu
+@onready var level_label = %LevelLabel
 
 func _ready():
     EventBus.on_game_win.connect(_game_won)
     EventBus.on_game_over.connect(_game_over)
+    EventBus.on_level_started.connect(_level_started)
+    EventBus.on_level_cleared.connect(_level_cleared)
     pause_menu.visible = false
     play_button.grab_focus()
 
@@ -31,6 +34,7 @@ func _game_over():
 
 func _on_play_button_pressed():
     animation_player.play("clear_menu")
+    await animation_player.animation_finished
     play_pressed.emit()
     
 func _on_quit_button_pressed():
@@ -70,3 +74,16 @@ func _on_options_button_pressed():
 func _on_back_button_pressed():
     options_menu.visible = false
     play_button.grab_focus()
+
+func _level_started(index):
+    get_tree().paused = true
+    level_label.text = "Level " + str(index + 1)
+    animation_player.play("level_screen_first")
+    await animation_player.animation_finished
+    get_tree().paused = false
+
+func _level_cleared():
+    get_tree().paused = true
+    animation_player.play("level_cleared")
+    await animation_player.animation_finished
+    get_tree().paused = false

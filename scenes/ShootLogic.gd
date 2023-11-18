@@ -11,4 +11,4 @@ func shoot(enemy: Node2D, player: Node2D):
     fireball_instance.linear_velocity = (player.global_position - fireball_position).normalized() * projectile_speed
     fireball_instance.global_position = fireball_position
     fireball_instance.look_at(player.global_position)
-    get_tree().current_scene.add_child(fireball_instance)
+    enemy.get_parent().get_parent().add_child(fireball_instance)

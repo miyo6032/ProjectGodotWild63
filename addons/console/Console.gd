@@ -53,6 +53,8 @@ func _ready() -> void:
 
 
 func _input(event : InputEvent) -> void:
+    if (!OS.is_debug_build()):
+        return
     if (event is InputEventKey):
         if (event.get_physical_keycode_with_modifiers() == KEY_QUOTELEFT): # ~ key.
             if (event.pressed):

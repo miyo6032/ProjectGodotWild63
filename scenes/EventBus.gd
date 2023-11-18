@@ -5,6 +5,8 @@ signal EventBus
 signal on_game_win
 signal on_game_over
 signal on_game_pause
+signal on_level_started
+signal on_level_cleared
 signal player_health_changed(health, max_health)
 
 func _ready():

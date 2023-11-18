@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bc5a1ffpsdvdk"]
+[gd_scene load_steps=8 format=3 uid="uid://bc5a1ffpsdvdk"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_tm45u"]
-[ext_resource type="PackedScene" uid="uid://bftngtqkxd0ma" path="res://scenes/level.tscn" id="2_7m05v"]
+[ext_resource type="PackedScene" uid="uid://bftngtqkxd0ma" path="res://scenes/test_level_0.tscn" id="2_bqp5w"]
+[ext_resource type="PackedScene" uid="uid://cetcxyg2yljts" path="res://scenes/test_level_1.tscn" id="3_jy81l"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="3_k1l3p"]
+[ext_resource type="PackedScene" uid="uid://bvf55uwknvl1" path="res://scenes/menus.tscn" id="6_cd1dm"]
 [ext_resource type="Script" path="res://scenes/ShakeCamera2D.gd" id="6_edsxo"]
 [ext_resource type="Script" path="res://scenes/CameraFollow.gd" id="6_yhio2"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tm45u")
-levels = Array[PackedScene]([ExtResource("2_7m05v")])
+levels = Array[PackedScene]([ExtResource("2_bqp5w"), ExtResource("3_jy81l")])
 
 [node name="CameraFollow" type="Node2D" parent="."]
 script = ExtResource("6_yhio2")
@@ -21,9 +23,14 @@ max_offset = Vector2(1000, 750)
 max_roll = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="CameraFollow/CameraShake"]
+zoom = Vector2(0.75, 0.75)
 
 [node name="HUD" type="CanvasLayer" parent="CameraFollow/CameraShake/Camera2D"]
 
 [node name="HealthBar" parent="CameraFollow/CameraShake/Camera2D/HUD" instance=ExtResource("3_k1l3p")]
 offset_right = 556.0
 offset_bottom = 135.0
+
+[node name="Menus" parent="CameraFollow/CameraShake/Camera2D/HUD" instance=ExtResource("6_cd1dm")]
+
+[connection signal="play_pressed" from="CameraFollow/CameraShake/Camera2D/HUD/Menus" to="." method="_on_menus_play_pressed"]

@@ -161,6 +161,7 @@ func end_invulnerability():
 func _on_attack_area_area_entered(area:Area2D):
     velocity = velocity * -0.7
     is_dashing = false
+    attack_area.set_deferred("monitoring", false)
     audio_stream_player.stream = hit_sound[randi() % hit_sound.size()]
     audio_stream_player.play()
     if not area.invulnerable:
