@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bc5a1ffpsdvdk"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_tm45u"]
-[ext_resource type="PackedScene" uid="uid://bftngtqkxd0ma" path="res://levels/test_level_0.tscn" id="2_ldu4d"]
-[ext_resource type="PackedScene" uid="uid://cetcxyg2yljts" path="res://levels/test_level_1.tscn" id="3_7q8e5"]
+[ext_resource type="PackedScene" uid="uid://k6txsxitwq77" path="res://levels/level_0.tscn" id="2_yjrp6"]
+[ext_resource type="PackedScene" uid="uid://ygd3gso1eomw" path="res://levels/level_1.tscn" id="3_d03tl"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="3_k1l3p"]
 [ext_resource type="PackedScene" uid="uid://bvf55uwknvl1" path="res://scenes/menus.tscn" id="6_cd1dm"]
 [ext_resource type="Script" path="res://scenes/ShakeCamera2D.gd" id="6_edsxo"]
@@ -10,7 +10,7 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tm45u")
-levels = Array[PackedScene]([ExtResource("2_ldu4d"), ExtResource("3_7q8e5")])
+levels = Array[PackedScene]([ExtResource("2_yjrp6"), ExtResource("3_d03tl")])
 
 [node name="CameraFollow" type="Node2D" parent="."]
 script = ExtResource("6_yhio2")
