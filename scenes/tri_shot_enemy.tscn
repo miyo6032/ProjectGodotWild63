@@ -169,7 +169,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3wlku")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 24.0
 }, {
@@ -354,8 +354,6 @@ material = SubResource("ShaderMaterial_5x272")
 position = Vector2(0, -80)
 sprite_frames = SubResource("SpriteFrames_nleu6")
 animation = &"attack"
-frame = 7
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -393,6 +391,7 @@ states = [NodePath("EnemyRangedAttackState"), NodePath("MoveRandomlyState")]
 
 [node name="EnemyRangedAttackState" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("shoot_logic")]
 script = ExtResource("10_1f1tv")
+telegraph_time = 0.29
 shoot_logic = NodePath("TripleShootLogic")
 
 [node name="ShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState"]
