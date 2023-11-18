@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://drykm5o7gewep"]
 
 [ext_resource type="Script" path="res://prototype/scenes/BouncyProjectile.gd" id="1_1s63j"]
-[ext_resource type="Texture2D" uid="uid://bxkepcqoq27jk" path="res://graphics/enemy/sawblade.png" id="2_d2c20"]
+[ext_resource type="Texture2D" uid="uid://bxkepcqoq27jk" path="res://graphics/enemy/projectile/sawblade.png" id="2_d2c20"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqt8f"]
 atlas = ExtResource("2_d2c20")

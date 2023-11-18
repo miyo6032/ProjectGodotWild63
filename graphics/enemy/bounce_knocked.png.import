@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvjuwe0a82y72"
-path="res://.godot/imported/rocket.png-74aaa88f44fefd9f31e206b88463193e.ctex"
+uid="uid://doyh8hb4hg52o"
+path="res://.godot/imported/bounce_knocked.png-a7da725d1dfba587dacfca8c21a4bec8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/enemy/rocket.png"
-dest_files=["res://.godot/imported/rocket.png-74aaa88f44fefd9f31e206b88463193e.ctex"]
+source_file="res://graphics/enemy/bounce_knocked.png"
+dest_files=["res://.godot/imported/bounce_knocked.png-a7da725d1dfba587dacfca8c21a4bec8.ctex"]
 
 [params]
 
