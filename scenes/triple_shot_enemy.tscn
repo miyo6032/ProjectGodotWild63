@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://pwvspdweyh1q"]
+
+[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="1_kl0x6"]
+
+[node name="TripleShotEnemy" instance=ExtResource("1_kl0x6")]
+
+[node name="EnemyRangedAttackState" parent="States/MoveAndAttackState" index="0" node_paths=PackedStringArray("shoot_logic")]
+shoot_logic = NodePath("TripleShootLogic")
