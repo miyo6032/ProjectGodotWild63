@@ -15,8 +15,9 @@ func get_linear_velocity() -> Vector2:
     return velocity
 
 func _on_area_2d_area_entered(area:Area2D):
-    area.damage({damage = 1, knockback = (area.global_position - global_position) * knockback})
-    queue_free()
+    if area is Damageable and !area.dashing:
+        area.damage({damage = 1, knockback = (area.global_position - global_position) * knockback})
+        queue_free()
 
 func _physics_process(delta):
     var collision = move_and_collide(velocity * delta) 

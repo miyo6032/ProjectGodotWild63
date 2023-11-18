@@ -1,227 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://dm2y3aggdmxjt"]
+[gd_scene load_steps=6 format=3 uid="uid://dm2y3aggdmxjt"]
 
-[ext_resource type="PackedScene" uid="uid://bfellyq050wl2" path="res://scenes/player.tscn" id="2_02ah7"]
-[ext_resource type="Script" path="res://scenes/EnemySpawner.gd" id="3_nlog1"]
-[ext_resource type="Script" path="res://scenes/EnemyWaves.gd" id="4_rud0j"]
-[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="5_gdx7e"]
-[ext_resource type="Script" path="res://scenes/EnemySpawn.gd" id="6_5r7cr"]
+[ext_resource type="Script" path="res://scenes/MainTest.gd" id="1_w3pdu"]
+[ext_resource type="PackedScene" uid="uid://bftngtqkxd0ma" path="res://levels/test_level_0.tscn" id="2_4e3bf"]
 [ext_resource type="Script" path="res://scenes/CameraFollow.gd" id="7_e2jwb"]
 [ext_resource type="Script" path="res://scenes/ShakeCamera2D.gd" id="8_q1sy8"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="9_dicyg"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2hd0y"]
-radius = 5.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aj10"]
-size = Vector2(20, 114)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysrwd"]
-size = Vector2(220, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1k5h"]
-
-[sub_resource type="Resource" id="Resource_8m0rl"]
-script = ExtResource("6_5r7cr")
-enemy = ExtResource("5_gdx7e")
-spawn_amount = 1
-initial_delay = 1.0
-in_between_delay = 0.0
-
-[sub_resource type="Resource" id="Resource_n4ymf"]
-script = ExtResource("6_5r7cr")
-enemy = ExtResource("5_gdx7e")
-spawn_amount = 2
-initial_delay = 6.0
-in_between_delay = 0.2
-
-[sub_resource type="Resource" id="Resource_24tve"]
-script = ExtResource("6_5r7cr")
-enemy = ExtResource("5_gdx7e")
-spawn_amount = 2
-initial_delay = 8.0
-in_between_delay = 0.2
-
-[sub_resource type="Resource" id="Resource_fwrc2"]
-script = ExtResource("6_5r7cr")
-enemy = ExtResource("5_gdx7e")
-spawn_amount = 3
-initial_delay = 10.0
-in_between_delay = 0.2
-
-[sub_resource type="Resource" id="Resource_8pgiy"]
-script = ExtResource("6_5r7cr")
-enemy = ExtResource("5_gdx7e")
-spawn_amount = 3
-initial_delay = 10.0
-in_between_delay = 0.2
-
-[sub_resource type="Resource" id="Resource_a0cer"]
-script = ExtResource("4_rud0j")
-waves = Array[ExtResource("6_5r7cr")]([SubResource("Resource_8m0rl"), SubResource("Resource_n4ymf"), SubResource("Resource_24tve"), SubResource("Resource_fwrc2"), SubResource("Resource_8pgiy")])
-
 [node name="Main" type="Node"]
-
-[node name="SpawnPositions" type="Node2D" parent="."]
-scale = Vector2(18, 18)
-
-[node name="Area2D" type="Area2D" parent="SpawnPositions"]
-position = Vector2(75, -45)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Area2D3" type="Area2D" parent="SpawnPositions"]
-position = Vector2(75, 0)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D3"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Area2D2" type="Area2D" parent="SpawnPositions"]
-position = Vector2(75, 42)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D2"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Area2D4" type="Area2D" parent="SpawnPositions"]
-position = Vector2(0, 44)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D4"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Area2D5" type="Area2D" parent="SpawnPositions"]
-position = Vector2(0, -48)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D5"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Area2D6" type="Area2D" parent="SpawnPositions"]
-position = Vector2(-80, -47)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D6"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Area2D7" type="Area2D" parent="SpawnPositions"]
-position = Vector2(-81, 42)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D7"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Area2D8" type="Area2D" parent="SpawnPositions"]
-position = Vector2(-81, -2)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D8"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Area2D9" type="Area2D" parent="SpawnPositions"]
-position = Vector2(-40, -46)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D9"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Area2D10" type="Area2D" parent="SpawnPositions"]
-position = Vector2(38, -48)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D10"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Area2D11" type="Area2D" parent="SpawnPositions"]
-position = Vector2(41, 44)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D11"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Area2D12" type="Area2D" parent="SpawnPositions"]
-position = Vector2(-40, 45)
-collision_layer = 0
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPositions/Area2D12"]
-shape = SubResource("CircleShape2D_2hd0y")
-
-[node name="Environment" type="Node2D" parent="."]
-y_sort_enabled = true
-scale = Vector2(18, 18)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Environment"]
-position = Vector2(101, -1)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_5aj10")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="Environment"]
-position = Vector2(-104, -1)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D2"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_5aj10")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="Environment"]
-position = Vector2(0, -69)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D4"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_ysrwd")
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="Environment"]
-position = Vector2(0, 66)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/StaticBody2D5"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_ysrwd")
-
-[node name="Block" type="StaticBody2D" parent="Environment"]
-position = Vector2(0, 100.611)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Block"]
-shape = SubResource("RectangleShape2D_f1k5h")
-
-[node name="Entities" type="Node2D" parent="Environment"]
-y_sort_enabled = true
-scale = Vector2(0.0555556, 0.0555556)
-
-[node name="Player" parent="Environment/Entities" instance=ExtResource("2_02ah7")]
-position = Vector2(-509, -6)
-
-[node name="EnemySpawner" type="Node2D" parent="Environment/Entities" node_paths=PackedStringArray("spawn_positions", "player")]
-script = ExtResource("3_nlog1")
-waves = SubResource("Resource_a0cer")
-spawn_positions = NodePath("../../../SpawnPositions")
-player = NodePath("../Player")
-
-[node name="RangedEnemy" parent="Environment/Entities" node_paths=PackedStringArray("player") instance=ExtResource("5_gdx7e")]
-player = NodePath("../Player")
+script = ExtResource("1_w3pdu")
+levels = Array[PackedScene]([ExtResource("2_4e3bf")])
 
 [node name="CameraFollow" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("7_e2jwb")
-target = NodePath("../Environment/Entities/Player")
+target = NodePath("")
 min_offset = Vector2(-750, -680)
 max_offset = Vector2(750, 680)
 
@@ -231,12 +22,10 @@ max_offset = Vector2(1000, 750)
 max_roll = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="CameraFollow/CameraShake"]
+zoom = Vector2(0.5, 0.5)
 
 [node name="HUD" type="CanvasLayer" parent="CameraFollow/CameraShake/Camera2D"]
 
 [node name="HealthBar" parent="CameraFollow/CameraShake/Camera2D/HUD" instance=ExtResource("9_dicyg")]
 offset_right = 556.0
 offset_bottom = 135.0
-
-[connection signal="attack_hit" from="Environment/Entities/Player" to="CameraFollow/CameraShake" method="_on_player_attack_hit"]
-[connection signal="update_health" from="Environment/Entities/Player" to="CameraFollow/CameraShake/Camera2D/HUD/HealthBar" method="update_health"]

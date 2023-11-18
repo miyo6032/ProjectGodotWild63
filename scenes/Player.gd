@@ -19,7 +19,7 @@ signal attack_hit
 @export var hurt_sound: AudioStream
 @export var death_sound: AudioStream
 
-@onready var damageable: Damageable = $Damageable
+@onready var damageable: Damageable = $PlayerDamageable
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var particle_animation_player: AnimationPlayer = $ParticleAnimationPlayer
 @onready var facing_direction: Node2D = $FacingDirection
@@ -61,11 +61,11 @@ func handle_attack_input():
         is_dashing = true
         dash_attack_enabled = false
         dash_animation_finished = false
-        damageable.monitorable = false
+        damageable.dashing = true
         await get_tree().create_timer(dash_time).timeout
         is_dashing = false
         attack_area.monitoring = false
-        damageable.monitorable = true
+        damageable.dashing = false
         if time_since_last_dash > 0.25:
             dash_attack_enabled = true
         else:

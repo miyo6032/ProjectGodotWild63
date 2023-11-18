@@ -9,15 +9,18 @@ radius = 39.0
 height = 106.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kb1sn"]
-radius = 176.479
+radius = 290.062
 
 [node name="TrashBag" type="Node2D"]
 script = ExtResource("1_g0qa5")
+explosion_knockback = 5000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_n0r3d")
 
 [node name="Damageable" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("3_ay7h5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damageable"]
@@ -25,8 +28,11 @@ position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_cugxw")
 
 [node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource("CircleShape2D_kb1sn")
 
 [connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]
+[connection signal="area_entered" from="ExplosionArea" to="." method="_on_explosion_area_area_entered"]

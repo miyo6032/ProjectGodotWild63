@@ -1019,13 +1019,13 @@ frame_progress = 0.175734
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4chyv")
 
-[node name="Damageable" type="Area2D" parent="."]
+[node name="PlayerDamageable" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource("6_443uu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Damageable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDamageable"]
 shape = SubResource("CapsuleShape2D_x1473")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1039,7 +1039,7 @@ libraries = {
 modulate = Color(1, 1, 1, 0)
 position = Vector2(36, 0)
 collision_layer = 0
-collision_mask = 4
+collision_mask = 12
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FacingDirection/AttackArea"]
@@ -1126,5 +1126,5 @@ hue_variation_max = 0.12
 bus = &"SFX"
 
 [connection signal="attack_hit" from="." to="FacingDirection/AttackImpactParticles" method="_on_player_attack_hit"]
-[connection signal="on_damage" from="Damageable" to="." method="_on_enemy_collision_detection_on_damage"]
+[connection signal="on_damage" from="PlayerDamageable" to="." method="_on_enemy_collision_detection_on_damage"]
 [connection signal="area_entered" from="FacingDirection/AttackArea" to="." method="_on_attack_area_area_entered"]
