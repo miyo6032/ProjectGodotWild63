@@ -10,9 +10,8 @@
 script = ExtResource("1_w3pdu")
 levels = Array[PackedScene]([ExtResource("2_4e3bf")])
 
-[node name="CameraFollow" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+[node name="CameraFollow" type="Node2D" parent="."]
 script = ExtResource("7_e2jwb")
-target = NodePath("")
 min_offset = Vector2(-750, -680)
 max_offset = Vector2(750, 680)
 
