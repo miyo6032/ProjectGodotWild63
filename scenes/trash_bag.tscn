@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck52g74wkl8w4"]
+
+[ext_resource type="Script" path="res://TrashBag.gd" id="1_g0qa5"]
+[ext_resource type="Texture2D" uid="uid://iiqxob358g02" path="res://graphics/world/trashbag1.png" id="2_n0r3d"]
+[ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="3_ay7h5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cugxw"]
+radius = 39.0
+height = 106.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kb1sn"]
+radius = 176.479
+
+[node name="TrashBag" type="Node2D"]
+script = ExtResource("1_g0qa5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_n0r3d")
+
+[node name="Damageable" type="Area2D" parent="."]
+script = ExtResource("3_ay7h5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damageable"]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_cugxw")
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("CircleShape2D_kb1sn")
+
+[connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]
