@@ -353,9 +353,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_5x272")
 position = Vector2(0, -80)
 sprite_frames = SubResource("SpriteFrames_nleu6")
-animation = &"attack"
-frame = 7
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

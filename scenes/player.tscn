@@ -1013,8 +1013,7 @@ health = 4
 texture_filter = 1
 material = SubResource("ShaderMaterial_ibo8u")
 sprite_frames = SubResource("SpriteFrames_wdxrx")
-animation = &"attack_up"
-frame_progress = 0.175734
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4chyv")
