@@ -1,13 +1,13 @@
 [gd_scene load_steps=60 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
-[ext_resource type="Texture2D" uid="uid://ceg4tavj7egq4" path="res://graphics/enemy/troop/troop_prepare.png" id="3_6uskc"]
+[ext_resource type="Texture2D" uid="uid://ceg4tavj7egq4" path="res://graphics/enemy/troop_prepare.png" id="3_6uskc"]
 [ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="4_iafrh"]
-[ext_resource type="Texture2D" uid="uid://cfgerlikle57n" path="res://graphics/enemy/troop/troop_knocked.png" id="4_jgfhr"]
-[ext_resource type="Texture2D" uid="uid://h75v8mcijmau" path="res://graphics/enemy/troop/troop_idle.png" id="4_y45da"]
+[ext_resource type="Texture2D" uid="uid://cfgerlikle57n" path="res://graphics/enemy/troop_knocked.png" id="4_jgfhr"]
+[ext_resource type="Texture2D" uid="uid://h75v8mcijmau" path="res://graphics/enemy/troop_idle.png" id="4_y45da"]
 [ext_resource type="Script" path="res://scenes/BaseObjectDetector.gd" id="5_jgagf"]
 [ext_resource type="Script" path="res://scenes/EnemyRangedAttackState.gd" id="5_m8asx"]
-[ext_resource type="Texture2D" uid="uid://d1wnr4tyyri7p" path="res://graphics/enemy/troop/troop_run.png" id="5_nyu3d"]
+[ext_resource type="Texture2D" uid="uid://d1wnr4tyyri7p" path="res://graphics/enemy/troop_run.png" id="5_nyu3d"]
 [ext_resource type="Script" path="res://scenes/CompositeState.gd" id="6_5cvel"]
 [ext_resource type="Script" path="res://scenes/ShootLogic.gd" id="8_b4ex6"]
 [ext_resource type="Script" path="res://scenes/MoveRandomlyState.gd" id="8_bfeme"]
@@ -353,9 +353,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_5x272")
 position = Vector2(0, -80)
 sprite_frames = SubResource("SpriteFrames_nleu6")
-animation = &"attack"
-frame = 7
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

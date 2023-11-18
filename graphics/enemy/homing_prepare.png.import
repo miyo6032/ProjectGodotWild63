@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxkepcqoq27jk"
-path="res://.godot/imported/sawblade.png-119b741e5fae47e2364714ec95e18dd2.ctex"
+uid="uid://dmk7madd2aw1x"
+path="res://.godot/imported/homing_prepare.png-47a488f63e6be6b5762e0e2950607434.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/enemy/sawblade.png"
-dest_files=["res://.godot/imported/sawblade.png-119b741e5fae47e2364714ec95e18dd2.ctex"]
+source_file="res://graphics/enemy/homing_prepare.png"
+dest_files=["res://.godot/imported/homing_prepare.png-47a488f63e6be6b5762e0e2950607434.ctex"]
 
 [params]
 

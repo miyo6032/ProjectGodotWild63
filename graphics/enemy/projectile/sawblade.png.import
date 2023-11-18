@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceg4tavj7egq4"
-path="res://.godot/imported/troop_prepare.png-b35a45e60819524a2f208ae44c994215.ctex"
+uid="uid://bxkepcqoq27jk"
+path="res://.godot/imported/sawblade.png-11bdbbf9443e9330aac8acc8196c4476.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/enemy/troop/troop_prepare.png"
-dest_files=["res://.godot/imported/troop_prepare.png-b35a45e60819524a2f208ae44c994215.ctex"]
+source_file="res://graphics/enemy/projectile/sawblade.png"
+dest_files=["res://.godot/imported/sawblade.png-11bdbbf9443e9330aac8acc8196c4476.ctex"]
 
 [params]
 

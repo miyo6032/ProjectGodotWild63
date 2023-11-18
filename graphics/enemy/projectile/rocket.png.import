@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfgerlikle57n"
-path="res://.godot/imported/troop_knocked.png-4944def868865a5796a7990bfab2c4c8.ctex"
+uid="uid://dvjuwe0a82y72"
+path="res://.godot/imported/rocket.png-e4e4ee7494677fa819804ca9a0bdc110.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/enemy/troop/troop_knocked.png"
-dest_files=["res://.godot/imported/troop_knocked.png-4944def868865a5796a7990bfab2c4c8.ctex"]
+source_file="res://graphics/enemy/projectile/rocket.png"
+dest_files=["res://.godot/imported/rocket.png-e4e4ee7494677fa819804ca9a0bdc110.ctex"]
 
 [params]
 
