@@ -1,0 +1,50 @@
+[gd_scene load_steps=11 format=3 uid="uid://b03u42liis8pj"]
+
+[ext_resource type="Texture2D" uid="uid://oaf2mdb3xp47" path="res://graphics/world/trashcan1.png" id="1_3v6lu"]
+[ext_resource type="Script" path="res://scenes/TrashCan.gd" id="1_k8kh0"]
+[ext_resource type="Texture2D" uid="uid://dkyg2tuaufk38" path="res://graphics/world/trashcan4.png" id="2_0xeox"]
+[ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="2_wvfml"]
+[ext_resource type="Script" path="res://scenes/DestructionParticles.gd" id="3_mta03"]
+[ext_resource type="Texture2D" uid="uid://cxduwn7cm78p0" path="res://graphics/world/trashcan5.png" id="4_sov05"]
+[ext_resource type="PackedScene" uid="uid://cqvjb6xnakhjb" path="res://scenes/trash_can_projectile.tscn" id="5_erv0p"]
+
+[sub_resource type="Gradient" id="Gradient_ljgx4"]
+offsets = PackedFloat32Array(0, 0.85, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="PackedScene" id="PackedScene_aawhb"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("TrashCanLidParticles", "z_index", "emitting", "amount", "one_shot", "texture", "direction", "gravity", "initial_velocity_min", "initial_velocity_max", "angular_velocity_min", "angular_velocity_max", "color_ramp", "script", "CPUParticles2D"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 14, 0, -1, 13, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 8, 7, 9, 8, 10, 9, 11, 10, 12, 11, 13, 12, 0),
+"variants": [10, false, 1, true, ExtResource("2_0xeox"), Vector2(0, -1), Vector2(0, 1960), 1000.0, 1500.0, -720.0, 720.0, SubResource("Gradient_ljgx4"), ExtResource("3_mta03")],
+"version": 3
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cudmm"]
+radius = 56.0357
+
+[node name="TrashCan" type="Node2D"]
+script = ExtResource("1_k8kh0")
+lid_particles_scene = SubResource("PackedScene_aawhb")
+particle_textures = Array[Texture2D]([ExtResource("2_0xeox"), ExtResource("4_sov05")])
+trash_bag_projectile_scene = ExtResource("5_erv0p")
+bag_velocity = 1000.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3v6lu")
+
+[node name="Damageable" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_wvfml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damageable"]
+position = Vector2(-7, 5)
+shape = SubResource("CircleShape2D_cudmm")
+
+[connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]

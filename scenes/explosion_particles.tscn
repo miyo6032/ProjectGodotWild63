@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp8but72y4o55"]
+
+[ext_resource type="Texture2D" uid="uid://dkt0ft8dgd0on" path="res://graphics/effects/explosion.png" id="1_htwvn"]
+[ext_resource type="Script" path="res://scenes/DestructionParticles.gd" id="2_veub7"]
+
+[sub_resource type="Curve" id="Curve_02gii"]
+_data = [Vector2(0, 0.968421), 0.0, 0.0, 0, 0, Vector2(1, 0.48421), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_hrwqr"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="ExplosionParticles" type="CPUParticles2D"]
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+lifetime_randomness = 0.59
+texture = ExtResource("1_htwvn")
+spread = 180.0
+gravity = Vector2(0, -200)
+initial_velocity_min = 3000.0
+initial_velocity_max = 6000.0
+damping_min = 10000.0
+damping_max = 15000.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_02gii")
+color_ramp = SubResource("Gradient_hrwqr")
+script = ExtResource("2_veub7")
