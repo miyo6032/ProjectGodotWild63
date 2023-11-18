@@ -407,6 +407,7 @@ projectile_speed = 750.0
 [node name="TripleShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState"]
 script = ExtResource("14_ylpsp")
 projectile_scene = ExtResource("12_wms83")
+projectile_speed = 1000.0
 
 [node name="EightShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState"]
 script = ExtResource("15_7r628")

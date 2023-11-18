@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=3 uid="uid://bfellyq050wl2"]
+[gd_scene load_steps=135 format=3 uid="uid://bfellyq050wl2"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_ymphj"]
 [ext_resource type="PackedScene" uid="uid://bx6d4ld436h0x" path="res://scenes/dash_ghost.tscn" id="2_1njyu"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://dln0s4c1q8p2i" path="res://graphics/player/run_right.png" id="9_xnpdb"]
 [ext_resource type="Texture2D" uid="uid://vaybf1b7rhhb" path="res://graphics/player/run_up.png" id="10_moxaj"]
 [ext_resource type="Script" path="res://scenes/AttackImpactParticles.gd" id="19_mgbbp"]
+[ext_resource type="Texture2D" uid="uid://bufdk6ynnass3" path="res://graphics/effects/particle.png" id="20_mjm1x"]
+[ext_resource type="Texture2D" uid="uid://cf7i22f64xdi4" path="res://graphics/effects/blood.png" id="21_fmgvf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibo8u"]
 shader = ExtResource("3_qenv7")
@@ -989,6 +991,10 @@ _data = {
 "move": SubResource("Animation_7omqd")
 }
 
+[sub_resource type="Curve" id="Curve_yms71"]
+_data = [Vector2(0, 1), 0.0, 3.22201, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_ymphj")
@@ -1071,6 +1077,7 @@ script = ExtResource("19_mgbbp")
 
 [node name="WalkParticles" type="CPUParticles2D" parent="."]
 z_index = -1
+texture_filter = 1
 position = Vector2(0, 73)
 emitting = false
 amount = 4
@@ -1078,14 +1085,13 @@ lifetime = 0.5
 explosiveness = 0.3
 fixed_fps = 30
 draw_order = 1
+texture = ExtResource("20_mjm1x")
 direction = Vector2(0, -1)
 spread = 20.0
 initial_velocity_min = 200.0
 initial_velocity_max = 200.0
 angular_velocity_min = -360.0
 angular_velocity_max = 360.0
-scale_amount_min = 10.0
-scale_amount_max = 15.0
 color_ramp = SubResource("Gradient_ra51a")
 
 [node name="ParticleAnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1100,19 +1106,19 @@ one_shot = true
 explosiveness = 1.0
 fixed_fps = 30
 draw_order = 1
+texture = ExtResource("21_fmgvf")
 emission_shape = 1
 emission_sphere_radius = 3.0
 direction = Vector2(0, -1)
 gravity = Vector2(0, 1960)
 initial_velocity_min = 300.0
-initial_velocity_max = 450.0
+initial_velocity_max = 1000.0
 angular_velocity_min = -10.0
 angular_velocity_max = 720.0
 angle_min = 1.0
 angle_max = 360.0
-scale_amount_min = 10.0
-scale_amount_max = 15.0
-color = Color(0.396078, 0, 0, 1)
+scale_amount_min = 0.4
+scale_amount_curve = SubResource("Curve_yms71")
 hue_variation_min = -0.04
 hue_variation_max = 0.12
 
