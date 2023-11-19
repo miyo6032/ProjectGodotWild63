@@ -31,6 +31,7 @@ func _game_won():
 func _game_over():
     try_again_button.grab_focus()
     animation_player.play("game_over")
+    get_tree().paused = true
 
 func _on_play_button_pressed():
     animation_player.play("clear_menu")
@@ -48,8 +49,8 @@ func _input(event):
         toggle_pause_menu()
 
 func toggle_pause_menu():
-    get_tree().paused = !get_tree().paused
     pause_menu.visible = !pause_menu.visible
+    get_tree().paused = pause_menu.visible
     if pause_menu.visible:
         settings_grid_container.get_child(1).grab_focus()
 
