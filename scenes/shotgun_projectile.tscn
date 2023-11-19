@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://xn5vno71j63a"]
+[gd_scene load_steps=6 format=3 uid="uid://xn5vno71j63a"]
 
 [ext_resource type="Script" path="res://prototype/scenes/ShotgunProjectile.gd" id="1_saw74"]
+[ext_resource type="PackedScene" uid="uid://cxuntvg3qsywv" path="res://scenes/shotgun_projectile_audio.tscn" id="2_22s20"]
 [ext_resource type="Texture2D" uid="uid://b5t5rfcbalcxt" path="res://graphics/enemy/projectile/nail.png" id="3_4w7we"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cu6db"]
@@ -16,6 +17,7 @@ collision_layer = 0
 gravity_scale = 0.0
 script = ExtResource("1_saw74")
 knockback = 30.0
+hit_audio_scene = ExtResource("2_22s20")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_4w7we")

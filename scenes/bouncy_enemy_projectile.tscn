@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://drykm5o7gewep"]
+[gd_scene load_steps=9 format=3 uid="uid://drykm5o7gewep"]
 
 [ext_resource type="Script" path="res://prototype/scenes/BouncyProjectile.gd" id="1_1s63j"]
 [ext_resource type="Texture2D" uid="uid://bxkepcqoq27jk" path="res://graphics/enemy/projectile/sawblade.png" id="2_d2c20"]
+[ext_resource type="PackedScene" uid="uid://d2wskgp5f84a0" path="res://scenes/saw_break.tscn" id="3_08jc6"]
+[ext_resource type="AudioStream" uid="uid://b611jj33oo8xr" path="res://sounds/SFX_SAW_BOUNCE.wav" id="3_okne4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqt8f"]
 atlas = ExtResource("2_d2c20")
@@ -31,6 +33,8 @@ collision_layer = 0
 script = ExtResource("1_1s63j")
 knockback = 30.0
 initial_angular_velocity = 10.0
+bounce_audio = ExtResource("3_okne4")
+break_audio_scene = ExtResource("3_08jc6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -48,5 +52,8 @@ shape = SubResource("CapsuleShape2D_4oemq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6vddh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

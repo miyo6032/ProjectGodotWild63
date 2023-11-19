@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://prototype/scenes/Fireball.gd" id="1_vvg55"]
 [ext_resource type="Texture2D" uid="uid://dvjuwe0a82y72" path="res://graphics/enemy/projectile/rocket.png" id="2_6bwik"]
-[ext_resource type="PackedScene" uid="uid://c3v2tak77cbku" path="res://scenes/rocket_explosion_particles.tscn" id="2_xktpn"]
+[ext_resource type="PackedScene" uid="uid://6e8uf3kekntd" path="res://scenes/rocket_explosion_particles.tscn" id="2_xktpn"]
 [ext_resource type="Texture2D" uid="uid://djw7tkvh6pr6w" path="res://graphics/effects/smoke.png" id="3_1axgp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02rc7"]

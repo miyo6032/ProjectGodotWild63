@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxuntvg3qsywv"]
+
+[ext_resource type="AudioStream" uid="uid://mdhb045hhf4b" path="res://sounds/SFX_SHOTGUN_SHOT_SHORT_01.wav" id="1_mn7v6"]
+
+[node name="ShotgunProjectileAudio" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_mn7v6")
+autoplay = true
