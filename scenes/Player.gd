@@ -181,7 +181,7 @@ func _on_attack_area_area_entered(area:Area2D):
 	audio_stream_player.play()
 	if not area.invulnerable:
 		freeze_frame()
-		area.damage({damage = 1, knockback = (area.global_position - global_position).normalized() * knockback})
+		area.damage({damage = 1, knockback = attack_direction * knockback})
 		attack_hit.emit()
 
 func freeze_frame():
