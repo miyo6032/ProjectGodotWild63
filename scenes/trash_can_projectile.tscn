@@ -20,7 +20,7 @@ collision_layer = 0
 gravity_scale = 0.0
 script = ExtResource("1_ma34s")
 initial_angular_velocity = 15.0
-particles_scenes = Array[PackedScene]([ExtResource("2_vcfeg")])
+particles_scene = ExtResource("2_vcfeg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-10, 3)

@@ -29,8 +29,20 @@ layer_1/tile_data = PackedInt32Array(196609, 131072, 0, 196610, 131072, 2, 65536
 [node name="TrashBag2" parent="." instance=ExtResource("5_2t07y")]
 position = Vector2(-511, 96)
 
+[node name="TrashBag4" parent="." instance=ExtResource("5_2t07y")]
+position = Vector2(761, -256)
+
+[node name="TrashBag5" parent="." instance=ExtResource("5_2t07y")]
+position = Vector2(825, 362)
+
 [node name="TrashBag3" parent="." instance=ExtResource("5_2t07y")]
 position = Vector2(-511, -56)
 
 [node name="TrashCan" parent="." instance=ExtResource("6_ykkks")]
-position = Vector2(-949, 131)
+position = Vector2(-1161, -81)
+
+[node name="TrashCan2" parent="." instance=ExtResource("6_ykkks")]
+position = Vector2(-53, -571)
+
+[node name="TrashCan3" parent="." instance=ExtResource("6_ykkks")]
+position = Vector2(373, 668)
