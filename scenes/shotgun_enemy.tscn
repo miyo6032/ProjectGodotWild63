@@ -12,10 +12,12 @@ shader_parameter/color = Vector3(1, 0.5, 0.5)
 shader_parameter/mix_weight = 0.7
 shader_parameter/do_mix = false
 
-[node name="RangedEnemy" instance=ExtResource("1_q2fix")]
+[node name="ShotgunEnemy" instance=ExtResource("1_q2fix")]
+animation_suffix = "burst"
 
 [node name="AnimatedSprite2D" parent="Sprites/SpriteBase" index="1"]
 material = SubResource("ShaderMaterial_jaylp")
+frame_progress = 0.0
 
 [node name="EnemyRangedAttackState" parent="States/MoveAndAttackState" index="0" node_paths=PackedStringArray("shoot_logic")]
 shoot_logic = NodePath("ShotgunShootLogic")

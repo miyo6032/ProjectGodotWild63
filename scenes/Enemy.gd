@@ -77,6 +77,7 @@ func maybe_transition_state():
 @export var health = 3
 @export var death_particles_scene: PackedScene
 @export var enemy_death_sfx: AudioStream
+@export var animation_suffix: String
 
 func _on_damageable_on_damage(damage_info):
     if health <= 0:
@@ -104,3 +105,6 @@ func set_flip(flip: bool) -> void:
     animated_sprite.flip_h = flip
     shadow_pivot.rotation = TAU * 0.5 if flip else 0.0
     shine_pivot.rotation = TAU * 0.5 if flip else 0.0
+
+func set_sprite_animation(animation: String):
+    animated_sprite.play(animation + "_" + animation_suffix)

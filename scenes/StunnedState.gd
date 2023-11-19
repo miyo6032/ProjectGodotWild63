@@ -14,7 +14,7 @@ func enter(_msg := {}) -> void:
     if direction.x != 0:
         enemy.set_flip(direction.x < 0)
 
-    enemy.animated_sprite.play("hit")
+    enemy.set_sprite_animation("hit")
     await enemy.animated_sprite.animation_finished
     state_data.can_move = true
     state_data.stunned = false

@@ -28,13 +28,13 @@ func physics_update(delta: float) -> void:
     if not valid_spot() or last_direction_change_time <= 0:
         pick_random_direction()
         enemy.velocity = lerp(enemy.velocity, Vector2.ZERO, delta * move_lag)
-        enemy.animated_sprite.play("idle")
+        enemy.set_sprite_animation("idle")
     elif direction == Vector2.ZERO:
         enemy.velocity = lerp(enemy.velocity, Vector2.ZERO, delta * move_lag)
-        enemy.animated_sprite.play("idle")
+        enemy.set_sprite_animation("idle")
     else:
         enemy.velocity = lerp(enemy.velocity, direction * speed, delta * move_lag)
-        enemy.animated_sprite.play("move")
+        enemy.set_sprite_animation("move")
         if direction.x != 0:
             enemy.set_flip(direction.x < 0)
 

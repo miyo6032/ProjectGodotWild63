@@ -21,10 +21,10 @@ func physics_update(delta: float) -> void:
     direct_to_target()
     if not valid_spot():
         enemy.velocity = lerp(enemy.velocity, Vector2.ZERO, delta * move_lag)
-        enemy.animated_sprite.play("idle")
+        enemy.set_sprite_animation("idle")
     else:
         enemy.velocity = lerp(enemy.velocity, direction * speed, delta * move_lag)
-        enemy.animated_sprite.play("move")
+        enemy.set_sprite_animation("move")
         if direction.x != 0:
             enemy.set_flip(direction.x < 0)
 

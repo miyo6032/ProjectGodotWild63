@@ -11,7 +11,7 @@ func enter(_msg := {}) -> void:
     if direction.x != 0:
         enemy.set_flip(direction.x < 0)
 
-    enemy.animated_sprite.play("die")
+    enemy.set_sprite_animation("hit")
     await enemy.animated_sprite.animation_finished
     enemy.queue_free()
 

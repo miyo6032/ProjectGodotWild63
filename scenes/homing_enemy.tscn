@@ -14,6 +14,7 @@ shader_parameter/mix_weight = 0.7
 shader_parameter/do_mix = false
 
 [node name="HomingEnemy" instance=ExtResource("1_0to4d")]
+animation_suffix = "homing"
 
 [node name="AnimatedSprite2D" parent="Sprites/SpriteBase" index="1"]
 material = SubResource("ShaderMaterial_mpb7t")
