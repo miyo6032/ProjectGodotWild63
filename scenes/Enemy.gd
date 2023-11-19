@@ -77,6 +77,7 @@ func maybe_transition_state():
 @onready var shadow_pivot: Node2D = %ShadowPivot
 @onready var shine_pivot: Node2D = %ShinePivot
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
+@onready var damageable: Damageable = %Damageable
 @export var health = 3
 @export var death_particles_scene: PackedScene
 @export var enemy_death_sfx: AudioStream
@@ -101,6 +102,7 @@ func _on_damageable_on_damage(damage_info):
 		get_parent().get_parent().add_child(particles)
 		audio_stream_player.stream = enemy_death_sfx
 		audio_stream_player.play()
+		damageable.set_deferred("monitorable", false)
 	else:
 		animation_player.play("hit")
 

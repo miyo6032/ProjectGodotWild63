@@ -1426,6 +1426,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_p3s8m")
 
 [node name="Damageable" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 0
 monitoring = false
