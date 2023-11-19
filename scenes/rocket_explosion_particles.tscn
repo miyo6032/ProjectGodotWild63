@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3v2tak77cbku"]
+
+[ext_resource type="Texture2D" uid="uid://dkt0ft8dgd0on" path="res://graphics/effects/explosion.png" id="1_bvsx5"]
+[ext_resource type="Script" path="res://scenes/DestructionParticles.gd" id="2_qmhq6"]
+[ext_resource type="Texture2D" uid="uid://djw7tkvh6pr6w" path="res://graphics/effects/smoke.png" id="3_yvcyc"]
+[ext_resource type="AudioStream" uid="uid://1y0dga8xciwv" path="res://sounds/SFX_ROCKET_EXPLOSION.wav" id="4_pr08i"]
+
+[sub_resource type="Curve" id="Curve_02gii"]
+_data = [Vector2(0, 0.968421), 0.0, 0.0, 0, 0, Vector2(1, 0.48421), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_hrwqr"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_dt16y"]
+max_value = 1.8
+_data = [Vector2(0, 0.726316), 0.0, 0.0, 0, 0, Vector2(0.988131, 1.32632), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_u5qxb"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="ExplosionParticles" type="CPUParticles2D"]
+z_index = 1
+scale = Vector2(0.25, 0.25)
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+lifetime_randomness = 0.59
+texture = ExtResource("1_bvsx5")
+spread = 180.0
+gravity = Vector2(0, -200)
+initial_velocity_min = 3000.0
+initial_velocity_max = 6000.0
+damping_min = 10000.0
+damping_max = 15000.0
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_02gii")
+color_ramp = SubResource("Gradient_hrwqr")
+script = ExtResource("2_qmhq6")
+
+[node name="SmokeParticles" type="CPUParticles2D" parent="."]
+z_index = 1
+amount = 3
+lifetime = 1.1
+explosiveness = 0.7
+texture = ExtResource("3_yvcyc")
+spread = 180.0
+gravity = Vector2(0, -490)
+initial_velocity_min = 400.0
+initial_velocity_max = 1000.0
+damping_min = 500.0
+damping_max = 500.0
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_dt16y")
+color_ramp = SubResource("Gradient_u5qxb")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pr08i")
+autoplay = true
+bus = &"SFX"
