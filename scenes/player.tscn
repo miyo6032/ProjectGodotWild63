@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=3 uid="uid://bfellyq050wl2"]
+[gd_scene load_steps=138 format=3 uid="uid://bfellyq050wl2"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_ymphj"]
 [ext_resource type="PackedScene" uid="uid://bx6d4ld436h0x" path="res://scenes/dash_ghost.tscn" id="2_1njyu"]
@@ -22,6 +22,17 @@
 [ext_resource type="Script" path="res://scenes/AttackImpactParticles.gd" id="19_mgbbp"]
 [ext_resource type="Texture2D" uid="uid://bufdk6ynnass3" path="res://graphics/effects/particle.png" id="20_mjm1x"]
 [ext_resource type="Texture2D" uid="uid://cf7i22f64xdi4" path="res://graphics/effects/blood.png" id="21_fmgvf"]
+
+[sub_resource type="Gradient" id="Gradient_32nga"]
+colors = PackedColorArray(1, 1, 0.556863, 0.4, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bmp1g"]
+gradient = SubResource("Gradient_32nga")
+width = 200
+height = 200
+fill = 1
+fill_from = Vector2(0.495726, 0.504274)
+fill_to = Vector2(0.858974, 0.196581)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibo8u"]
 shader = ExtResource("3_qenv7")
@@ -1009,6 +1020,9 @@ hurt_sound = ExtResource("6_0l7aw")
 death_sound = ExtResource("7_lh8q5")
 max_health = 4
 health = 4
+
+[node name="GlowSprite" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_bmp1g")
 
 [node name="ShadowSprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.588235)
