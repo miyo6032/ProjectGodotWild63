@@ -6,10 +6,13 @@ extends Node2D
 @onready var explosion_area = $ExplosionArea
 @onready var damageable = $Damageable
 
-func _ready():
-    pass
+var is_exploded: bool
 
 func _on_damageable_on_damage(_amount):
+    if is_exploded:
+        return
+
+    is_exploded = true
     for area in explosion_area.get_overlapping_areas():
         if area != damageable:
             area.damage_ignore_dashing({damage = 1, knockback = (area.global_position - global_position).normalized() * explosion_knockback})

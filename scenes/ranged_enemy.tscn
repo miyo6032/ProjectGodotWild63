@@ -1,7 +1,7 @@
 [gd_scene load_steps=201 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
-[ext_resource type="PackedScene" path="res://scenes/death_particles.tscn" id="2_d83p1"]
+[ext_resource type="PackedScene" uid="uid://snqei07f5ygo" path="res://scenes/death_particles.tscn" id="2_d83p1"]
 [ext_resource type="Texture2D" uid="uid://dlkqbdtswcg0h" path="res://graphics/effects/shadow.png" id="2_vqa2l"]
 [ext_resource type="Texture2D" uid="uid://ceg4tavj7egq4" path="res://graphics/enemy/troop_prepare.png" id="3_6uskc"]
 [ext_resource type="AudioStream" uid="uid://d3u87kscs18fu" path="res://sounds/SFX_ENEMY_DEATH.wav" id="3_73m5u"]
