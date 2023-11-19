@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://bc5a1ffpsdvdk"]
+[gd_scene load_steps=29 format=3 uid="uid://bc5a1ffpsdvdk"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_tm45u"]
 [ext_resource type="PackedScene" uid="uid://bbrokqri230tj" path="res://scenes/levels/level_18.tscn" id="2_6uw66"]
 [ext_resource type="PackedScene" uid="uid://b1rnnyonfi4yi" path="res://scenes/levels/level_11.tscn" id="2_dhq1n"]
+[ext_resource type="PackedScene" uid="uid://d32cqaao368a8" path="res://scenes/levels/level_20.tscn" id="2_nauhr"]
 [ext_resource type="PackedScene" uid="uid://dxd3kcts64rd6" path="res://scenes/levels/level_7.tscn" id="2_o8y1c"]
 [ext_resource type="PackedScene" uid="uid://2sqg2d0elvjb" path="res://scenes/levels/level_0.tscn" id="2_w2f0y"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="3_k1l3p"]
@@ -36,7 +37,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tm45u")
-levels = Array[PackedScene]([ExtResource("2_w2f0y"), ExtResource("3_r5thh"), ExtResource("4_2itki"), ExtResource("5_up1bp"), ExtResource("6_83qfj"), ExtResource("7_p7djp"), ExtResource("8_6exoh"), ExtResource("2_o8y1c"), ExtResource("10_yqn4f"), ExtResource("11_uvq6q"), ExtResource("12_7k5xh"), ExtResource("2_dhq1n"), ExtResource("14_up4g3"), ExtResource("15_lj1p7"), ExtResource("16_p3lun"), ExtResource("17_6r660"), ExtResource("18_epykm"), ExtResource("19_0k8ou"), ExtResource("2_6uw66"), ExtResource("21_3q78d")])
+levels = Array[PackedScene]([ExtResource("2_nauhr"), ExtResource("2_w2f0y"), ExtResource("3_r5thh"), ExtResource("4_2itki"), ExtResource("5_up1bp"), ExtResource("6_83qfj"), ExtResource("7_p7djp"), ExtResource("8_6exoh"), ExtResource("2_o8y1c"), ExtResource("10_yqn4f"), ExtResource("11_uvq6q"), ExtResource("12_7k5xh"), ExtResource("2_dhq1n"), ExtResource("14_up4g3"), ExtResource("15_lj1p7"), ExtResource("16_p3lun"), ExtResource("17_6r660"), ExtResource("18_epykm"), ExtResource("19_0k8ou"), ExtResource("2_6uw66"), ExtResource("21_3q78d")])
 
 [node name="CameraFollow" type="Node2D" parent="."]
 script = ExtResource("6_yhio2")

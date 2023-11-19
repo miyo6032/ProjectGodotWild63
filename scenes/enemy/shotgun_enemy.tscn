@@ -15,7 +15,7 @@ shader_parameter/mix_weight = 0.7
 shader_parameter/do_mix = false
 
 [node name="ShotgunEnemy" instance=ExtResource("1_q2fix")]
-health = 5
+health = 8
 animation_suffix = "burst"
 
 [node name="AnimatedSprite2D" parent="Sprites/SpriteBase" index="1"]
@@ -23,11 +23,13 @@ material = SubResource("ShaderMaterial_jaylp")
 frame_progress = 0.0
 
 [node name="EnemyRangedAttackState" parent="States/MoveAndAttackState" index="0" node_paths=PackedStringArray("shoot_logic")]
+telegraph_time = 0.5
 shoot_logic = NodePath("ShotgunShootLogic")
 shoot_sfx = Array[AudioStream]([ExtResource("3_gaer1"), ExtResource("4_7hrvr")])
 
 [node name="ShotgunShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState" index="4"]
 script = ExtResource("3_vimj0")
-amount = 10
+amount = 15
+spread = 0.7
 projectile_scene = ExtResource("4_ukp6c")
-projectile_speed = 1250.0
+projectile_speed = 1600.0
