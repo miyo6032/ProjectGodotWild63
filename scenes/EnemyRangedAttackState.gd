@@ -7,6 +7,7 @@ class_name EnemyRangedAttackState
 @export var shoot_logic: ShootLogic
 @export var prepare_sfx: AudioStream
 @export var shoot_sfx: Array[AudioStream]
+@export var shoot_knockback: float
 
 var current_time = shoot_time
 var fireball_tween: Tween
@@ -32,6 +33,8 @@ func fireball():
     enemy.audio_stream_player.play()
     state_data.can_move = true
     shoot_logic.shoot(enemy, player)
+    var direction = player.global_position - enemy.global_position
+    enemy.velocity += direction.normalized() * shoot_knockback * -1
 
 func exit() -> void:
     if fireball_tween and state_data.stunned:
