@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://bc5a1ffpsdvdk"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_tm45u"]
-[ext_resource type="PackedScene" uid="uid://b1rnnyonfi4yi" path="res://scenes/levels/level_11.tscn" id="2_dhq1n"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_11.tscn" id="2_dhq1n"]
 [ext_resource type="PackedScene" uid="uid://dxd3kcts64rd6" path="res://scenes/levels/level_7.tscn" id="2_o8y1c"]
 [ext_resource type="PackedScene" uid="uid://2sqg2d0elvjb" path="res://scenes/levels/level_0.tscn" id="2_w2f0y"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="3_k1l3p"]
@@ -15,8 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dcs2kebvyn74n" path="res://scenes/levels/level_5.tscn" id="7_p7djp"]
 [ext_resource type="PackedScene" uid="uid://8nifcokh6b23" path="res://scenes/levels/level_6.tscn" id="8_6exoh"]
 [ext_resource type="PackedScene" uid="uid://cl0wiotmalfug" path="res://scenes/levels/level_8.tscn" id="10_yqn4f"]
-[ext_resource type="PackedScene" uid="uid://bcjyrgv7hdnm8" path="res://scenes/levels/level_9.tscn" id="11_uvq6q"]
-[ext_resource type="PackedScene" uid="uid://gkq6evt7lr82" path="res://scenes/levels/level_10.tscn" id="12_7k5xh"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_9.tscn" id="11_uvq6q"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_10.tscn" id="12_7k5xh"]
 
 [sub_resource type="Gradient" id="Gradient_1uslv"]
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.313726)

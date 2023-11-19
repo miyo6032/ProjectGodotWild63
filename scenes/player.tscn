@@ -987,7 +987,6 @@ point_count = 2
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_ymphj")
-stop_lag = 32.0
 walk_speed = 600.0
 attack_velocity = 1700.0
 knockback = 1600.0
