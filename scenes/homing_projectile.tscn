@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://i7vone3dkv73"]
+
+[ext_resource type="PackedScene" uid="uid://crxworclxlacs" path="res://scenes/enemy_projectile.tscn" id="1_dyg2s"]
+[ext_resource type="Script" path="res://prototype/scenes/HomingProjectile.gd" id="2_b75vj"]
+
+[node name="EnemyProjectile" instance=ExtResource("1_dyg2s")]
+script = ExtResource("2_b75vj")
+homing_time = 1.5
+homing_speed = 5.0

@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://esoxcs26btb8"]
+
+[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="1_0to4d"]
+[ext_resource type="Shader" path="res://scenes/colorize.gdshader" id="2_s3x1b"]
+[ext_resource type="AudioStream" uid="uid://xpp4gtn2rdk2" path="res://sounds/SFX_HOMING_ROCKET.wav" id="3_0k3uw"]
+[ext_resource type="Script" path="res://prototype/scenes/HomingShootLogic.gd" id="3_s4qta"]
+[ext_resource type="PackedScene" uid="uid://i7vone3dkv73" path="res://scenes/homing_projectile.tscn" id="4_eury7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mpb7t"]
+resource_local_to_scene = true
+shader = ExtResource("2_s3x1b")
+shader_parameter/color = Vector3(1, 0.5, 0.5)
+shader_parameter/mix_weight = 0.7
+shader_parameter/do_mix = false
+
+[node name="HomingEnemy" instance=ExtResource("1_0to4d")]
+
+[node name="AnimatedSprite2D" parent="Sprites/SpriteBase" index="1"]
+material = SubResource("ShaderMaterial_mpb7t")
+
+[node name="EnemyRangedAttackState" parent="States/MoveAndAttackState" index="0" node_paths=PackedStringArray("shoot_logic")]
+shoot_logic = NodePath("HomingShootLogic")
+shoot_sfx = Array[AudioStream]([ExtResource("3_0k3uw")])
+
+[node name="HomingShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState" index="4"]
+script = ExtResource("3_s4qta")
+projectile_scene = ExtResource("4_eury7")
+projectile_speed = 1000.0
