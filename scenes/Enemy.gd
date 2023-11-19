@@ -15,6 +15,7 @@ var state_data
 @export var player: Player
 
 func _ready():
+	set_sprite_animation("idle")
 	if player:
 		init(player)
 
