@@ -995,8 +995,6 @@ dash_sound = ExtResource("3_58yie")
 hit_sound = Array[AudioStream]([ExtResource("4_8xuod"), ExtResource("5_b17pq")])
 hurt_sound = ExtResource("6_0l7aw")
 death_sound = ExtResource("7_lh8q5")
-max_health = 4
-health = 4
 
 [node name="GlowSprite" type="Sprite2D" parent="."]
 modulate = Color(0.862745, 0.729412, 0.294118, 0.839216)
