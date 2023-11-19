@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://crxworclxlacs"]
+[gd_scene load_steps=12 format=3 uid="uid://crxworclxlacs"]
 
 [ext_resource type="Script" path="res://prototype/scenes/Fireball.gd" id="1_vvg55"]
 [ext_resource type="Texture2D" uid="uid://dvjuwe0a82y72" path="res://graphics/enemy/projectile/rocket.png" id="2_6bwik"]
@@ -36,11 +36,14 @@ point_count = 2
 offsets = PackedFloat32Array(0.761589, 1)
 colors = PackedColorArray(1, 1, 1, 0.737255, 1, 1, 1, 0)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6y0li"]
+radius = 100.0
+
 [node name="EnemyProjectile" type="RigidBody2D"]
 collision_layer = 0
 gravity_scale = 0.0
 script = ExtResource("1_vvg55")
-knockback = 60.0
+knockback = 2000.0
 explosion_scene = ExtResource("2_xktpn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -72,6 +75,13 @@ gravity = Vector2(0, 0)
 scale_amount_min = 0.8
 scale_amount_curve = SubResource("Curve_x2sn4")
 color_ramp = SubResource("Gradient_bwf2y")
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("CircleShape2D_6y0li")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

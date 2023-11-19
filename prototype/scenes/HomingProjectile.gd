@@ -4,6 +4,7 @@ extends RigidBody2D
 @export var explosion_scene: PackedScene
 @export var homing_time = 1.5
 @export var homing_speed = 10.0
+@onready var explosion_area = $ExplosionArea
 
 @onready var area2d = $Area2D
 
@@ -20,17 +21,18 @@ func _physics_process(delta):
         linear_velocity = linear_velocity.lerp(desired_velocity, homing_speed * delta).normalized() * linear_velocity.length()
         look_at(global_position + linear_velocity)
 
-func _on_area_2d_area_entered(area:Area2D):
-    if area is Damageable and !area.dashing:
-        area.damage({damage = 1, knockback = (area.global_position - global_position) * knockback})
-        spawn_explosion()
-        queue_free()
+func _on_area_2d_area_entered(_area:Area2D):
+    spawn_explosion()
 
 func _on_area_2d_body_entered(_body:Node2D):
     spawn_explosion()
-    queue_free()
 
 func spawn_explosion():
+    for area in explosion_area.get_overlapping_areas():
+        area.damage_ignore_dashing({damage = 1, knockback = (area.global_position - global_position).normalized() * knockback})
+
     var explosion = explosion_scene.instantiate()
     get_parent().add_child(explosion)
     explosion.global_position = global_position
+
+    queue_free()
