@@ -40,7 +40,7 @@ colors = PackedColorArray(1, 1, 1, 0.737255, 1, 1, 1, 0)
 collision_layer = 0
 gravity_scale = 0.0
 script = ExtResource("1_vvg55")
-knockback = 30.0
+knockback = 60.0
 explosion_scene = ExtResource("2_xktpn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
