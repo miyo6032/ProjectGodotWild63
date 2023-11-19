@@ -1000,10 +1000,12 @@ max_health = 4
 health = 4
 
 [node name="GlowSprite" type="Sprite2D" parent="."]
+modulate = Color(0.862745, 0.729412, 0.294118, 0.839216)
+scale = Vector2(1.4, 1.4)
 texture = SubResource("GradientTexture2D_bmp1g")
 
 [node name="ShadowSprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.588235)
+modulate = Color(1, 1, 1, 0.117647)
 position = Vector2(0, 67)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("8_gh5d4")

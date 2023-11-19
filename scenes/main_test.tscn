@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://dm2y3aggdmxjt"]
 
 [ext_resource type="Script" path="res://scenes/MainTest.gd" id="1_w3pdu"]
-[ext_resource type="PackedScene" uid="uid://bftngtqkxd0ma" path="res://levels/test_level_0.tscn" id="2_4e3bf"]
-[ext_resource type="PackedScene" uid="uid://cetcxyg2yljts" path="res://levels/test_level_1.tscn" id="3_pihxv"]
+[ext_resource type="PackedScene" uid="uid://bftngtqkxd0ma" path="res://levels/test/test_level_0.tscn" id="2_4e3bf"]
+[ext_resource type="PackedScene" uid="uid://cetcxyg2yljts" path="res://levels/test/test_level_1.tscn" id="3_pihxv"]
 [ext_resource type="Script" path="res://scenes/CameraFollow.gd" id="7_e2jwb"]
 [ext_resource type="Script" path="res://scenes/ShakeCamera2D.gd" id="8_q1sy8"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="9_dicyg"]

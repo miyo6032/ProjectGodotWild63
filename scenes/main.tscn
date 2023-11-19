@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bc5a1ffpsdvdk"]
+[gd_scene load_steps=12 format=3 uid="uid://bc5a1ffpsdvdk"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_tm45u"]
-[ext_resource type="PackedScene" uid="uid://k6txsxitwq77" path="res://levels/level_0.tscn" id="2_yjrp6"]
-[ext_resource type="PackedScene" uid="uid://ygd3gso1eomw" path="res://levels/level_1.tscn" id="3_d03tl"]
+[ext_resource type="PackedScene" uid="uid://2sqg2d0elvjb" path="res://levels/level_0.tscn" id="2_yjrp6"]
+[ext_resource type="PackedScene" uid="uid://d7ajonsri85n" path="res://levels/level_1.tscn" id="3_d03tl"]
 [ext_resource type="PackedScene" uid="uid://cv4jphlnle64m" path="res://prototype/scenes/health_bar.tscn" id="3_k1l3p"]
+[ext_resource type="PackedScene" uid="uid://ee1tsyws6mte" path="res://levels/level_2.tscn" id="4_g30lj"]
+[ext_resource type="PackedScene" uid="uid://bd3i8cgfbw55k" path="res://levels/level_3.tscn" id="5_6k2vi"]
 [ext_resource type="PackedScene" uid="uid://bvf55uwknvl1" path="res://scenes/menus.tscn" id="6_cd1dm"]
 [ext_resource type="Script" path="res://scenes/ShakeCamera2D.gd" id="6_edsxo"]
 [ext_resource type="Script" path="res://scenes/CameraFollow.gd" id="6_yhio2"]
@@ -18,7 +20,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tm45u")
-levels = Array[PackedScene]([ExtResource("2_yjrp6"), ExtResource("3_d03tl")])
+levels = Array[PackedScene]([ExtResource("2_yjrp6"), ExtResource("3_d03tl"), ExtResource("4_g30lj"), ExtResource("5_6k2vi")])
 
 [node name="CameraFollow" type="Node2D" parent="."]
 script = ExtResource("6_yhio2")
