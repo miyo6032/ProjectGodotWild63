@@ -1,9 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://bc5a1ffpsdvdk"]
+[gd_scene load_steps=31 format=3 uid="uid://bc5a1ffpsdvdk"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_tm45u"]
 [ext_resource type="PackedScene" path="res://scenes/levels/level_18.tscn" id="2_6uw66"]
 [ext_resource type="PackedScene" uid="uid://b1rnnyonfi4yi" path="res://scenes/levels/level_11.tscn" id="2_dhq1n"]
-[ext_resource type="PackedScene" uid="uid://d32cqaao368a8" path="res://scenes/levels/level_20.tscn" id="2_nauhr"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_20.tscn" id="2_nauhr"]
 [ext_resource type="PackedScene" uid="uid://dxd3kcts64rd6" path="res://scenes/levels/level_7.tscn" id="2_o8y1c"]
 [ext_resource type="PackedScene" uid="uid://2sqg2d0elvjb" path="res://scenes/levels/level_0.tscn" id="2_w2f0y"]
 [ext_resource type="PackedScene" uid="uid://d7ajonsri85n" path="res://scenes/levels/level_1.tscn" id="3_r5thh"]
@@ -60,10 +60,12 @@ zoom = Vector2(0.5, 0.5)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
+offset_left = 39.0
+offset_right = 79.0
 offset_bottom = 40.0
 grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
+alignment = 1
 script = ExtResource("23_ws8qr")
 heart_full = ExtResource("23_ysvsf")
 heart_empty = ExtResource("25_swhhf")
