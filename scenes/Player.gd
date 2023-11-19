@@ -134,11 +134,21 @@ func _physics_process(delta):
 @export var health = 6
 @export var hit_freeze_slow := 0.07
 @export var hit_freeze_time := 0.3
+@export var level_clear_slow_time := 1.5
+
+var level_cleared = false
 
 func _ready():
     attack_area.monitoring = false
     update_health.emit(health, max_health)
     EventBus.player_health_changed.emit(health, max_health)
+    EventBus.on_level_cleared.connect(_on_level_cleared)
+
+func _exit_tree():
+    EventBus.on_level_cleared.disconnect(_on_level_cleared)
+
+func _on_level_cleared():
+    level_cleared = true
 
 func _on_enemy_collision_detection_on_damage(damage_info):
     print("player damaged" + str(damage_info))
@@ -177,6 +187,8 @@ func _on_attack_area_area_entered(area:Area2D):
 func freeze_frame():
     Engine.time_scale = hit_freeze_slow
     await get_tree().create_timer(hit_freeze_time * hit_freeze_slow).timeout
+    if level_cleared:
+        await get_tree().create_timer(level_clear_slow_time * hit_freeze_slow).timeout
     Engine.time_scale = 1
 
 func spawn_dash_ghost():

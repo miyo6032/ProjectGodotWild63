@@ -10,11 +10,12 @@ func _ready() -> void:
     EventBus.on_level_cleared.connect(_on_level_cleared)
 
 func _on_level_cleared() -> void:
-    get_tree().paused = true
     if current_level_index < levels.size() - 1:
         await get_tree().create_timer(2.0).timeout
+        get_tree().paused = true
         start_level(current_level_index + 1)
     else:
+        get_tree().paused = true
         EventBus.on_game_win.emit()
 
 func start_level(level_index) -> void:

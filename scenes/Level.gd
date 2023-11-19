@@ -11,6 +11,10 @@ func _ready():
         enemy.init(player)
 
 func _on_enemy_died() -> void:
-    await get_tree().create_timer(1.0).timeout
-    if enemies.get_child_count() == 0:
+    # await get_tree().create_timer(1.0).timeout
+    var num_enemies = 0
+    for child in enemies.get_children():
+        if child is Enemy and child.health > 0:
+            num_enemies += 1
+    if num_enemies == 0:
         EventBus.on_level_cleared.emit()

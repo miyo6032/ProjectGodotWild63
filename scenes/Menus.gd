@@ -29,6 +29,7 @@ func _ready():
 func _game_won():
     play_again_button.grab_focus()
     animation_player.play("win")
+    await animation_player.animation_finished
     get_tree().paused = true
 
 func _game_over():
