@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvf55uwknvl1"]
+[gd_scene load_steps=13 format=3 uid="uid://bvf55uwknvl1"]
 
 [ext_resource type="Theme" uid="uid://c1xf2fj7vroku" path="res://data/epic_theme.tres" id="1_8m6kn"]
 [ext_resource type="Script" path="res://scenes/Menus.gd" id="2_ltdt6"]
 [ext_resource type="Script" path="res://scenes/Options.gd" id="3_chwi7"]
+[ext_resource type="AudioStream" uid="uid://cs6t5lhliifu2" path="res://sounds/GAME_LEVEL_CLEAR.wav" id="4_hkxjh"]
 
 [sub_resource type="Animation" id="Animation_t6jvd"]
 length = 0.001
@@ -126,6 +127,18 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AudioStreamPlayer:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_kktpk"]
 resource_name = "clear_menu"
@@ -188,7 +201,7 @@ resource_name = "level_cleared"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("LevelCleared:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -200,7 +213,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("LevelCleared:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -217,7 +230,7 @@ tracks/2/path = NodePath("LevelMenu:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.5, 2),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -229,7 +242,7 @@ tracks/3/path = NodePath("LevelMenu:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.5),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -262,6 +275,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_7ky4c"]
 resource_name = "level_screen"
@@ -289,6 +314,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_vnyoh"]
@@ -498,6 +535,7 @@ focus_previous = NodePath("../OptionsButton")
 text = "Quit"
 
 [node name="DeathMenu" type="Control" parent="."]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -557,6 +595,7 @@ focus_previous = NodePath("../TryAgainButton")
 text = "Quit"
 
 [node name="WinMenu" type="Control" parent="."]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -803,6 +842,10 @@ value = 1.0
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../OptionsSettingsGridContainer/MusicSlider")
 text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hkxjh")
+bus = &"SFX"
 
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

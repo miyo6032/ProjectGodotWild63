@@ -15,6 +15,8 @@ signal play_pressed
 @onready var options_settings_grid_container = %OptionsSettingsGridContainer
 @onready var main_menu = %MainMenu
 @onready var level_label = %LevelLabel
+@onready var death_menu = %DeathMenu
+@onready var win_menu = %WinMenu
 
 func _ready():
     EventBus.on_game_win.connect(_game_won)
@@ -27,6 +29,7 @@ func _ready():
 func _game_won():
     play_again_button.grab_focus()
     animation_player.play("win")
+    get_tree().paused = true
 
 func _game_over():
     try_again_button.grab_focus()
@@ -45,7 +48,7 @@ func _on_try_again_button_pressed():
     get_tree().reload_current_scene()
 
 func _input(event):
-    if event.is_action_pressed("ui_cancel") and !main_menu.visible:
+    if event.is_action_pressed("ui_cancel") and ((!main_menu.visible and !death_menu.visible and !win_menu.visible) or pause_menu.visible):
         toggle_pause_menu()
 
 func toggle_pause_menu():
@@ -77,14 +80,8 @@ func _on_back_button_pressed():
     play_button.grab_focus()
 
 func _level_started(index):
-    get_tree().paused = true
     level_label.text = "Level " + str(index + 1)
     animation_player.play("level_screen_first")
-    await animation_player.animation_finished
-    get_tree().paused = false
 
 func _level_cleared():
-    get_tree().paused = true
     animation_player.play("level_cleared")
-    await animation_player.animation_finished
-    get_tree().paused = false
