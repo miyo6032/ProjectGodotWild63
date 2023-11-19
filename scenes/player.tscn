@@ -944,7 +944,8 @@ radius = 52.0
 height = 124.0
 
 [sub_resource type="Gradient" id="Gradient_7hst6"]
-colors = PackedColorArray(1, 1, 1, 1, 0.355314, 0.355314, 0.355314, 1)
+offsets = PackedFloat32Array(0, 0.810458, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.356863, 0.356863, 0.356863, 0)
 
 [sub_resource type="Gradient" id="Gradient_ra51a"]
 offsets = PackedFloat32Array(0, 0.954023, 1)
@@ -1077,8 +1078,10 @@ emitting = false
 lifetime = 0.3
 one_shot = true
 explosiveness = 1.0
+lifetime_randomness = 0.5
 fixed_fps = 30
 draw_order = 1
+texture = ExtResource("20_mjm1x")
 emission_shape = 1
 emission_sphere_radius = 50.0
 spread = 90.0
@@ -1088,11 +1091,10 @@ initial_velocity_max = 900.0
 angular_velocity_min = -10.0
 angular_velocity_max = 720.0
 damping_min = 800.0
-damping_max = 800.0
+damping_max = 1200.0
 angle_min = 1.0
 angle_max = 360.0
-scale_amount_min = 5.0
-scale_amount_max = 7.0
+scale_amount_max = 1.5
 color_ramp = SubResource("Gradient_7hst6")
 hue_variation_min = -0.04
 hue_variation_max = 0.12
