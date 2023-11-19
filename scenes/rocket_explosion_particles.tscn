@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3v2tak77cbku"]
+[gd_scene load_steps=9 format=3 uid="uid://6e8uf3kekntd"]
 
 [ext_resource type="Texture2D" uid="uid://dkt0ft8dgd0on" path="res://graphics/effects/explosion.png" id="1_bvsx5"]
 [ext_resource type="Script" path="res://scenes/DestructionParticles.gd" id="2_qmhq6"]
@@ -24,20 +24,22 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 z_index = 1
 scale = Vector2(0.25, 0.25)
 emitting = false
-amount = 5
+amount = 10
 lifetime = 0.5
 one_shot = true
-explosiveness = 0.8
+explosiveness = 1.0
 lifetime_randomness = 0.59
 texture = ExtResource("1_bvsx5")
+emission_shape = 1
+emission_sphere_radius = 128.0
 spread = 180.0
 gravity = Vector2(0, -200)
 initial_velocity_min = 3000.0
-initial_velocity_max = 6000.0
+initial_velocity_max = 5000.0
 damping_min = 10000.0
 damping_max = 15000.0
-scale_amount_min = 0.25
-scale_amount_max = 0.5
+scale_amount_min = 0.5
+scale_amount_max = 1.5
 scale_amount_curve = SubResource("Curve_02gii")
 color_ramp = SubResource("Gradient_hrwqr")
 script = ExtResource("2_qmhq6")

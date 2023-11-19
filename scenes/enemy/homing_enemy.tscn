@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://esoxcs26btb8"]
 
-[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="1_0to4d"]
+[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/enemy/ranged_enemy.tscn" id="1_0to4d"]
 [ext_resource type="Shader" path="res://scenes/colorize.gdshader" id="2_s3x1b"]
 [ext_resource type="AudioStream" uid="uid://xpp4gtn2rdk2" path="res://sounds/SFX_HOMING_ROCKET.wav" id="3_0k3uw"]
 [ext_resource type="Script" path="res://prototype/scenes/HomingShootLogic.gd" id="3_s4qta"]
@@ -14,12 +14,14 @@ shader_parameter/mix_weight = 0.7
 shader_parameter/do_mix = false
 
 [node name="HomingEnemy" instance=ExtResource("1_0to4d")]
+health = 2
 animation_suffix = "homing"
 
 [node name="AnimatedSprite2D" parent="Sprites/SpriteBase" index="1"]
 material = SubResource("ShaderMaterial_mpb7t")
 
 [node name="EnemyRangedAttackState" parent="States/MoveAndAttackState" index="0" node_paths=PackedStringArray("shoot_logic")]
+shoot_time = 3.0
 shoot_logic = NodePath("HomingShootLogic")
 shoot_sfx = Array[AudioStream]([ExtResource("3_0k3uw")])
 
@@ -27,3 +29,24 @@ shoot_sfx = Array[AudioStream]([ExtResource("3_0k3uw")])
 script = ExtResource("3_s4qta")
 projectile_scene = ExtResource("4_eury7")
 projectile_speed = 1000.0
+
+[node name="MoveRandomlyState" parent="States/MoveAndAttackState" index="1"]
+speed = 400.0
+
+[node name="ChaseTransition" parent="States/MoveAndAttackState" index="3"]
+distance_range = Vector2(1000, 11000)
+
+[node name="MoveToTargetState" parent="States" index="2"]
+speed = 400.0
+
+[node name="AttackTransition" parent="States/MoveToTargetState" index="0"]
+distance_range = Vector2(0, 10000)
+
+[node name="MoveRandomlyState" parent="States" index="4"]
+speed = 400.0
+
+[node name="AttackTransition" parent="States/MoveRandomlyState" index="0"]
+distance_range = Vector2(0, 10000)
+
+[node name="ChaseTransition" parent="States/MoveRandomlyState" index="1"]
+distance_range = Vector2(800, 11000)

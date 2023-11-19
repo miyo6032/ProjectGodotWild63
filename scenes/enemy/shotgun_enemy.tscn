@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dyb58dfl2l6q4"]
 
-[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="1_q2fix"]
+[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/enemy/ranged_enemy.tscn" id="1_q2fix"]
 [ext_resource type="Shader" path="res://scenes/colorize.gdshader" id="2_mtv1s"]
 [ext_resource type="Script" path="res://prototype/scenes/ShotgunShootLogic.gd" id="3_vimj0"]
-[ext_resource type="PackedScene" uid="uid://xn5vno71j63a" path="res://scenes/shotgun_projectile.tscn" id="4_ukp6c"]
+[ext_resource type="PackedScene" path="res://scenes/shotgun_projectile.tscn" id="4_ukp6c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jaylp"]
 resource_local_to_scene = true
@@ -13,6 +13,7 @@ shader_parameter/mix_weight = 0.7
 shader_parameter/do_mix = false
 
 [node name="ShotgunEnemy" instance=ExtResource("1_q2fix")]
+health = 5
 animation_suffix = "burst"
 
 [node name="AnimatedSprite2D" parent="Sprites/SpriteBase" index="1"]
