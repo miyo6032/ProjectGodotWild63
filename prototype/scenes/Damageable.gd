@@ -8,9 +8,9 @@ var invulnerable: bool
 var dashing: bool
 
 func damage(damage_info):
-	if not invulnerable and not dashing:
-		on_damage.emit(damage_info)
+    if not invulnerable and not dashing:
+        on_damage.emit(damage_info)
 
 func damage_ignore_dashing(damage_info):
-	if not invulnerable:
-		on_damage.emit(damage_info)
+    if not invulnerable:
+        on_damage.emit(damage_info)

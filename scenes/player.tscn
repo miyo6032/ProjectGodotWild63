@@ -1124,6 +1124,7 @@ hue_variation_min = -0.04
 hue_variation_max = 0.12
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
 bus = &"SFX"
 
 [connection signal="attack_hit" from="." to="FacingDirection/AttackImpactParticles" method="_on_player_attack_hit"]
