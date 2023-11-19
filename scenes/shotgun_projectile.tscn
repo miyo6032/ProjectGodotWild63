@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://xn5vno71j63a"]
+
+[ext_resource type="Script" path="res://prototype/scenes/ShotgunProjectile.gd" id="1_saw74"]
+[ext_resource type="Texture2D" uid="uid://b5t5rfcbalcxt" path="res://graphics/enemy/projectile/nail.png" id="3_4w7we"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cu6db"]
+radius = 13.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4oemq"]
+radius = 11.0
+height = 22.0
+
+[node name="EnemyProjectile" type="RigidBody2D"]
+collision_layer = 0
+gravity_scale = 0.0
+script = ExtResource("1_saw74")
+knockback = 30.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_4w7we")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_cu6db")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4oemq")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
