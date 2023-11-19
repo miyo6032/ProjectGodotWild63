@@ -17,4 +17,8 @@ animation_suffix = "bounce"
 material = SubResource("ShaderMaterial_6nmbn")
 
 [node name="EnemyRangedAttackState" parent="States/MoveAndAttackState" index="0" node_paths=PackedStringArray("shoot_logic")]
+shoot_time = 1.5
 shoot_logic = NodePath("BouncyShootLogic")
+
+[node name="AttackTransition" parent="States/MoveToTargetState" index="0"]
+distance_range = Vector2(0, 1000)
