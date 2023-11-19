@@ -139,6 +139,7 @@ func _physics_process(delta):
 var level_cleared = false
 
 func _ready():
+	animated_sprite.play("idle")
 	attack_area.monitoring = false
 	update_health.emit(health, max_health)
 	EventBus.player_health_changed.emit(health, max_health)
