@@ -23,9 +23,6 @@ position = Vector2(-125, 575)
 unique_name_in_owner = true
 y_sort_enabled = true
 
-[node name="RangedEnemy" parent="Enemies" instance=ExtResource("4_fsfq8")]
-position = Vector2(-225, -25)
-
 [node name="RangedEnemy2" parent="Enemies" instance=ExtResource("4_fsfq8")]
 position = Vector2(625, 525)
 
@@ -79,13 +76,13 @@ position = Vector2(-775, 375)
 position = Vector2(-1025, 675)
 
 [node name="TrashCan4" parent="." instance=ExtResource("8_qffi2")]
-position = Vector2(575, -675)
+position = Vector2(525, -675)
 
 [node name="TrashCan5" parent="." instance=ExtResource("8_qffi2")]
-position = Vector2(1075, -575)
+position = Vector2(1125, -575)
 
 [node name="TrashCan6" parent="." instance=ExtResource("8_qffi2")]
-position = Vector2(1275, -325)
+position = Vector2(-1275, -75)
 
 [node name="TrashCan7" parent="." instance=ExtResource("8_qffi2")]
 position = Vector2(925, 475)
