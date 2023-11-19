@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://cs1t3p46kqe1l"]
+[gd_scene load_steps=72 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
 [ext_resource type="PackedScene" uid="uid://snqei07f5ygo" path="res://scenes/death_particles.tscn" id="2_d83p1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="4_iafrh"]
 [ext_resource type="Texture2D" uid="uid://cfgerlikle57n" path="res://graphics/enemy/troop_knocked.png" id="4_jgfhr"]
 [ext_resource type="Texture2D" uid="uid://h75v8mcijmau" path="res://graphics/enemy/troop_idle.png" id="4_y45da"]
+[ext_resource type="Texture2D" uid="uid://b5d6xkiaj8cdn" path="res://graphics/effects/shine.png" id="5_23sks"]
 [ext_resource type="Script" path="res://scenes/BaseObjectDetector.gd" id="5_jgagf"]
 [ext_resource type="Script" path="res://scenes/EnemyRangedAttackState.gd" id="5_m8asx"]
 [ext_resource type="Texture2D" uid="uid://d1wnr4tyyri7p" path="res://graphics/enemy/troop_run.png" id="5_nyu3d"]
@@ -318,6 +319,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/SpriteBase/ShinePivot/ShineSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_nn7tu"]
 resource_name = "hit"
@@ -358,6 +371,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/SpriteBase/ShinePivot/ShineSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_lucbu"]
@@ -400,12 +425,65 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/SpriteBase/ShinePivot/ShineSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_rr575"]
+resource_name = "prepare"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/SpriteBase/ShinePivot/ShineSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/SpriteBase/ShinePivot/ShineSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/SpriteBase/ShinePivot/ShineSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fmrua"]
 _data = {
 "RESET": SubResource("Animation_02yk4"),
 "death": SubResource("Animation_lucbu"),
-"hit": SubResource("Animation_nn7tu")
+"hit": SubResource("Animation_nn7tu"),
+"prepare": SubResource("Animation_rr575")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_soeh7"]
@@ -446,7 +524,20 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_5x272")
 position = Vector2(0, -80)
 sprite_frames = SubResource("SpriteFrames_nleu6")
-animation = &"die"
+animation = &"attack"
+frame = 7
+frame_progress = 1.0
+
+[node name="ShinePivot" type="Node2D" parent="Sprites/SpriteBase"]
+unique_name_in_owner = true
+position = Vector2(0, -94)
+
+[node name="ShineSprite" type="Sprite2D" parent="Sprites/SpriteBase/ShinePivot"]
+visible = false
+z_index = 1
+position = Vector2(123, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_23sks")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

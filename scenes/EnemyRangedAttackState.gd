@@ -16,6 +16,7 @@ func update(delta: float) -> void:
     if current_time >= shoot_time:
         state_data.can_move = false
         enemy.animated_sprite.play("attack")
+        enemy.animation_player.play("prepare")
         enemy.audio_stream_player.stream = prepare_sfx
         enemy.audio_stream_player.play()
         fireball_tween = create_tween()
