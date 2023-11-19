@@ -1495,7 +1495,7 @@ true_state = NodePath("../../MoveRandomlyState")
 
 [node name="ChaseTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("raycast2d", "true_state")]
 script = ExtResource("10_15kaj")
-distance_range = Vector2(1000, 10000)
+distance_range = Vector2(1500, 10000)
 raycast2d = NodePath("../../../RayCast2D")
 true_state = NodePath("../../MoveToTargetState")
 
@@ -1512,7 +1512,7 @@ speed = 200.0
 
 [node name="AttackTransition" type="Node" parent="States/MoveToTargetState" node_paths=PackedStringArray("raycast2d", "true_state")]
 script = ExtResource("10_15kaj")
-distance_range = Vector2(0, 800)
+distance_range = Vector2(0, 1300)
 raycast2d = NodePath("../../../RayCast2D")
 true_state = NodePath("../../MoveAndAttackState")
 
@@ -1532,13 +1532,13 @@ speed = 200.0
 
 [node name="AttackTransition" type="Node" parent="States/MoveRandomlyState" node_paths=PackedStringArray("raycast2d", "true_state")]
 script = ExtResource("10_15kaj")
-distance_range = Vector2(0, 800)
+distance_range = Vector2(0, 1300)
 raycast2d = NodePath("../../../RayCast2D")
 true_state = NodePath("../../MoveAndAttackState")
 
 [node name="ChaseTransition" type="Node" parent="States/MoveRandomlyState" node_paths=PackedStringArray("raycast2d", "true_state")]
 script = ExtResource("10_15kaj")
-distance_range = Vector2(800, 10000)
+distance_range = Vector2(1500, 10000)
 raycast2d = NodePath("../../../RayCast2D")
 true_state = NodePath("../../MoveToTargetState")
 
