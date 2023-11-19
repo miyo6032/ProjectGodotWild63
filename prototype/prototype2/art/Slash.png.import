@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lo0ibcg8l6hc"
-path="res://.godot/imported/mage.png-e1fb778763bdda3c8ebda79ca6622f29.ctex"
+uid="uid://bj5t33y60o37a"
+path="res://.godot/imported/Slash.png-6057e597fec558e68371b58d1a3df9cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prototype2/art/mage.png"
-dest_files=["res://.godot/imported/mage.png-e1fb778763bdda3c8ebda79ca6622f29.ctex"]
+source_file="res://prototype/prototype2/art/Slash.png"
+dest_files=["res://.godot/imported/Slash.png-6057e597fec558e68371b58d1a3df9cd.ctex"]
 
 [params]
 

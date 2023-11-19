@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scenes/Level.gd" id="1_4166e"]
 [ext_resource type="PackedScene" uid="uid://bfellyq050wl2" path="res://scenes/player.tscn" id="2_pcu8w"]
 [ext_resource type="PackedScene" uid="uid://bsu7ui1ejq46k" path="res://scenes/enviroment.tscn" id="2_vtlo1"]
-[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="3_ouqck"]
 [ext_resource type="PackedScene" uid="uid://chyes1ma1h7uf" path="res://scenes/level_0_tiles.tscn" id="4_3mjwn"]
+[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/enemy/ranged_enemy.tscn" id="4_xako1"]
 [ext_resource type="PackedScene" uid="uid://ck52g74wkl8w4" path="res://scenes/trash_bag.tscn" id="5_dast7"]
 [ext_resource type="PackedScene" uid="uid://b03u42liis8pj" path="res://scenes/trash_can.tscn" id="6_lhf6w"]
 
@@ -22,16 +22,16 @@ position = Vector2(-1125, -625)
 unique_name_in_owner = true
 y_sort_enabled = true
 
-[node name="RangedEnemy" parent="Enemies" instance=ExtResource("3_ouqck")]
+[node name="RangedEnemy" parent="Enemies" instance=ExtResource("4_xako1")]
 position = Vector2(1175, -525)
 
-[node name="RangedEnemy3" parent="Enemies" instance=ExtResource("3_ouqck")]
+[node name="RangedEnemy3" parent="Enemies" instance=ExtResource("4_xako1")]
 position = Vector2(675, 525)
 
-[node name="RangedEnemy4" parent="Enemies" instance=ExtResource("3_ouqck")]
+[node name="RangedEnemy4" parent="Enemies" instance=ExtResource("4_xako1")]
 position = Vector2(-1075, 575)
 
-[node name="RangedEnemy2" parent="Enemies" instance=ExtResource("3_ouqck")]
+[node name="RangedEnemy2" parent="Enemies" instance=ExtResource("4_xako1")]
 position = Vector2(-125, -625)
 
 [node name="TileMap" parent="." instance=ExtResource("4_3mjwn")]
