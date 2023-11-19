@@ -66,11 +66,9 @@ func handle_attack_input():
 		is_dashing = true
 		dash_attack_enabled = false
 		dash_animation_finished = false
-		damageable.dashing = true
 		await get_tree().create_timer(dash_time).timeout
 		is_dashing = false
 		attack_area.monitoring = false
-		damageable.dashing = false
 		if time_since_last_dash > 0.25:
 			dash_attack_enabled = true
 		else:
@@ -139,6 +137,7 @@ func _physics_process(delta):
 var level_cleared = false
 
 func _ready():
+	animated_sprite.play("idle")
 	attack_area.monitoring = false
 	update_health.emit(health, max_health)
 	EventBus.player_health_changed.emit(health, max_health)
