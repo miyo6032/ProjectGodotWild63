@@ -16,6 +16,7 @@ position = Vector2(-600, 609)
 
 [node name="Enemies" type="Node2D" parent="."]
 unique_name_in_owner = true
+y_sort_enabled = true
 
 [node name="RangedEnemy" parent="Enemies" instance=ExtResource("3_8c75f")]
 position = Vector2(484, -113)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://2sqg2d0elvjb"]
+[gd_scene load_steps=6 format=3 uid="uid://k6txsxitwq77"]
 
 [ext_resource type="Script" path="res://scenes/Level.gd" id="1_tsc7r"]
 [ext_resource type="PackedScene" uid="uid://bfellyq050wl2" path="res://scenes/player.tscn" id="2_q01a0"]
@@ -16,6 +16,7 @@ position = Vector2(-714, 459)
 
 [node name="Enemies" type="Node2D" parent="."]
 unique_name_in_owner = true
+y_sort_enabled = true
 
 [node name="RangedEnemy" parent="Enemies" instance=ExtResource("3_et6vq")]
 position = Vector2(1013, -23)
