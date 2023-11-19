@@ -72,8 +72,10 @@ func maybe_transition_state():
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite2D
 @onready var shadow_pivot: Node2D = %ShadowPivot
+@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer
 @export var health = 3
 @export var death_particles_scene: PackedScene
+@export var enemy_death_sfx: AudioStream
 
 func _on_damageable_on_damage(damage_info):
     if health <= 0:
@@ -92,10 +94,11 @@ func _on_damageable_on_damage(damage_info):
         var particles: CPUParticles2D = death_particles_scene.instantiate()
         particles.global_position = global_position
         get_parent().get_parent().add_child(particles)
+        audio_stream_player.stream = enemy_death_sfx
+        audio_stream_player.play()
     else:
         animation_player.play("hit")
 
 func set_flip(flip: bool) -> void:
     animated_sprite.flip_h = flip
     shadow_pivot.rotation = TAU * 0.5 if flip else 0.0
-    

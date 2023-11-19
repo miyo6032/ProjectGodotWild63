@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bopni7jgu0833"]
+
+[ext_resource type="AudioStream" uid="uid://crxy087fj8pcj" path="res://sounds/SFX_GARBAGE_IMPACT.wav" id="1_xwf1y"]
+[ext_resource type="Script" path="res://DestroySound.gd" id="2_tedb7"]
+
+[node name="TrashCanSound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_xwf1y")
+volume_db = 10.0
+autoplay = true
+bus = &"SFX"
+script = ExtResource("2_tedb7")

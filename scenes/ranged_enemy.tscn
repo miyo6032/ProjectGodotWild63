@@ -1,9 +1,10 @@
-[gd_scene load_steps=67 format=3 uid="uid://cs1t3p46kqe1l"]
+[gd_scene load_steps=70 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
 [ext_resource type="PackedScene" uid="uid://snqei07f5ygo" path="res://scenes/death_particles.tscn" id="2_d83p1"]
 [ext_resource type="Texture2D" uid="uid://dlkqbdtswcg0h" path="res://graphics/effects/shadow.png" id="2_vqa2l"]
 [ext_resource type="Texture2D" uid="uid://ceg4tavj7egq4" path="res://graphics/enemy/troop_prepare.png" id="3_6uskc"]
+[ext_resource type="AudioStream" uid="uid://d3u87kscs18fu" path="res://sounds/SFX_ENEMY_DEATH.wav" id="3_73m5u"]
 [ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="4_iafrh"]
 [ext_resource type="Texture2D" uid="uid://cfgerlikle57n" path="res://graphics/enemy/troop_knocked.png" id="4_jgfhr"]
 [ext_resource type="Texture2D" uid="uid://h75v8mcijmau" path="res://graphics/enemy/troop_idle.png" id="4_y45da"]
@@ -24,6 +25,8 @@
 [ext_resource type="Script" path="res://scenes/MoveToTargetState.gd" id="12_4ssjg"]
 [ext_resource type="Script" path="res://scenes/EnemyDeathState.gd" id="14_6hdwq"]
 [ext_resource type="Shader" path="res://scenes/colorize.gdshader" id="14_d17md"]
+[ext_resource type="AudioStream" uid="uid://c0pew5gffm6p4" path="res://sounds/SFX_ENEMY_PREPARE.wav" id="14_ip5my"]
+[ext_resource type="AudioStream" uid="uid://bhxyirlb180xj" path="res://sounds/SFX_SHOOT_ROCKET.wav" id="15_8v0h1"]
 [ext_resource type="Script" path="res://scenes/TargetRaycastTransition.gd" id="20_1gmvs"]
 [ext_resource type="Texture2D" uid="uid://cf7i22f64xdi4" path="res://graphics/effects/blood.png" id="23_q7esj"]
 
@@ -417,6 +420,7 @@ collision_layer = 0
 script = ExtResource("1_tl3v6")
 initial_state = NodePath("States/MoveAndAttackState")
 death_particles_scene = ExtResource("2_d83p1")
+enemy_death_sfx = ExtResource("3_73m5u")
 
 [node name="Sprites" type="Node2D" parent="."]
 
@@ -482,6 +486,8 @@ states = [NodePath("EnemyRangedAttackState"), NodePath("MoveRandomlyState")]
 script = ExtResource("5_m8asx")
 telegraph_time = 0.29
 shoot_logic = NodePath("ShootLogic")
+prepare_sfx = ExtResource("14_ip5my")
+shoot_sfx = Array[AudioStream]([ExtResource("15_8v0h1")])
 
 [node name="ShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState"]
 script = ExtResource("8_b4ex6")
@@ -600,5 +606,9 @@ true_state = NodePath("../../States/StunnedState")
 [node name="EnemyDiedTransition" type="Node" parent="GlobalTransitions" node_paths=PackedStringArray("true_state")]
 script = ExtResource("11_yeuw4")
 true_state = NodePath("../../States/EnemyDeathState")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = 5.0
+bus = &"SFX"
 
 [connection signal="on_damage" from="Damageable" to="." method="_on_damageable_on_damage"]
