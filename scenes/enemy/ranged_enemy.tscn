@@ -1471,7 +1471,7 @@ projectile_speed = 1500.0
 [node name="BouncyShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState"]
 script = ExtResource("8_b4ex6")
 projectile_scene = ExtResource("10_17uy4")
-projectile_speed = 750.0
+projectile_speed = 1250.0
 
 [node name="TripleShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState"]
 script = ExtResource("10_cwknk")
