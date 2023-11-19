@@ -71,7 +71,7 @@ func maybe_transition_state():
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite2D
-var health = 2
+@export var health = 3
 
 func _on_damageable_on_damage(damage_info):
 	if health <= 0:
