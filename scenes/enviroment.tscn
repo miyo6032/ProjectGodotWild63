@@ -7,6 +7,7 @@ point_count = 2
 [node name="Enviroment" type="Node"]
 
 [node name="Rain" type="CPUParticles2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.431373)
 position = Vector2(-6, -2174)
 amount = 500
@@ -24,6 +25,7 @@ scale_amount_min = 6.0
 scale_amount_max = 6.0
 
 [node name="RainImpact" type="CPUParticles2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.290196)
 amount = 100
 emission_shape = 3
