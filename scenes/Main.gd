@@ -11,12 +11,13 @@ func _ready() -> void:
 
 func _on_level_cleared() -> void:
     if current_level_index < levels.size() - 1:
-        await get_tree().create_timer(2.0).timeout
+        await get_tree().create_timer(0.5).timeout
         get_tree().paused = true
         start_level(current_level_index + 1)
     else:
-        get_tree().paused = true
         EventBus.on_game_win.emit()
+        await get_tree().create_timer(0.5).timeout
+        get_tree().paused = true
 
 func start_level(level_index) -> void:
     Engine.time_scale = 1.0
