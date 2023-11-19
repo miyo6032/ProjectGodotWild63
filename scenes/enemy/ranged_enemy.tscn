@@ -1461,6 +1461,7 @@ telegraph_time = 0.29
 shoot_logic = NodePath("ShootLogic")
 prepare_sfx = ExtResource("14_ip5my")
 shoot_sfx = Array[AudioStream]([ExtResource("15_8v0h1")])
+shoot_knockback = 1000.0
 
 [node name="ShootLogic" type="Node" parent="States/MoveAndAttackState/EnemyRangedAttackState"]
 script = ExtResource("8_b4ex6")

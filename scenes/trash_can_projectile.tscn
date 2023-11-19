@@ -19,7 +19,7 @@ radius = 290.062
 collision_layer = 0
 gravity_scale = 0.0
 script = ExtResource("1_ma34s")
-initial_angular_velocity = 4.0
+initial_angular_velocity = 15.0
 particles_scenes = Array[PackedScene]([ExtResource("2_vcfeg")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -28,7 +28,7 @@ texture = ExtResource("2_hin5c")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 15
+collision_mask = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_cu6db")

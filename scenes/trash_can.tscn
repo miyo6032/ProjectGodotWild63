@@ -34,7 +34,7 @@ script = ExtResource("1_k8kh0")
 lid_particles_scene = SubResource("PackedScene_aawhb")
 particle_textures = Array[Texture2D]([ExtResource("2_0xeox"), ExtResource("4_sov05")])
 trash_bag_projectile_scene = ExtResource("5_erv0p")
-bag_velocity = 1000.0
+bag_velocity = 1800.0
 trash_can_sound = ExtResource("6_ht31h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
