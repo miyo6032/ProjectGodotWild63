@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm27c2rpo6a3c"
-path="res://.godot/imported/fireball.png-27f5f906f0276e7d7f5d21812feebb21.ctex"
+uid="uid://lo0ibcg8l6hc"
+path="res://.godot/imported/mage.png-e0fe1545b067cf37ba00efc9e3df10bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prototype2/art/fireball.png"
-dest_files=["res://.godot/imported/fireball.png-27f5f906f0276e7d7f5d21812feebb21.ctex"]
+source_file="res://prototype/prototype2/art/mage.png"
+dest_files=["res://.godot/imported/mage.png-e0fe1545b067cf37ba00efc9e3df10bd.ctex"]
 
 [params]
 

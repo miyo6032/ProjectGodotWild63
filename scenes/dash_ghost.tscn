@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bx6d4ld436h0x"]
 
-[ext_resource type="Texture2D" uid="uid://cm27c2rpo6a3c" path="res://prototype2/art/fireball.png" id="1_5deou"]
+[ext_resource type="Texture2D" uid="uid://cm27c2rpo6a3c" path="res://prototype/prototype2/art/fireball.png" id="1_5deou"]
 [ext_resource type="Script" path="res://DashGhost.gd" id="1_cv7d1"]
 [ext_resource type="Shader" path="res://scenes/dash_ghost.gdshader" id="1_po4t2"]
 

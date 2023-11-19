@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://pwvspdweyh1q"]
 
-[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="1_kl0x6"]
+[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/enemy/ranged_enemy.tscn" id="1_kl0x6"]
 [ext_resource type="Shader" path="res://scenes/colorize.gdshader" id="2_yjryl"]
 [ext_resource type="AudioStream" uid="uid://c4ydtr8h6vlkh" path="res://sounds/SFX_SHOOT_TRIPLE_ROCKET_02.wav" id="4_5beya"]
 

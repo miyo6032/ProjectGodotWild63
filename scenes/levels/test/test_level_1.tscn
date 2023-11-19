@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/Level.gd" id="1_xtsfi"]
 [ext_resource type="PackedScene" uid="uid://bfellyq050wl2" path="res://scenes/player.tscn" id="2_vvuf6"]
-[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="3_8c75f"]
+[ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/enemy/ranged_enemy.tscn" id="3_8c75f"]
 [ext_resource type="PackedScene" uid="uid://chyes1ma1h7uf" path="res://scenes/level_0_tiles.tscn" id="4_2qdbi"]
 [ext_resource type="PackedScene" uid="uid://b03u42liis8pj" path="res://scenes/trash_can.tscn" id="5_yssw7"]
 
