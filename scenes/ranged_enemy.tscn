@@ -1,6 +1,7 @@
-[gd_scene load_steps=63 format=3 uid="uid://cs1t3p46kqe1l"]
+[gd_scene load_steps=67 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
+[ext_resource type="PackedScene" uid="uid://snqei07f5ygo" path="res://scenes/death_particles.tscn" id="2_d83p1"]
 [ext_resource type="Texture2D" uid="uid://dlkqbdtswcg0h" path="res://graphics/effects/shadow.png" id="2_vqa2l"]
 [ext_resource type="Texture2D" uid="uid://ceg4tavj7egq4" path="res://graphics/enemy/troop_prepare.png" id="3_6uskc"]
 [ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="4_iafrh"]
@@ -24,6 +25,7 @@
 [ext_resource type="Script" path="res://scenes/EnemyDeathState.gd" id="14_6hdwq"]
 [ext_resource type="Shader" path="res://scenes/colorize.gdshader" id="14_d17md"]
 [ext_resource type="Script" path="res://scenes/TargetRaycastTransition.gd" id="20_1gmvs"]
+[ext_resource type="Texture2D" uid="uid://cf7i22f64xdi4" path="res://graphics/effects/blood.png" id="23_q7esj"]
 
 [sub_resource type="Gradient" id="Gradient_8k6xp"]
 colors = PackedColorArray(1, 1, 0.556863, 0.4, 1, 1, 1, 0)
@@ -280,7 +282,7 @@ resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteBase:rotation")
+tracks/0/path = NodePath("Sprites/SpriteBase:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -292,7 +294,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SpriteBase/AnimatedSprite2D:material:shader_parameter/do_mix")
+tracks/1/path = NodePath("Sprites/SpriteBase/AnimatedSprite2D:material:shader_parameter/do_mix")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -300,6 +302,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_nn7tu"]
@@ -321,7 +335,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SpriteBase:rotation")
+tracks/1/path = NodePath("Sprites/SpriteBase:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -333,7 +347,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SpriteBase/AnimatedSprite2D:material:shader_parameter/do_mix")
+tracks/2/path = NodePath("Sprites/SpriteBase/AnimatedSprite2D:material:shader_parameter/do_mix")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -343,41 +357,92 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_lucbu"]
+resource_name = "hit"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/SpriteBase:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [-0.174533, 0.0872665, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/SpriteBase/AnimatedSprite2D:material:shader_parameter/do_mix")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fmrua"]
 _data = {
 "RESET": SubResource("Animation_02yk4"),
+"death": SubResource("Animation_lucbu"),
 "hit": SubResource("Animation_nn7tu")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_soeh7"]
 radius = 38.0
 
+[sub_resource type="Gradient" id="Gradient_uftr6"]
+offsets = PackedFloat32Array(0, 0.767974, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="RangedEnemy" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_tl3v6")
 initial_state = NodePath("States/MoveAndAttackState")
+death_particles_scene = ExtResource("2_d83p1")
 
-[node name="GlowSprite" type="Sprite2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="GlowSprite" type="Sprite2D" parent="Sprites"]
 texture = SubResource("GradientTexture2D_8f30d")
 
-[node name="SpriteBase" type="Node2D" parent="."]
+[node name="SpriteBase" type="Node2D" parent="Sprites"]
 position = Vector2(0, 80)
+scale = Vector2(1, 1)
 
-[node name="ShadowPivot" type="Node2D" parent="SpriteBase"]
+[node name="ShadowPivot" type="Node2D" parent="Sprites/SpriteBase"]
+unique_name_in_owner = true
 position = Vector2(0, 8)
 
-[node name="ShadowSprite2D" type="Sprite2D" parent="SpriteBase/ShadowPivot"]
+[node name="ShadowSprite2D" type="Sprite2D" parent="Sprites/SpriteBase/ShadowPivot"]
 modulate = Color(1, 1, 1, 0.588235)
 position = Vector2(-16, 0)
 texture = ExtResource("2_vqa2l")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteBase"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprites/SpriteBase"]
 unique_name_in_owner = true
 texture_filter = 1
 material = SubResource("ShaderMaterial_5x272")
 position = Vector2(0, -80)
 sprite_frames = SubResource("SpriteFrames_nleu6")
-animation = &"idle"
+animation = &"die"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -499,24 +564,27 @@ true_state = NodePath("../../MoveToTargetState")
 
 [node name="DamageParticles" type="CPUParticles2D" parent="."]
 emitting = false
+amount = 5
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+lifetime_randomness = 0.5
 fixed_fps = 30
 draw_order = 1
+texture = ExtResource("23_q7esj")
 emission_shape = 1
 emission_sphere_radius = 3.0
 direction = Vector2(0, -1)
 gravity = Vector2(0, 1960)
-initial_velocity_min = 300.0
-initial_velocity_max = 450.0
+initial_velocity_min = 500.0
+initial_velocity_max = 800.0
 angular_velocity_min = -10.0
 angular_velocity_max = 720.0
 angle_min = 1.0
 angle_max = 360.0
-scale_amount_min = 10.0
-scale_amount_max = 15.0
-color = Color(0.396078, 0, 0, 1)
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_uftr6")
 hue_variation_min = -0.04
 hue_variation_max = 0.12
 

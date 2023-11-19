@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cs1t3p46kqe1l" path="res://scenes/ranged_enemy.tscn" id="1_kl0x6"]
 [ext_resource type="Shader" path="res://scenes/colorize.gdshader" id="2_yjryl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1j4lb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_381gm"]
 resource_local_to_scene = true
 shader = ExtResource("2_yjryl")
 shader_parameter/color = Vector3(1, 0.5, 0.5)
@@ -12,8 +12,8 @@ shader_parameter/do_mix = false
 
 [node name="TripleShotEnemy" instance=ExtResource("1_kl0x6")]
 
-[node name="AnimatedSprite2D" parent="SpriteBase" index="0"]
-material = SubResource("ShaderMaterial_1j4lb")
+[node name="AnimatedSprite2D" parent="Sprites/SpriteBase" index="1"]
+material = SubResource("ShaderMaterial_381gm")
 
 [node name="EnemyRangedAttackState" parent="States/MoveAndAttackState" index="0" node_paths=PackedStringArray("shoot_logic")]
 shoot_logic = NodePath("TripleShootLogic")

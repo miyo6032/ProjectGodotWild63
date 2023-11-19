@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://snqei07f5ygo"]
+
+[ext_resource type="Texture2D" uid="uid://cf7i22f64xdi4" path="res://graphics/effects/blood.png" id="1_yxwgr"]
+[ext_resource type="Script" path="res://scenes/DestructionParticles.gd" id="2_r8ync"]
+
+[sub_resource type="Curve" id="Curve_amvie"]
+_data = [Vector2(0, 0.978947), 0.0, 0.0, 0, 0, Vector2(0.534125, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_tlqkj"]
+offsets = PackedFloat32Array(0, 0.754902, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="DeathParticles" type="CPUParticles2D"]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+fixed_fps = 30
+draw_order = 1
+texture = ExtResource("1_yxwgr")
+emission_shape = 1
+emission_sphere_radius = 50.0
+direction = Vector2(0, -1)
+spread = 70.0
+gravity = Vector2(0, 1960)
+initial_velocity_min = 500.0
+initial_velocity_max = 1300.0
+angular_velocity_min = -10.0
+angular_velocity_max = 720.0
+angle_min = 1.0
+angle_max = 360.0
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_amvie")
+color_ramp = SubResource("Gradient_tlqkj")
+hue_variation_min = -0.04
+hue_variation_max = 0.12
+script = ExtResource("2_r8ync")
