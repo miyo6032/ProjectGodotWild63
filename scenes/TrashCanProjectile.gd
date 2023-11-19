@@ -6,8 +6,13 @@ extends RigidBody2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var explosion_area = $ExplosionArea
+@onready var area2d = $Area2D
 
 var trash_can_parent
+
+func _ready():
+    await get_tree().create_timer(0.2).timeout
+    area2d.collision_mask = 15
 
 func _on_area_2d_area_entered(_area:Area2D):
     explode()
