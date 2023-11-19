@@ -5,3 +5,4 @@
 [node name="ShotgunProjectileAudio" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_mn7v6")
 autoplay = true
+bus = &"SFX"
