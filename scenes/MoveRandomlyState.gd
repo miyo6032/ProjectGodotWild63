@@ -36,8 +36,7 @@ func physics_update(delta: float) -> void:
         enemy.velocity = lerp(enemy.velocity, direction * speed, delta * move_lag)
         enemy.animated_sprite.play("move")
         if direction.x != 0:
-            enemy.animated_sprite.flip_v = false
-            enemy.animated_sprite.flip_h = direction.x < 0
+            enemy.set_flip(direction.x < 0)
 
 func valid_spot() -> bool:
     position_detector(object_detector, object_detection_distance)

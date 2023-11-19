@@ -1,4 +1,4 @@
-[gd_scene load_steps=135 format=3 uid="uid://bfellyq050wl2"]
+[gd_scene load_steps=136 format=3 uid="uid://bfellyq050wl2"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_ymphj"]
 [ext_resource type="PackedScene" uid="uid://bx6d4ld436h0x" path="res://scenes/dash_ghost.tscn" id="2_1njyu"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dl7n8ckq83a3f" path="res://graphics/player/run_down.png" id="7_djs83"]
 [ext_resource type="Texture2D" uid="uid://bovx7kqlrruyc" path="res://graphics/player/idle.png" id="7_fy051"]
 [ext_resource type="AudioStream" uid="uid://b0j3xsumtcnm2" path="res://sounds/SFX_PLAYER_DEATH.wav" id="7_lh8q5"]
+[ext_resource type="Texture2D" uid="uid://dlkqbdtswcg0h" path="res://graphics/effects/shadow.png" id="8_gh5d4"]
 [ext_resource type="Texture2D" uid="uid://0wq7ksmvocuk" path="res://graphics/player/run_left.png" id="8_gi2md"]
 [ext_resource type="Texture2D" uid="uid://dln0s4c1q8p2i" path="res://graphics/player/run_right.png" id="9_xnpdb"]
 [ext_resource type="Texture2D" uid="uid://vaybf1b7rhhb" path="res://graphics/player/run_up.png" id="10_moxaj"]
@@ -1008,6 +1009,12 @@ hurt_sound = ExtResource("6_0l7aw")
 death_sound = ExtResource("7_lh8q5")
 max_health = 4
 health = 4
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(0, 67)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_gh5d4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

@@ -20,8 +20,7 @@ func update(delta: float) -> void:
 
         var direction = player.global_position - enemy.global_position
         if direction.x != 0:
-            enemy.animated_sprite.flip_v = false
-            enemy.animated_sprite.flip_h = direction.x < 0
+            enemy.set_flip(direction.x < 0)
 
 func fireball():
     state_data.can_move = true

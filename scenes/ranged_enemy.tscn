@@ -1,6 +1,7 @@
-[gd_scene load_steps=60 format=3 uid="uid://cs1t3p46kqe1l"]
+[gd_scene load_steps=61 format=3 uid="uid://cs1t3p46kqe1l"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_tl3v6"]
+[ext_resource type="Texture2D" uid="uid://dlkqbdtswcg0h" path="res://graphics/effects/shadow.png" id="2_vqa2l"]
 [ext_resource type="Texture2D" uid="uid://ceg4tavj7egq4" path="res://graphics/enemy/troop_prepare.png" id="3_6uskc"]
 [ext_resource type="Script" path="res://prototype/scenes/Damageable.gd" id="4_iafrh"]
 [ext_resource type="Texture2D" uid="uid://cfgerlikle57n" path="res://graphics/enemy/troop_knocked.png" id="4_jgfhr"]
@@ -347,6 +348,14 @@ initial_state = NodePath("States/MoveAndAttackState")
 
 [node name="SpriteBase" type="Node2D" parent="."]
 position = Vector2(0, 80)
+
+[node name="ShadowPivot" type="Node2D" parent="SpriteBase"]
+position = Vector2(0, 8)
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="SpriteBase/ShadowPivot"]
+modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(-16, 0)
+texture = ExtResource("2_vqa2l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteBase"]
 unique_name_in_owner = true

@@ -12,8 +12,7 @@ func enter(_msg := {}) -> void:
 
     var direction = player.global_position - enemy.global_position
     if direction.x != 0:
-        enemy.animated_sprite.flip_v = false
-        enemy.animated_sprite.flip_h = direction.x < 0
+        enemy.set_flip(direction.x < 0)
 
     enemy.animated_sprite.play("hit")
     await enemy.animated_sprite.animation_finished

@@ -71,6 +71,7 @@ func maybe_transition_state():
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite2D
+@onready var shadow_pivot: Node2D = $SpriteBase/ShadowPivot
 @export var health = 3
 
 func _on_damageable_on_damage(damage_info):
@@ -87,3 +88,8 @@ func _on_damageable_on_damage(damage_info):
 	if health <= 0:
 		state_data.is_dead = true
 		died.emit()
+
+func set_flip(flip: bool) -> void:
+	animated_sprite.flip_h = flip
+	shadow_pivot.rotation = TAU * 0.5 if flip else 0.0
+	
