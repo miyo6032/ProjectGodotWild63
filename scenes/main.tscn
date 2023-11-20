@@ -43,6 +43,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tm45u")
+start = 15
 levels = Array[PackedScene]([ExtResource("2_w2f0y"), ExtResource("3_r5thh"), ExtResource("4_2itki"), ExtResource("5_up1bp"), ExtResource("6_83qfj"), ExtResource("7_p7djp"), ExtResource("8_6exoh"), ExtResource("2_o8y1c"), ExtResource("10_yqn4f"), ExtResource("11_uvq6q"), ExtResource("12_7k5xh"), ExtResource("2_dhq1n"), ExtResource("14_up4g3"), ExtResource("15_lj1p7"), ExtResource("16_p3lun"), ExtResource("17_6r660"), ExtResource("18_epykm"), ExtResource("19_0k8ou"), ExtResource("2_6uw66"), ExtResource("21_3q78d"), ExtResource("2_nauhr"), ExtResource("23_vgseb"), ExtResource("24_fc5rd"), ExtResource("25_kri51"), ExtResource("2_tp6kg")])
 
 [node name="CameraFollow" type="Node2D" parent="."]
