@@ -19,5 +19,6 @@ animation_suffix = "triple"
 material = SubResource("ShaderMaterial_381gm")
 
 [node name="EnemyRangedAttackState" parent="States/MoveAndAttackState" index="0" node_paths=PackedStringArray("shoot_logic")]
+telegraph_time = 0.5
 shoot_logic = NodePath("TripleShootLogic")
 shoot_sfx = Array[AudioStream]([ExtResource("4_5beya")])
