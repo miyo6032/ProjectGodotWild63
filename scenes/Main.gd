@@ -7,8 +7,11 @@ var current_level: Node
 var current_level_index: int
 
 func _ready() -> void:
-    Console.add_command("level", start_level, 1)
+    Console.add_command("level", level_command, 1)
     EventBus.on_level_cleared.connect(_on_level_cleared)
+    
+func level_command(index):
+    start_level(int(index) - 1)
 
 func _on_level_cleared() -> void:
     if current_level_index < levels.size() - 1:
@@ -21,7 +24,6 @@ func _on_level_cleared() -> void:
         get_tree().paused = true
 
 func start_level(level_index) -> void:
-    level_index = int(level_index) - 1
     Engine.time_scale = 1.0
     EventBus.on_level_started.emit(level_index)
 
