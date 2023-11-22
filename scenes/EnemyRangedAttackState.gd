@@ -12,6 +12,9 @@ class_name EnemyRangedAttackState
 var current_time = shoot_time
 var fireball_tween: Tween
 
+func enter(_msg := {}) -> void:
+    current_time = shoot_time * 0.75
+
 func update(delta: float) -> void:
     current_time += delta
     if current_time >= shoot_time:
