@@ -39,10 +39,10 @@ position = Vector2(825, 362)
 position = Vector2(-511, -56)
 
 [node name="TrashCan" parent="." instance=ExtResource("6_ykkks")]
-position = Vector2(-1161, -81)
+position = Vector2(-932, -467)
 
 [node name="TrashCan2" parent="." instance=ExtResource("6_ykkks")]
-position = Vector2(-53, -571)
+position = Vector2(-745, -481)
 
 [node name="TrashCan3" parent="." instance=ExtResource("6_ykkks")]
 position = Vector2(373, 668)
