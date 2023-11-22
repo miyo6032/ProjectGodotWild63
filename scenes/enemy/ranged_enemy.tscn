@@ -47,11 +47,11 @@
 [ext_resource type="Script" path="res://scenes/StunnedTransition.gd" id="45_vgc6m"]
 [ext_resource type="Script" path="res://scenes/EnemyDiedTransition.gd" id="46_mjiax"]
 
-[sub_resource type="Gradient" id="Gradient_8k6xp"]
+[sub_resource type="Gradient" id="Gradient_7hyno"]
 colors = PackedColorArray(1, 1, 0.556863, 0.4, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8f30d"]
-gradient = SubResource("Gradient_8k6xp")
+gradient = SubResource("Gradient_7hyno")
 width = 300
 height = 300
 fill = 1

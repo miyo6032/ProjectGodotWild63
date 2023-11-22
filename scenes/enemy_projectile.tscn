@@ -1,9 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://crxworclxlacs"]
+[gd_scene load_steps=16 format=3 uid="uid://crxworclxlacs"]
 
 [ext_resource type="Script" path="res://prototype/scenes/Fireball.gd" id="1_vvg55"]
 [ext_resource type="Texture2D" uid="uid://dvjuwe0a82y72" path="res://graphics/enemy/projectile/rocket.png" id="2_6bwik"]
 [ext_resource type="PackedScene" uid="uid://6e8uf3kekntd" path="res://scenes/rocket_explosion_particles.tscn" id="2_xktpn"]
 [ext_resource type="Texture2D" uid="uid://djw7tkvh6pr6w" path="res://graphics/effects/smoke.png" id="3_1axgp"]
+[ext_resource type="Texture2D" uid="uid://dlkqbdtswcg0h" path="res://graphics/effects/shadow.png" id="5_mo1ig"]
+[ext_resource type="Script" path="res://scenes/ShadowFollow.gd" id="5_xerpv"]
+
+[sub_resource type="Gradient" id="Gradient_h3lwj"]
+colors = PackedColorArray(1, 1, 0.556863, 0.4, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3l6me"]
+gradient = SubResource("Gradient_h3lwj")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.495726, 0.504274)
+fill_to = Vector2(0.858974, 0.196581)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02rc7"]
 atlas = ExtResource("2_6bwik")
@@ -46,6 +59,10 @@ script = ExtResource("1_vvg55")
 knockback = 2000.0
 explosion_scene = ExtResource("2_xktpn")
 
+[node name="GlowSprite" type="Sprite2D" parent="."]
+modulate = Color(0.862745, 0.729412, 0.294118, 0.839216)
+texture = SubResource("GradientTexture2D_3l6me")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_skctp")
@@ -82,6 +99,18 @@ collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource("CircleShape2D_6y0li")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Node" node_paths=PackedStringArray("to_follow")]
+script = ExtResource("5_xerpv")
+to_follow = NodePath("../..")
+
+[node name="Shadow" type="Sprite2D" parent="Node/Node2D"]
+modulate = Color(1, 1, 1, 0.27451)
+position = Vector2(0, 82)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_mo1ig")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

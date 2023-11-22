@@ -1,9 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://drykm5o7gewep"]
+[gd_scene load_steps=13 format=3 uid="uid://drykm5o7gewep"]
 
 [ext_resource type="Script" path="res://prototype/scenes/BouncyProjectile.gd" id="1_1s63j"]
 [ext_resource type="Texture2D" uid="uid://bxkepcqoq27jk" path="res://graphics/enemy/projectile/sawblade.png" id="2_d2c20"]
 [ext_resource type="PackedScene" uid="uid://d2wskgp5f84a0" path="res://scenes/saw_break.tscn" id="3_08jc6"]
 [ext_resource type="AudioStream" uid="uid://b611jj33oo8xr" path="res://sounds/SFX_SAW_BOUNCE.wav" id="3_okne4"]
+[ext_resource type="Script" path="res://scenes/ShadowFollow.gd" id="5_efkyd"]
+[ext_resource type="Texture2D" uid="uid://dlkqbdtswcg0h" path="res://graphics/effects/shadow.png" id="6_t2cco"]
+
+[sub_resource type="Gradient" id="Gradient_h7hrk"]
+colors = PackedColorArray(1, 1, 0.556863, 0.4, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cvvsv"]
+gradient = SubResource("Gradient_h7hrk")
+width = 150
+height = 150
+fill = 1
+fill_from = Vector2(0.495726, 0.504274)
+fill_to = Vector2(0.858974, 0.196581)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqt8f"]
 atlas = ExtResource("2_d2c20")
@@ -36,6 +49,10 @@ initial_angular_velocity = 10.0
 bounce_audio = ExtResource("3_okne4")
 break_audio_scene = ExtResource("3_08jc6")
 
+[node name="GlowSprite" type="Sprite2D" parent="."]
+modulate = Color(0.862745, 0.729412, 0.294118, 0.839216)
+texture = SubResource("GradientTexture2D_cvvsv")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_skctp")
@@ -55,5 +72,17 @@ shape = SubResource("CapsuleShape2D_6vddh")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Node" node_paths=PackedStringArray("to_follow")]
+script = ExtResource("5_efkyd")
+to_follow = NodePath("../..")
+
+[node name="Shadow" type="Sprite2D" parent="Node/Node2D"]
+modulate = Color(1, 1, 1, 0.27451)
+position = Vector2(0, 77)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_t2cco")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
