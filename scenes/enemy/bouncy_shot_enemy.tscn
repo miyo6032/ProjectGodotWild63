@@ -22,6 +22,3 @@ material = SubResource("ShaderMaterial_6nmbn")
 shoot_time = 1.5
 shoot_logic = NodePath("BouncyShootLogic")
 shoot_sfx = Array[AudioStream]([ExtResource("3_ao88n"), ExtResource("4_u1hph")])
-
-[node name="AttackTransition" parent="States/MoveToTargetState" index="0"]
-distance_range = Vector2(0, 1000)

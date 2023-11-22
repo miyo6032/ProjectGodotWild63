@@ -1379,6 +1379,9 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 collision_layer = 0
 script = ExtResource("1_igemd")
 initial_state = NodePath("States/MoveAndAttackState")
+start_attack_distance = 800.0
+start_chasing_distance = 1000.0
+lose_sight_distance = 10000.0
 death_particles_scene = ExtResource("2_14bla")
 enemy_death_sfx = ExtResource("3_efmqf")
 
@@ -1495,7 +1498,8 @@ true_state = NodePath("../../MoveRandomlyState")
 
 [node name="ChaseTransition" type="Node" parent="States/MoveAndAttackState" node_paths=PackedStringArray("raycast2d", "true_state")]
 script = ExtResource("40_vabo3")
-distance_range = Vector2(1000, 10000)
+range_min_name = "start_chasing_distance"
+range_max_name = "lose_sight_distance"
 raycast2d = NodePath("../../../RayCast2D")
 true_state = NodePath("../../MoveToTargetState")
 
@@ -1512,7 +1516,8 @@ speed = 200.0
 
 [node name="AttackTransition" type="Node" parent="States/MoveToTargetState" node_paths=PackedStringArray("raycast2d", "true_state")]
 script = ExtResource("40_vabo3")
-distance_range = Vector2(0, 800)
+range_min_name = "zero_distance"
+range_max_name = "start_attack_distance"
 raycast2d = NodePath("../../../RayCast2D")
 true_state = NodePath("../../MoveAndAttackState")
 
@@ -1532,13 +1537,15 @@ speed = 200.0
 
 [node name="AttackTransition" type="Node" parent="States/MoveRandomlyState" node_paths=PackedStringArray("raycast2d", "true_state")]
 script = ExtResource("40_vabo3")
-distance_range = Vector2(0, 1000)
+range_min_name = "zero_distance"
+range_max_name = "start_attack_distance"
 raycast2d = NodePath("../../../RayCast2D")
 true_state = NodePath("../../MoveAndAttackState")
 
 [node name="ChaseTransition" type="Node" parent="States/MoveRandomlyState" node_paths=PackedStringArray("raycast2d", "true_state")]
 script = ExtResource("40_vabo3")
-distance_range = Vector2(800, 10000)
+range_min_name = "start_chasing_distance"
+range_max_name = "lose_sight_distance"
 raycast2d = NodePath("../../../RayCast2D")
 true_state = NodePath("../../MoveToTargetState")
 

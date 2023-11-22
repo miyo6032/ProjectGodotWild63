@@ -33,20 +33,8 @@ projectile_speed = 1000.0
 [node name="MoveRandomlyState" parent="States/MoveAndAttackState" index="1"]
 speed = 400.0
 
-[node name="ChaseTransition" parent="States/MoveAndAttackState" index="3"]
-distance_range = Vector2(1000, 11000)
-
 [node name="MoveToTargetState" parent="States" index="2"]
 speed = 400.0
 
-[node name="AttackTransition" parent="States/MoveToTargetState" index="0"]
-distance_range = Vector2(0, 10000)
-
 [node name="MoveRandomlyState" parent="States" index="4"]
 speed = 400.0
-
-[node name="AttackTransition" parent="States/MoveRandomlyState" index="0"]
-distance_range = Vector2(0, 10000)
-
-[node name="ChaseTransition" parent="States/MoveRandomlyState" index="1"]
-distance_range = Vector2(800, 11000)
