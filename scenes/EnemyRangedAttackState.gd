@@ -34,10 +34,12 @@ func update(delta: float) -> void:
 func fireball():
     enemy.audio_stream_player.stream = shoot_sfx[randi() % shoot_sfx.size()]
     enemy.audio_stream_player.play()
-    state_data.can_move = true
     shoot_logic.shoot(enemy, player)
     var direction = player.global_position - enemy.global_position
     enemy.velocity += direction.normalized() * shoot_knockback * -1
+    enemy.set_sprite_animation("hit")
+    await get_tree().create_timer(0.1).timeout
+    state_data.can_move = true
 
 func exit() -> void:
     if fireball_tween and state_data.stunned:
