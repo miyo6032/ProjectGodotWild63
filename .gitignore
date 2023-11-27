@@ -2,3 +2,5 @@
 .godot/
 builds/
 .vscode/
+addons/previous-tab/
+addons/script-ide/

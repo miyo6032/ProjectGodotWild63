@@ -37,6 +37,9 @@ const dash_time = 0.2
 const additional_dash_animation_time = 0.2
 
 func _process(delta):
+    if health <= 0:
+        return
+    
     if allow_animation_cancelling:
         if not is_dashing:
             handle_sprite_movement()

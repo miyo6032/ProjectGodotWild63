@@ -35,6 +35,7 @@ func _game_won():
 func _game_over():
     try_again_button.grab_focus()
     animation_player.play("game_over")
+    await get_tree().create_timer(0.6).timeout
     get_tree().paused = true
 
 func _on_play_button_pressed():
