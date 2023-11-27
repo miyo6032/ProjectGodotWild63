@@ -40,7 +40,7 @@ func _physics_process(_delta):
         did_raycast = true
         for area in explosion_area.get_overlapping_areas():
             var space_state = get_world_2d().direct_space_state
-            var query = PhysicsRayQueryParameters2D.create(global_position, area.global_position)
+            var query = PhysicsRayQueryParameters2D.create(global_position, area.global_position, 17)
             query.exclude = [area]
             var result = space_state.intersect_ray(query)
             if !result:

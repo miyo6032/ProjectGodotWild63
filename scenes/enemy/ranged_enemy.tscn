@@ -1378,6 +1378,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="RangedEnemy" type="CharacterBody2D"]
 collision_layer = 0
+collision_mask = 17
 script = ExtResource("1_igemd")
 initial_state = NodePath("States/MoveAndAttackState")
 start_attack_distance = 800.0
@@ -1448,6 +1449,7 @@ libraries = {
 [node name="BaseObjectDetector" type="Area2D" parent="."]
 position = Vector2(109, 1)
 collision_layer = 0
+collision_mask = 17
 script = ExtResource("28_q28ar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaseObjectDetector"]

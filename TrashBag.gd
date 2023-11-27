@@ -34,7 +34,7 @@ func _physics_process(_delta):
         for area in explosion_area.get_overlapping_areas():
             if area != damageable:
                 var space_state = get_world_2d().direct_space_state
-                var query = PhysicsRayQueryParameters2D.create(global_position, area.global_position)
+                var query = PhysicsRayQueryParameters2D.create(global_position, area.global_position, 17)
                 query.exclude = [damageable, area]
                 var result = space_state.intersect_ray(query)
                 if !result:
