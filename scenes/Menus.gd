@@ -47,6 +47,8 @@ func _on_quit_button_pressed():
     get_tree().quit()
 
 func _on_try_again_button_pressed():
+    MusicPlayer.stop()
+    MusicPlayer.play()
     get_tree().reload_current_scene()
 
 func _input(event):
