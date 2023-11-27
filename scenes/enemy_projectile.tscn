@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://crxworclxlacs"]
+[gd_scene load_steps=14 format=3 uid="uid://crxworclxlacs"]
 
 [ext_resource type="Script" path="res://prototype/scenes/Fireball.gd" id="1_vvg55"]
 [ext_resource type="Texture2D" uid="uid://dvjuwe0a82y72" path="res://graphics/enemy/projectile/rocket.png" id="2_6bwik"]
 [ext_resource type="PackedScene" uid="uid://6e8uf3kekntd" path="res://scenes/rocket_explosion_particles.tscn" id="2_xktpn"]
-[ext_resource type="Texture2D" uid="uid://djw7tkvh6pr6w" path="res://graphics/effects/smoke.png" id="3_1axgp"]
+[ext_resource type="PackedScene" uid="uid://dprjg7xvdi0am" path="res://smoke_particles.tscn" id="3_gg81n"]
 [ext_resource type="Texture2D" uid="uid://dlkqbdtswcg0h" path="res://graphics/effects/shadow.png" id="5_mo1ig"]
 [ext_resource type="Script" path="res://scenes/ShadowFollow.gd" id="5_xerpv"]
 
@@ -41,14 +41,6 @@ height = 86.0
 radius = 26.0
 height = 86.0
 
-[sub_resource type="Curve" id="Curve_x2sn4"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.789474), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_bwf2y"]
-offsets = PackedFloat32Array(0.761589, 1)
-colors = PackedColorArray(1, 1, 1, 0.737255, 1, 1, 1, 0)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_6y0li"]
 radius = 100.0
 
@@ -58,6 +50,7 @@ gravity_scale = 0.0
 script = ExtResource("1_vvg55")
 knockback = 2000.0
 explosion_scene = ExtResource("2_xktpn")
+smoke_particles_scene = ExtResource("3_gg81n")
 
 [node name="GlowSprite" type="Sprite2D" parent="."]
 modulate = Color(0.862745, 0.729412, 0.294118, 0.839216)
@@ -79,19 +72,6 @@ shape = SubResource("CapsuleShape2D_cu6db")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4oemq")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-texture_filter = 1
-position = Vector2(-32, -1)
-amount = 10
-lifetime = 0.4
-texture = ExtResource("3_1axgp")
-emission_shape = 1
-emission_sphere_radius = 13.93
-gravity = Vector2(0, 0)
-scale_amount_min = 0.8
-scale_amount_curve = SubResource("Curve_x2sn4")
-color_ramp = SubResource("Gradient_bwf2y")
 
 [node name="ExplosionArea" type="Area2D" parent="."]
 collision_layer = 0

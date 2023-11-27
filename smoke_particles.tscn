@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dprjg7xvdi0am"]
+
+[ext_resource type="Texture2D" uid="uid://djw7tkvh6pr6w" path="res://graphics/effects/smoke.png" id="1_mt4oy"]
+[ext_resource type="Script" path="res://SmokeParticles.gd" id="2_v6wuw"]
+
+[sub_resource type="Curve" id="Curve_x2sn4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.789474), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_bwf2y"]
+offsets = PackedFloat32Array(0.761589, 1)
+colors = PackedColorArray(1, 1, 1, 0.737255, 1, 1, 1, 0)
+
+[node name="SmokeParticles" type="CPUParticles2D"]
+texture_filter = 1
+position = Vector2(-32, -1)
+emitting = false
+amount = 10
+lifetime = 0.4
+texture = ExtResource("1_mt4oy")
+emission_shape = 1
+emission_sphere_radius = 13.93
+gravity = Vector2(0, 0)
+scale_amount_min = 0.8
+scale_amount_curve = SubResource("Curve_x2sn4")
+color_ramp = SubResource("Gradient_bwf2y")
+script = ExtResource("2_v6wuw")
