@@ -20,6 +20,7 @@ config/icon="res://graphics/gameicon.png"
 Console="*res://addons/console/Console.gd"
 EventBus="*res://scenes/EventBus.gd"
 MusicPlayer="*res://scenes/music_player.tscn"
+TimeManager="*res://TimeManager.gd"
 
 [display]
 

@@ -151,9 +151,7 @@ func _exit_tree():
 
 func _on_level_cleared():
     level_cleared = true
-    Engine.time_scale = hit_freeze_slow    
-    await get_tree().create_timer(level_clear_slow_time * hit_freeze_slow).timeout
-    Engine.time_scale = 1    
+    TimeManager.set_time_scale(hit_freeze_slow, level_clear_slow_time)  
 
 func _on_enemy_collision_detection_on_damage(damage_info):
     print("player damaged" + str(damage_info))
@@ -186,17 +184,16 @@ func _on_attack_area_area_entered(area:Area2D):
     audio_stream_player.stream = hit_sound[randi() % hit_sound.size()]
     audio_stream_player.play()
     if not area.invulnerable:
-#        freeze_frame()
+        freeze_frame()
         area.damage({damage = 1, knockback = attack_direction * knockback})
         attack_hit.emit()
 
 func freeze_frame():
-    Engine.time_scale = hit_freeze_slow
-    await get_tree().create_timer(hit_freeze_time * hit_freeze_slow).timeout
     if level_cleared:
-        await get_tree().create_timer(level_clear_slow_time * hit_freeze_slow).timeout
-    Engine.time_scale = 1
-
+        TimeManager.set_time_scale(hit_freeze_slow, level_clear_slow_time)
+    else:
+        TimeManager.set_time_scale(hit_freeze_slow, hit_freeze_time)    
+        
 func spawn_dash_ghost():
     var dash_ghost: Sprite2D = dash_ghost_scene.instantiate()
     dash_ghost.global_position = global_position
