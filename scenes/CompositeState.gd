@@ -11,7 +11,7 @@ func set_state_machine(new_state_machine):
 
 func enter(_msg := {}) -> void:
     for state in states:
-        state.enter()
+        state.enter(_msg)
 
 func exit() -> void:
     for state in states:

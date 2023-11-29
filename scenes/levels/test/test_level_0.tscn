@@ -14,6 +14,7 @@ script = ExtResource("1_iwl1p")
 [node name="Player" parent="." instance=ExtResource("2_gvbql")]
 unique_name_in_owner = true
 position = Vector2(-714, 459)
+hit_freeze_time = 0.2
 
 [node name="Enemies" type="Node2D" parent="."]
 unique_name_in_owner = true

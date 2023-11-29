@@ -13,6 +13,8 @@ var current_time = shoot_time
 var fireball_tween: Tween
 
 func enter(_msg := {}) -> void:
+    if _msg.has("was_stunned"):
+        current_time = 0
     current_time = shoot_time * 0.75
 
 func update(delta: float) -> void:

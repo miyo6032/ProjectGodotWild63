@@ -18,7 +18,7 @@ func enter(_msg := {}) -> void:
     await enemy.animated_sprite.animation_finished
     state_data.can_move = true
     state_data.stunned = false
-    state_machine.transition_to(recover_state)
+    state_machine.transition_to(recover_state, {"was_stunned" = true})
 
 func exit() -> void:
     if stunned_tween:
