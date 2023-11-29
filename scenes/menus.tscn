@@ -517,24 +517,14 @@ alignment = 1
 [node name="PlayButton" type="Button" parent="MainMenu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../QuitButton")
 focus_next = NodePath("../OptionsButton")
-focus_previous = NodePath("../QuitButton")
 text = "Play
 "
 
 [node name="OptionsButton" type="Button" parent="MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-focus_next = NodePath("../QuitButton")
 focus_previous = NodePath("../PlayButton")
 text = "Options"
-
-[node name="QuitButton" type="Button" parent="MainMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-focus_neighbor_bottom = NodePath("../PlayButton")
-focus_next = NodePath("../PlayButton")
-focus_previous = NodePath("../OptionsButton")
-text = "Quit"
 
 [node name="TimerLabel" type="Label" parent="." node_paths=PackedStringArray("time_label")]
 process_mode = 1
@@ -601,15 +591,7 @@ alignment = 1
 [node name="TryAgainButton" type="Button" parent="DeathMenu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_next = NodePath("../QuitButton")
-focus_previous = NodePath("../QuitButton")
 text = "Try Again"
-
-[node name="QuitButton" type="Button" parent="DeathMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-focus_next = NodePath("../TryAgainButton")
-focus_previous = NodePath("../TryAgainButton")
-text = "Quit"
 
 [node name="WinMenu" type="Control" parent="."]
 unique_name_in_owner = true
@@ -667,15 +649,7 @@ horizontal_alignment = 1
 [node name="PlayAgainButton" type="Button" parent="WinMenu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_next = NodePath("../QuitButton")
-focus_previous = NodePath("../QuitButton")
 text = "Play Again"
-
-[node name="QuitButton" type="Button" parent="WinMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-focus_next = NodePath("../PlayAgainButton")
-focus_previous = NodePath("../PlayAgainButton")
-text = "Quit"
 
 [node name="PauseMenu" type="Control" parent="."]
 unique_name_in_owner = true
@@ -872,11 +846,8 @@ bus = &"SFX"
 [connection signal="play_pressed" from="." to="TimerLabel" method="_on_menus_play_pressed"]
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="DeathMenu/MarginContainer/VBoxContainer/TryAgainButton" to="." method="_on_try_again_button_pressed"]
-[connection signal="pressed" from="DeathMenu/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="WinMenu/MarginContainer/VBoxContainer/PlayAgainButton" to="." method="_on_try_again_button_pressed"]
-[connection signal="pressed" from="WinMenu/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="PauseMenu/MarginContainer/VBoxContainer/PauseSettingsGridContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="PauseMenu/MarginContainer/VBoxContainer/PauseSettingsGridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
