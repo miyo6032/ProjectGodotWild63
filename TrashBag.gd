@@ -2,6 +2,7 @@ extends Node2D
 
 @export var explosion_knockback: float
 @export var particles_scene: PackedScene
+@export var explosion_audio: AudioStream
 
 @onready var explosion_area = $ExplosionArea
 @onready var damageable = $Damageable
@@ -24,6 +25,8 @@ func explode():
     var particles: CPUParticles2D = particles_scene.instantiate()
     particles.global_position = global_position
     get_parent().add_child(particles)
+    
+    SfxPlayer.play_sfx(explosion_audio, global_position)
 
     var tween = create_tween()
     tween.tween_callback(queue_free).set_delay(0.2)

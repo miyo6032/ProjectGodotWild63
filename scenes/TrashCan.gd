@@ -4,7 +4,7 @@ extends Node2D
 @export var particle_textures: Array[Texture2D]
 @export var trash_bag_projectile_scene: PackedScene
 @export var bag_velocity: float
-@export var trash_can_sound: PackedScene
+@export var trash_can_sound: AudioStream
 
 @onready var damageable = $Damageable
 
@@ -16,9 +16,7 @@ func _on_damageable_on_damage(damage_info):
         lid_particles.texture = i
         get_parent().add_child(lid_particles)
 
-    var sound = trash_can_sound.instantiate()
-    get_parent().add_child(sound)
-    sound.global_position = global_position
+    SfxPlayer.play_sfx(trash_can_sound, global_position)
 
     call_deferred("trash_bag", damage_info)
 

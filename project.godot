@@ -21,6 +21,7 @@ Console="*res://addons/console/Console.gd"
 EventBus="*res://scenes/EventBus.gd"
 MusicPlayer="*res://scenes/music_player.tscn"
 TimeManager="*res://TimeManager.gd"
+SfxPlayer="*res://scripts/SFXPlayer.gd"
 
 [display]
 
